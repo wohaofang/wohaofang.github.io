@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JS与native交互方式 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原生和H5 的交互方式 在 原生开发 Hybrid App 的时候，前端和原生通信，需要jsBridge进行交互，在此总结下和原生一些交互的方式  需要说明App内嵌的H5都是基于原生WebView来实现的，为h5展示提供了容器  JS &amp;&amp; OCios的WebView有两种，分别 是UIWebView 、WKWebView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS与native交互方式">
+<meta property="og:url" content="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="原生和H5 的交互方式 在 原生开发 Hybrid App 的时候，前端和原生通信，需要jsBridge进行交互，在此总结下和原生一些交互的方式  需要说明App内嵌的H5都是基于原生WebView来实现的，为h5展示提供了容器  JS &amp;&amp; OCios的WebView有两种，分别 是UIWebView 、WKWebView">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-12T03:14:22.000Z">
+<meta property="article:modified_time" content="2021-06-16T03:17:26.716Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="native">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-JS与native交互方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2019-02-12T03:14:22.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS与native交互方式
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/native/">native</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="JS与native交互方式">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原生和H5-的交互方式"><a href="#原生和H5-的交互方式" class="headerlink" title="原生和H5 的交互方式"></a>原生和H5 的交互方式</h2><blockquote>
+<p>在 原生开发 Hybrid App 的时候，前端和原生通信，需要jsBridge进行交互，在此总结下和原生一些交互的方式</p>
+</blockquote>
+<pre><code>需要说明App内嵌的H5都是基于原生WebView来实现的，为h5展示提供了容器
+</code></pre>
+<h3 id="JS-amp-amp-OC"><a href="#JS-amp-amp-OC" class="headerlink" title="JS &amp;&amp; OC"></a>JS &amp;&amp; OC</h3><p>ios的WebView有两种，分别 是UIWebView 、WKWebView</p>
+<span id="more"></span>
+
+<ul>
+<li>UIWebView 比较老，但是银行页面必须使用这个</li>
+<li>WKWebView 轻量级的新</li>
+</ul>
+<h4 id="UIWebView原生的交互原理"><a href="#UIWebView原生的交互原理" class="headerlink" title="UIWebView原生的交互原理"></a>UIWebView原生的交互原理</h4><ol>
+<li>通过一个 JSContext 获取 UIWebView 的 JS 执行上下文,然后通过这个上下文，进行 OC &amp; JS 的双端交互。</li>
+<li>使用<a target="_blank" rel="noopener" href="https://github.com/marcuswestin/WebViewJavascriptBridge#usage">WebViewJavascriptBridge</a>插件与JS交互</li>
+<li>拦截http 请求截取参数进行交互(OC无法主动触发JS)</li>
+</ol>
+<h4 id="WebViewJavascriptBridge-IOS-原理与使用"><a href="#WebViewJavascriptBridge-IOS-原理与使用" class="headerlink" title="WebViewJavascriptBridge(IOS)原理与使用"></a>WebViewJavascriptBridge(IOS)原理与使用</h4><p><strong>原理</strong></p>
+<blockquote>
+<p>初始化时，创建一个iframe标签，src为https://__bridge_loaded__，OC截取这个url后，删除本地iframe并给html再次生成一个iframe，src是OC赋予的，并以这个url进行交互</p>
+</blockquote>
+<p><strong>使用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 初始化函数</span><br><span class="line">  function setupWebViewJavascriptBridge(callback) &#123;</span><br><span class="line">    if (window.WebViewJavascriptBridge) &#123; return callback(WebViewJavascriptBridge); &#125;</span><br><span class="line">    if (window.WVJBCallbacks) &#123; return window.WVJBCallbacks.push(callback); &#125;</span><br><span class="line">    window.WVJBCallbacks = [callback];</span><br><span class="line">    const WVJBIframe = document.createElement(&#x27;iframe&#x27;);</span><br><span class="line">    WVJBIframe.style.display = &#x27;none&#x27;;</span><br><span class="line">    WVJBIframe.src = &#x27;https://__bridge_loaded__&#x27;;</span><br><span class="line">    document.documentElement.appendChild(WVJBIframe);</span><br><span class="line">    setTimeout(() =&gt; &#123; document.documentElement.removeChild(WVJBIframe); &#125;, 0);</span><br><span class="line">  &#125;</span><br><span class="line">// 触发函数</span><br><span class="line">  setupWebViewJavascriptBridge(() =&gt; &#123;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">// 使用方法</span><br><span class="line">window.WebViewJavascriptBridge.callHandler(</span><br><span class="line">    &#x27;userInfo&#x27;, // 方法名</span><br><span class="line">    &#123; param: &#x27;中文测试&#x27; &#125;,  // 参数</span><br><span class="line">    (responseData) =&gt; &#123;  // 回调</span><br><span class="line">      alert(responseData);</span><br><span class="line">    &#125;,</span><br><span class="line">  );</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="WKWebView原生的交互原理"><a href="#WKWebView原生的交互原理" class="headerlink" title="WKWebView原生的交互原理"></a>WKWebView原生的交互原理</h4><p>通过 userContentController 把需要观察的 JS 执行函数注册起来。<br>然后通过一个协议方法，将所有注册过的 JS 函数执行的参数传递到此协议方法中。</p>
+<p>JS To OC</p>
+<p>这个方式是最通用方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.webkit.messageHandlers.userInfo.postMessage(&#123;name : &quot;李四&quot;,age : 22&#125;);</span><br><span class="line"></span><br><span class="line">userInfo // 方法名</span><br><span class="line">&#123;name : &quot;李四&quot;,age : 22&#125; // 参数</span><br></pre></td></tr></table></figure>
+
+<p> OC To JS<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// js 在window下注册一个回调</span><br><span class="line">// OC 触发 window下的这个回调 来进行交互</span><br></pre></td></tr></table></figure></p>
+<h3 id="JS-amp-amp-Android"><a href="#JS-amp-amp-Android" class="headerlink" title="JS &amp;&amp; Android"></a>JS &amp;&amp; Android</h3><p><strong>Android 4.0-4.4 没有jsBridge，可以使用url拦截传参</strong></p>
+<p><strong>!!! 安卓传参只能接收字符串 需要进行转换</strong></p>
+<p>通信方式有两种：原生交互和插件WebViewJavascriptBridge</p>
+<h4 id="原生交互"><a href="#原生交互" class="headerlink" title="原生交互"></a>原生交互</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.AndroidWebView.userInfo(&#123;name : &quot;李四&quot;,age : 22&#125;);</span><br><span class="line">userInfo // 方法名</span><br><span class="line">&#123;name : &quot;李四&quot;,age : 22&#125; // 参数</span><br></pre></td></tr></table></figure>
+
+<h4 id="WebViewJavascriptBridge"><a href="#WebViewJavascriptBridge" class="headerlink" title="WebViewJavascriptBridge"></a><a target="_blank" rel="noopener" href="https://github.com/lzyzsd/JsBridge">WebViewJavascriptBridge</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">// 初始化函数</span><br><span class="line">  function connectWebViewJavascriptBridge(callback) &#123;</span><br><span class="line">    if (window.WebViewJavascriptBridge) &#123;</span><br><span class="line">      callback(WebViewJavascriptBridge);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      document.addEventListener(</span><br><span class="line">        &#x27;WebViewJavascriptBridgeReady&#x27;,</span><br><span class="line">        () =&gt; &#123;</span><br><span class="line">          callback(WebViewJavascriptBridge);</span><br><span class="line">        &#125;,</span><br><span class="line">        false,</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // 触发</span><br><span class="line">  connectWebViewJavascriptBridge((bridge) =&gt; &#123;</span><br><span class="line">    bridge.init((message, responseCallback) =&gt; &#123;</span><br><span class="line">      console.log(&#x27;JS got a message&#x27;, message);</span><br><span class="line">      const data = &#123;</span><br><span class="line">        &#x27;Javascript Responds&#x27;: &#x27;测试中文!&#x27;,</span><br><span class="line">      &#125;;</span><br><span class="line">      if (responseCallback) &#123;</span><br><span class="line">        console.log(&#x27;JS responding with&#x27;, data);</span><br><span class="line">        responseCallback(data);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  // 使用方法</span><br><span class="line">window.WebViewJavascriptBridge.callHandler(</span><br><span class="line">    &#x27;userInfo&#x27;, // 方法名</span><br><span class="line">    &#123; param: &#x27;中文测试&#x27; &#125;,  // 参数</span><br><span class="line">    (responseData) =&gt; &#123;  // 回调</span><br><span class="line">      alert(responseData);</span><br><span class="line">    &#125;,</span><br><span class="line">  );</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="ckqwcoo860009kyfy34bl6ukc" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/electron%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          electron基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">ios-input键盘弹起收回BUG解决方式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ov5pDzDUYSzo1YDOQRc3DEQX-gzGzoHsz", "SoRbdL3rXvA0R8BV0vDCwRHy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈">
+<meta property="og:type" content="website">
+<meta property="og:title" content="丁大铭">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="丁铭 丁大铭的博客">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-nuxt使用Ts小结" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" class="article-date">
+  <time class="post-time" datetime="2021-06-29T03:03:27.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/">nuxt使用Ts小结</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" class="leancloud_visitors" data-flag-title="nuxt使用Ts小结">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>这一段时间在公司主导新搭建了一个 nuxt 项目。为了紧跟时代潮流，所以想使用 vue3 的 component-api 那一套。<br>结果调研发现很尴尬，目前的 nuxt.js 还没有升级到 vue3，但是若要使用可以引入 component-api 的 npm 仓库，强行使用。这真是鸡肋到极，所以放弃使用 component-api。</p>
+<p>但是为了创新整理活出来，决定使用 Ts 进行开发。<br>毕竟是第一次使用 nuxt.js，所以启动起来还是比较举步维艰的。脚手架一把锁很简单，但是想优化好，减少项目体积(上优化) 就会麻烦一些。</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="ckqwcoo8n001ckyfyhtsy41pz" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-当Swagger遇上YApi，瞬间高大上了！" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" class="article-date">
+  <time class="post-time" datetime="2021-06-22T08:14:38.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/">当Swagger遇上YApi，瞬间高大上了！</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%86%E4%BA%AB/">分享</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" class="leancloud_visitors" data-flag-title="当Swagger遇上YApi，瞬间高大上了！">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-YApi简介"><a href="#1-YApi简介" class="headerlink" title="1.YApi简介"></a>1.YApi简介</h2><pre><code>YApi是高效、易用、功能强大的API管理平台，旨在为开发、产品、测试人员提供更优雅的接口管理服务。
+YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi不仅提供了常用的接口管理功能，
+还提供了权限管理、Mock数据、Swagger数据导入等功能，总之功能很强大！
+</code></pre>
+<h2 id="2-背景"><a href="#2-背景" class="headerlink" title="2.背景"></a>2.背景</h2><p>我们公司的后端api接口文档一直使用的是Swagger进行开发的，Swagger开发对后端同学十分友好，方便生成。但是对于前端同学mock数据，同步开发存在着很大的困扰。</p>
+<p>研究发现在我们的YApi上可以实时的同步Swagger数据，这样对于前后端同学开发都十分的方便。接下来我来分享下操作步骤</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" data-id="ckqwcoo8v001ukyfycyu68wof" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-统一报错遮罩方案" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/" class="article-date">
+  <time class="post-time" datetime="2021-06-16T02:48:41.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/">统一报错遮罩方案</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="统一报错遮罩方案">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>项目中必然存在报错的问题，我们需要对报错进行处理，所以需要进行统一的封装。</p>
+<p>一下为nuxt.js项目为例： 目前支持 刷新和返回首页，  可进行新增配置</p>
+<h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><p>在 mall-marketing/components/layouts/mask 目录下进行了封装</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/" data-id="ckqwcoo910026kyfy5io3arpv" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-Nuxt项目打包速度优化方案" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="article-date">
+  <time class="post-time" datetime="2021-06-11T07:52:20.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">Nuxt项目打包速度优化方案</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="Nuxt项目打包速度优化方案">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>最近在做nuxt项目，发现nuxt项目在打包部署的时间通常在十分钟左右，已经是非常的慢了<br>所以想着怎么能提升一下部署速度，顺便进行项目优化，研究发现方案如下…..</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-id="ckqwcoo8d000lkyfyf08s2xhd" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-规范git提交信息" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time class="post-time" datetime="2021-05-20T03:48:48.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/">规范git提交信息</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/git/">git</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/" class="leancloud_visitors" data-flag-title="规范git提交信息">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们公司现在git提交的规范</p>
+<p>但是程序校验能防止员工出错，所以添加如下校验</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904025868271629">参考文章</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/" data-id="ckqwcoo930029kyfy01ue2agq" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-pm2部署nuxt" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/" class="article-date">
+  <time class="post-time" datetime="2021-05-20T03:45:30.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/">pm2部署nuxt</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/" class="leancloud_visitors" data-flag-title="pm2部署nuxt">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>优化nuxt 部署流程，熟悉配置需要</p>
+<h2 id="二、nuxt-js-中的-process-env"><a href="#二、nuxt-js-中的-process-env" class="headerlink" title="二、nuxt.js 中的 process.env"></a>二、nuxt.js 中的 process.env</h2><h3 id="1、在-js-环境中可以使用-env-变量"><a href="#1、在-js-环境中可以使用-env-变量" class="headerlink" title="1、在 js 环境中可以使用 env 变量"></a>1、在 js 环境中可以使用 env 变量</h3>
+        
+          <p class="article-more-link">
+            <a href="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/" data-id="ckqwcoo8o001ekyfy41je1pal" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-Nuxt使用svg-sprite-loader" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/04/24/Nuxt%E4%BD%BF%E7%94%A8svg-sprite-loader/" class="article-date">
+  <time class="post-time" datetime="2021-04-24T10:40:32.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">24</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/24/Nuxt%E4%BD%BF%E7%94%A8svg-sprite-loader/">Nuxt使用自定义svg图标</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/04/24/Nuxt%E4%BD%BF%E7%94%A8svg-sprite-loader/" class="leancloud_visitors" data-flag-title="Nuxt使用自定义svg图标">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-安装svg-sprite-loader"><a href="#1-安装svg-sprite-loader" class="headerlink" title="1.安装svg-sprite-loader"></a>1.安装svg-sprite-loader</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install svg-sprite-loader -D</span><br></pre></td></tr></table></figure>
+<p>2.配置文件nuxt.config.js添加loader</p>
+<p>官方文档使用webpack进行配置 <a target="_blank" rel="noopener" href="https://zh.nuxtjs.org/api/configuration-build#extend"> Nuxt extend </a></p>
+<p>assets/icons/svg 目录是我存放svg文件的目录</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/24/Nuxt%E4%BD%BF%E7%94%A8svg-sprite-loader/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/04/24/Nuxt%E4%BD%BF%E7%94%A8svg-sprite-loader/" data-id="ckqwcoo8a000fkyfygwg67ynp" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-NUXT-JS原理简述" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" class="article-date">
+  <time class="post-time" datetime="2021-04-20T08:14:18.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/">NUXT.JS原理简述</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nuxt/">nuxt</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" class="leancloud_visitors" data-flag-title="NUXT.JS原理简述">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-那服务器端渲染到底有什么好处呢？"><a href="#1-那服务器端渲染到底有什么好处呢？" class="headerlink" title="1.那服务器端渲染到底有什么好处呢？"></a>1.那服务器端渲染到底有什么好处呢？</h4><p>主要的原因时SPA（单页应用）不利于搜索引擎的SEO操作，Nuxt.js适合作新闻、博客、电影、咨询这样的需要搜索引擎提供流量的项目。如果你要作移动端的项目，就没必要使用这个框架了。</p>
+<h4 id="2-什么是SSR？"><a href="#2-什么是SSR？" class="headerlink" title="2.什么是SSR？"></a>2.什么是SSR？</h4><p>SPA虽然给服务器减轻了压力，但是也是有缺点的：</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" data-id="ckqwcoo88000ekyfy1vd23cnp" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-React-hook用法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/16/React-hook%E7%94%A8%E6%B3%95/" class="article-date">
+  <time class="post-time" datetime="2020-06-16T03:04:22.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/16/React-hook%E7%94%A8%E6%B3%95/">React-hook用法</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2020/06/16/React-hook%E7%94%A8%E6%B3%95/" class="leancloud_visitors" data-flag-title="React-hook用法">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h3><blockquote>
+<p>在页面每次渲染完之后都会执行</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123; useState,useEffect &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">const LikeBut = () =&gt; &#123;</span><br><span class="line">    const [like, setLike] = useState(0);</span><br><span class="line">    const [on, setOn] = useState(true);</span><br><span class="line">    useEffect(()=&gt;&#123;</span><br><span class="line">        document.title = `点击了$&#123;like&#125;次`</span><br><span class="line">    &#125;)</span><br><span class="line">    return(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button onClick=&#123;()=&gt;&#123;setLike(like+1)&#125;&#125;&gt;</span><br><span class="line">                &#123;like&#125; @</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">            &lt;button onClick=&#123;()=&gt;&#123;setOn(!on)&#125;&#125;&gt;</span><br><span class="line">                &#123;on?&#x27;on&#x27;:&#x27;off&#x27;&#125;</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default LikeBut;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在document监听click事件会有问题，所以sueEffect提供了清除回调</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import React , &#123;useState,useEffect&#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">const Mouse = () =&gt; &#123;</span><br><span class="line">    const [ positions, setPositions ] = useState(&#123;x: 0, y: 0&#125;);</span><br><span class="line"></span><br><span class="line">    useEffect(()=&gt;&#123;</span><br><span class="line">        const updateMouse = (event)=&gt;&#123;</span><br><span class="line">            console.log(&#x27;inner&#x27;)</span><br><span class="line">            setPositions(&#123;x:event.clientX,y:event.clientY&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(&#x27;add listener&#x27;)</span><br><span class="line">        document.addEventListener(&#x27;click&#x27;,updateMouse);</span><br><span class="line"></span><br><span class="line">        return ()=&gt;&#123;</span><br><span class="line">            console.log(&#x27;remove listener&#x27;)</span><br><span class="line">            document.removeEventListener(&#x27;click&#x27;,updateMouse)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    return(</span><br><span class="line">        &lt;p&gt;X:&#123;positions.x&#125;,Y:&#123;positions.y&#125;&lt;/p&gt;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Mouse;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 打印顺数 </span><br><span class="line">初始化时  add listener</span><br><span class="line"></span><br><span class="line">点击后</span><br><span class="line">inner</span><br><span class="line">remove listener</span><br><span class="line">add listener</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>控制useEffect的执行 </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useEffect(()=&gt;&#123;&#125;,[])</span><br><span class="line">第二个参数可以被设置成触发条件</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义hook"><a href="#自定义hook" class="headerlink" title="自定义hook"></a>自定义hook</h3><blockquote>
+<p>自定义hook 胜于 HOC 高阶组件  更加清晰 便于阅读</p>
+</blockquote>
+<h3 id="Hook-规则"><a href="#Hook-规则" class="headerlink" title="Hook 规则"></a>Hook 规则</h3><ul>
+<li>只在最顶层使用Hook</li>
+<li>只在React函数中使用Hook</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2020/06/16/React-hook%E7%94%A8%E6%B3%95/" data-id="ckqwcoo8b000jkyfyd9eecsbm" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-如何在iOS13的Safari中检测设备名称" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/22/%E5%A6%82%E4%BD%95%E5%9C%A8iOS13%E7%9A%84Safari%E4%B8%AD%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0/" class="article-date">
+  <time class="post-time" datetime="2020-05-22T05:51:55.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/22/%E5%A6%82%E4%BD%95%E5%9C%A8iOS13%E7%9A%84Safari%E4%B8%AD%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0/">如何在iOS13的Safari中检测设备名称</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2020/05/22/%E5%A6%82%E4%BD%95%E5%9C%A8iOS13%E7%9A%84Safari%E4%B8%AD%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0/" class="leancloud_visitors" data-flag-title="如何在iOS13的Safari中检测设备名称">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Apple iOS 13之后，iPad iOS 13的Safari中的window.navigator.userAgent与MacOS相同。</strong>像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">所以不能用之前方式来判断 是否是 ipad 了</span><br><span class="line"> </span><br><span class="line">/iPad|iPhone|iPod/.test(navigator.platform)</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2020/05/22/%E5%A6%82%E4%BD%95%E5%9C%A8iOS13%E7%9A%84Safari%E4%B8%AD%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2020/05/22/%E5%A6%82%E4%BD%95%E5%9C%A8iOS13%E7%9A%84Safari%E4%B8%AD%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0/" data-id="ckqwcoo8s001qkyfy98qc6rmo" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">next ⇢</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ov5pDzDUYSzo1YDOQRc3DEQX-gzGzoHsz", "SoRbdL3rXvA0R8BV0vDCwRHy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nuxt使用Ts小结 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开始这一段时间在公司主导新搭建了一个 nuxt 项目。为了紧跟时代潮流，所以想使用 vue3 的 component-api 那一套。结果调研发现很尴尬，目前的 nuxt.js 还没有升级到 vue3，但是若要使用可以引入 component-api 的 npm 仓库，强行使用。这真是鸡肋到极，所以放弃使用 component-api。 但是为了创新整理活出来，决定使用 Ts 进行开发。毕竟是第一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nuxt使用Ts小结">
+<meta property="og:url" content="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="开始这一段时间在公司主导新搭建了一个 nuxt 项目。为了紧跟时代潮流，所以想使用 vue3 的 component-api 那一套。结果调研发现很尴尬，目前的 nuxt.js 还没有升级到 vue3，但是若要使用可以引入 component-api 的 npm 仓库，强行使用。这真是鸡肋到极，所以放弃使用 component-api。 但是为了创新整理活出来，决定使用 Ts 进行开发。毕竟是第一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-29T03:03:27.000Z">
+<meta property="article:modified_time" content="2021-06-29T04:08:52.631Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="nuxt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-nuxt使用Ts小结" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" class="article-date">
+  <time class="post-time" datetime="2021-06-29T03:03:27.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nuxt使用Ts小结
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" class="leancloud_visitors" data-flag-title="nuxt使用Ts小结">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>这一段时间在公司主导新搭建了一个 nuxt 项目。为了紧跟时代潮流，所以想使用 vue3 的 component-api 那一套。<br>结果调研发现很尴尬，目前的 nuxt.js 还没有升级到 vue3，但是若要使用可以引入 component-api 的 npm 仓库，强行使用。这真是鸡肋到极，所以放弃使用 component-api。</p>
+<p>但是为了创新整理活出来，决定使用 Ts 进行开发。<br>毕竟是第一次使用 nuxt.js，所以启动起来还是比较举步维艰的。脚手架一把锁很简单，但是想优化好，减少项目体积(上优化) 就会麻烦一些。</p>
+<span id="more"></span>
+
+<h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><p>nuxt 项目的关键就是<strong>nuxt.config.ts</strong>，这里必须配置好才可以</p>
+<p>那就开始阅读官方文档，学习总是痛苦并快乐的【⊙⊥⊙】</p>
+<details>
+  <summary><mark><font color=darkred>全在这里了 哈哈 点击查看详细内容</font></mark></summary>
+  <p> 配置如下：</p>
+  <pre>
+    <code>  
+    const &#123; resolve &#125; = require('path')
+    const chalk = require('chalk')
+    const plugins = [
+      &#123; src: '@/plugins/yxt-comp', ssr: true, mode: 'client' &#125;,
+      &#123; src: '@/plugins/comp', ssr: false, mode: 'client' &#125;,
+      &#123; src: '~/plugins/vue-persistedstate', ssr: false &#125;,
+      &#123; src: '~/plugins/vueLazyLoad', ssr: false &#125;,
+      &#123; src: '@/plugins/svg-icon', ssr: false &#125;,
+    ]
+
+<pre><code>if (process.env.YXT_ENV !== &#39;mock&#39;) &#123;
+  // 路由守卫在mock环境下不需要生效
+  // plugins.push(&#123; src: &#39;@/plugins/router&#39;, ssr: false, mode: &#39;client&#39; &#125;)
+&#125;
+
+const Domain = &#123;
+  mock: &#123;&#125;,
+&#125;
+
+Domain.mock = &#123;
+  current: &#39;local&#39;,
+  name: &#39;mock&#39;,
+  // baseURL: &#39;https://yapi.yunxuetang.com.cn/mock/307/v2&#39;,
+  domainUrl: &#39;http://m-kc-feat.yxt.com&#39;,
+  // baseURL: &#39;https://api-mallmarketing-phx-feat.yunxuetang.com.cn/v2&#39;,
+  baseURL: &#39;https://api-mallmarketing-phx.yunxuetang.com.cn/v2&#39;,
+  // baseURL: &#39;http://192.168.52.118:8083&#39;,
+  mallUrl: &#39;https://api-mall-phx.yunxuetang.com.cn/v2/&#39;,
+&#125;
+
+export default &#123;
+  // server: &#123;
+  //   port: 3007,
+  //   host: &#39;0.0.0.0&#39;,
+  // &#125;, // host 和 port 运维需要动态修改 所以写在了 package.json内
+  env: domain,
+  head: &#123;
+    title: &#39;demo&#39;,
+    htmlAttrs: &#123;
+      lang: &#39;en&#39;,
+    &#125;,
+    meta: [
+      &#123; charset: &#39;utf-8&#39; &#125;,
+      &#123;
+        name: &#39;viewport&#39;,
+        content:
+          &#39;width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover,maximum-scale=1.0, user-scalable=0&#39;,
+        // 增加viewport标签
+      &#125;,
+      &#123;
+        hid: &#39;description&#39;,
+        name: &#39;description&#39;,
+        content: process.env.npm_package_description || &#39;&#39;,
+      &#125;,
+    ],
+    script: [
+      &#123; src: &#39;/rem/flexible.js&#39;, type: &#39;text/javascript&#39;, charset: &#39;utf-8&#39; &#125;,
+    ],
+  &#125;,
+  css: [
+    &#39;~/assets/css/public.scss&#39;,
+    &#39;yxt-h5/lib/index.css&#39;,
+  ],
+  plugins,
+  components: true,
+  buildModules: [&#39;@nuxt/typescript-build&#39;],
+  modules: [&#39;@nuxtjs/axios&#39;],
+  axios: &#123;&#125;,
+  build: &#123;
+    /**
+    * analyze 使用webpack-bundle-analyzer来可视化包以及如何优化
+    * 使用 yarn nuxt build -a
+    * */
+    extractCSS: &#123; allChunks: true &#125;,
+    loaders: &#123;
+      imgUrl: &#123; limit: 10000 &#125;,
+      fontUrl: &#123; limit: 10000 &#125;,
+    &#125;,
+    postcss: &#123;
+      plugins: &#123;
+        &#39;postcss-pxtorem&#39;: &#123;
+          rootValue: 37.5,
+          propList: [&#39;*&#39;],
+        &#125;,
+      &#125;,
+      preset: &#123;
+        autoprefixer: true,
+      &#125;,
+    &#125;,
+    extend(config: any) &#123;
+      config.module.rules.push(&#123;
+        test: /\.scss$/i,
+        loader: &#39;sass-resources-loader&#39;,
+        options: &#123;
+          resources: &#39;./assets/css/utils.scss&#39;,
+        &#125;,
+      &#125;)
+
+      const svgRule = config.module.rules.find((rule: any) =&gt;
+        rule.test.test(&#39;.svg&#39;)
+      )
+      svgRule.exclude = [resolve(__dirname, &#39;assets/icons/svg&#39;)]
+
+      // 添加loader规则
+      config.module.rules.push(&#123;
+        test: /\.svg$/, // 匹配.svg
+        include: [resolve(__dirname, &#39;assets/icons/svg&#39;)], // 将存放svg的目录加入到loader处理目录
+        use: [
+          &#123; loader: &#39;svg-sprite-loader&#39;, options: &#123; symbolId: &#39;icon-[name]&#39; &#125; &#125;,
+        ],
+      &#125;)
+    &#125;,
+    /**
+    * todo 按需打包css
+    * */
+    babel: &#123;
+      plugins: [
+        [
+          &#39;import&#39;,
+          &#123;
+            libraryName: &#39;yxt-h5&#39;,
+            style: (name: string) =&gt; &#123;
+              return `$&#123;name&#125;/style/index.js`
+            &#125;,
+          &#125;,
+          &#39;yxt-h5&#39;,
+        ],
+      ],
+    &#125;,
+  &#125;,
+  performance: &#123;
+    prefetch: false,
+  &#125;,
+  render: &#123;
+    resourceHints: false, // 添加prefetch和preload，以加快初始化页面加载时间。如果有许多页面和路由，可禁用此项
+  &#125;,
+&#125;
+</code></pre>
+  </code>
+</pre>
+
+</details>
+
+
+<h3 id="Vuex配置"><a href="#Vuex配置" class="headerlink" title="Vuex配置"></a>Vuex配置</h3><p>喜闻乐见开始store配置环节，我们这里因为使用的是TS，配置也是和传统的不一样。</p>
+<p>我这里上了 <strong>vuex-class</strong>，说实话 vuex-class 是真的好用，模块划分、语法兼容真是舒服呀。</p>
+<pre><code>vuex-class 的详细使用可以访问https://www.cnblogs.com/zxuedong/p/12800312.html
+</code></pre>
+<p>然后就是持久化存储了，这里也用上了 <strong>vue-persistedstate</strong>，考虑到不能太持久 ⊙﹏⊙？ 所以我放到了sessionStorage存他们</p>
+<h3 id="mock-js-使用"><a href="#mock-js-使用" class="headerlink" title="mock.js 使用"></a>mock.js 使用</h3><p>前期没事确定是否使用YApi，所以我正在项目之初引用了mock.js 这里语法也挺好玩的，但是编辑还是有些麻烦</p>
+<details>
+  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <p> 配置如下：</p>
+  <pre>
+    <code> 
+     
+      wiki:  https://github.com/nuysoft/Mock/wiki
+      Mock.Random 的方法在数据模板中称为『占位符』，书写格式为 @占位符(参数 [, 参数]) 。
+      Type    Method
+      Basic    boolean, natural, integer, float, character, string, range, date, time, datetime, now
+      Image    image, dataImage
+      Color    color
+      Text    paragraph, sentence, word, title, cparagraph, csentence, cword, ctitle
+      Name    first, last, name, cfirst, clast, cname
+      Web    url, domain, email, ip, tld
+      Address    area, region
+      Helper    capitalize, upper, lower, pick, shuffle
+      Miscellaneous    guid, id
+
+<pre><code>  import Mock from &#39;mockjs&#39;
+  import &#123; demo &#125; from &#39;@/api/mock&#39;
+  import &#123; category &#125; from &#39;@/api/mock/category&#39;
+
+  export default function () &#123;
+    console.log(&#39;process.env.current&#39;, process.env.current)
+    for (const key in demo) &#123;
+      Mock.mock(key, &#123;
+        code: 200,
+        message: &#39;成功&#39;,
+        data: demo[key],
+      &#125;)
+    &#125;
+    Mock.mock(&#39;/product/category&#39;, &#123;
+      code: 200,
+      message: &#39;成功&#39;,
+      data: category,
+    &#125;)
+  &#125;
+
+&lt;/code&gt;
+</code></pre>
+<p>  </pre></p>
+</details>
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="ckqwcoo8n001ckyfyhtsy41pz" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">当Swagger遇上YApi，瞬间高大上了！</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ov5pDzDUYSzo1YDOQRc3DEQX-gzGzoHsz", "SoRbdL3rXvA0R8BV0vDCwRHy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

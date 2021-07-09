@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈">
+<meta property="og:type" content="website">
+<meta property="og:title" content="丁大铭">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="丁铭 丁大铭的博客">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-模拟圆规-内容输出" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/" class="article-date">
+  <time class="post-time" datetime="2020-04-20T05:48:34.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/">模拟圆规-内容输出</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/" class="leancloud_visitors" data-flag-title="模拟圆规-内容输出">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="最近接到了一个需求，使用JS制作一个圆规课件"><a href="#最近接到了一个需求，使用JS制作一个圆规课件" class="headerlink" title="最近接到了一个需求，使用JS制作一个圆规课件"></a>最近接到了一个需求，使用JS制作一个圆规课件</h2><p>功能如下：</p>
+<p>图1 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img1.png" alt="图1"><br>图2 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img2.png" alt="图2"></p>
+<h3 id="图1和图2-分析"><a href="#图1和图2-分析" class="headerlink" title="图1和图2 分析"></a>图1和图2 分析</h3><p>最开始的想法是 使用斜率 k=tanα=(y1-y2)/(x1-x2) 来时时的计算倾斜角来控制圆规的三部分运动；</p>
+<p>可是后来我发现，我想多了：</p>
+<ul>
+<li>圆规的三部分不是直线运动而是抛物线 </li>
+<li>还有一个最关键的点就是，常规的数学坐标系是从左下方开始的，而前端的坐标系默认是从左上方开始的</li>
+</ul>
+<h3 id="所以我必须转换思路"><a href="#所以我必须转换思路" class="headerlink" title="所以我必须转换思路"></a>所以我必须转换思路</h3><p>机智的我想想到了一个极简的想法，不管他是曲线运动还是什么斜率，无非逃不出一个界定的范围，运动什么的都让代码自行事项吧。 </p>
+<ol>
+<li>首先是记录圆规的三部分的初始坐标和倾斜角</li>
+<li>其次是利率圆规的三部分的最大范围的坐标和倾斜角</li>
+<li>拉伸范围是固定的，我们可以计算出圆规被拖动的距离的比例</li>
+<li>在拉伸的时候时时改变圆规的三部分的最大范围的坐标和倾斜角的比例 </li>
+</ol>
+<p>这样就完成了图1和图2的需求</p>
+<p>效果如下：图3</p>
+<p>图3 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img3.png" alt="图3"></p>
+<h3 id="接下来来到了画圆的环节了"><a href="#接下来来到了画圆的环节了" class="headerlink" title="接下来来到了画圆的环节了"></a>接下来来到了画圆的环节了</h3><p>效果如下：</p>
+<p>图4 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img4.png" alt="图4"></p>
+<h4 id="首先是画圆"><a href="#首先是画圆" class="headerlink" title="首先是画圆"></a>首先是画圆</h4><p>这个画圆可是让我选择了好久，我的方案有这么几种：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方案</th>
+<th>采用与否的原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>直接用 JS 生成 Dom元素 往页面里不断push就行</td>
+<td>不可行 生成Dom太多了 不太好</td>
+</tr>
+<tr>
+<td>2</td>
+<td>使用css boder 滚动（类似圆形进度条）</td>
+<td>可行 备选状态 但是它消耗页面性能</td>
+</tr>
+<tr>
+<td>3</td>
+<td>使用canvas 画圆</td>
+<td>尝试 感觉不可行(使用style 动态改变画布宽高是 内部画出来的圆是椭圆形) 有明显锯齿 需要优化</td>
+</tr>
+<tr>
+<td>4</td>
+<td>使用svg 画圆</td>
+<td>目前采用的是这个方案</td>
+</tr>
+</tbody></table>
+<p>！！！  但是使用 svg circle 画圆他默认是顺时针旋转的 这里我用了一个骚操作 使用 transform:scaleY(-1); 使svg 水平镜像翻转。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg id=&quot;svg&quot; :style=&quot;svgCss&quot;&gt;</span><br><span class="line"> &lt;circle class=&quot;path&quot; </span><br><span class="line">  stroke=&quot;hotpink&quot; // 划线的颜色</span><br><span class="line">  fill=&quot;none&quot;  // 填充颜色</span><br><span class="line">  stroke-width=&quot;1%&quot; // 划线的宽度  可以使用百分比这是太棒了</span><br><span class="line">  cx=&quot;50%&quot; // 圆心X轴位置</span><br><span class="line">  cy=&quot;50%&quot; // 圆心Y轴位置</span><br><span class="line">  r=&quot;49.5%&quot; //圆的半径</span><br><span class="line"> /&gt;</span><br><span class="line">&lt;/svg&gt;</span><br><span class="line"></span><br><span class="line">stroke-dasharray: 360%; //展示比例</span><br><span class="line">stroke-dashoffset: 360%; //绘画比例</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>后续还需使用 Math.atan2 来时时计算倾斜度 来进行拖动画圆</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/" data-id="ckqwcoo8x001ykyfyci8p4vfd" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-1px-Bug" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/12/1px-Bug/" class="article-date">
+  <time class="post-time" datetime="2019-12-12T05:49:50.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/12/1px-Bug/">1px-Bug</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/12/12/1px-Bug/" class="leancloud_visitors" data-flag-title="1px-Bug">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *  本文件主要放各种sass的function或者mixin，可以直接在.vue中的sass使用</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * 主要是给border为0.5的时候使用的，当只有一条border或者border需要全部设置的画建议使用下面几个方法</span><br><span class="line">  */</span><br><span class="line">@mixin border-hack($color: #e7e7e7, $d1: none, $d2: none, $d3: none, $d4: none) &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  &amp;::after&#123;</span><br><span class="line">    content: &#x27;&#x27;;</span><br><span class="line">    transform: scale(0.5);</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: -50%;</span><br><span class="line">    right: -50%;</span><br><span class="line">    top: -50%;</span><br><span class="line">    bottom: -50%;</span><br><span class="line">    @if($d1 == &#x27;left&#x27; or $d2 == &#x27;left&#x27; or $d3 == &#x27;left&#x27; or $d4 == &#x27;left&#x27;)&#123;</span><br><span class="line">      border-left: 1PX solid $color;</span><br><span class="line">    &#125; </span><br><span class="line">    @if ($d1 == &#x27;right&#x27; or $d2 == &#x27;right&#x27; or $d3 == &#x27;right&#x27; or $d4 == &#x27;right&#x27;) &#123;</span><br><span class="line">      border-right: 1PX solid $color;</span><br><span class="line">    &#125; </span><br><span class="line">    @if ($d1 == &#x27;top&#x27; or $d2 == &#x27;top&#x27; or $d3 == &#x27;top&#x27; or $d4 == &#x27;top&#x27;) &#123;</span><br><span class="line">      border-top: 1PX solid $color;</span><br><span class="line">    &#125; </span><br><span class="line">    @if ($d1 == &#x27;bottom&#x27; or $d2 == &#x27;bottom&#x27; or $d3 == &#x27;bottom&#x27; or $d4 == &#x27;bottom&#x27;) &#123;</span><br><span class="line">      border-bottom: 1PX solid $color;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@mixin border-hack-top($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, top);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-right($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, right);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-bottom($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, bottom);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-left($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, left);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-all($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, left, right, top, bottom);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.test&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background: yellow;</span><br><span class="line">  color: white;</span><br><span class="line">  @include border-hack-all(red);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/12/12/1px-Bug/" data-id="ckqwcoo7y0001kyfy6iqkgppv" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-mongodb-安装踩坑记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" class="article-date">
+  <time class="post-time" datetime="2019-11-16T03:06:52.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/">mongodb-安装踩坑记</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mongodb/">mongodb</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" class="leancloud_visitors" data-flag-title="mongodb-安装踩坑记">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h2><h4 id="安装mongodb"><a href="#安装mongodb" class="headerlink" title="安装mongodb"></a>安装mongodb</h4><p>2种安装方式</p>
+<ol>
+<li>下载官方安装包，手动安装</li>
+<li>使用brew安装</li>
+</ol>
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>可以参考菜鸟联盟的安装流程</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" data-id="ckqwcoo8m0017kyfyef5tg6p0" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-Vue2-x双向数据绑定原理" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="post-time" datetime="2019-07-31T03:03:12.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/">Vue2.x双向数据绑定原理</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="Vue2.x双向数据绑定原理">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>vue.js是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter,在数据变动的时候发布消息给订阅者，出发相应的监听回调。</li>
+<li>第一步：需要observe的数据对象进行递归遍历，包括子属性的对象属性，都加上setter和getter。这样的话，给这个对象的某个值复制，就会触发setter，这样就能监听到数据变化；</li>
+<li>第二步：compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有改变，收到通知，更新视图；</li>
+<li>第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是：<ul>
+<li>1、在自身实例化是往属性订阅器(dep)里面添加自己</li>
+<li>2、自身必须有一个update()方法</li>
+<li>3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退</li>
+</ul>
+</li>
+<li>第四步：MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，通过Observer来监听自己的model数据变化，通过Complie来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化-&gt;师徒更新；视图交互变化(input)-&gt;数据model变更的双向绑定效果。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="ckqwcoo8e000nkyfy9rdcho6j" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-vue中computed和watch的区别" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="post-time" datetime="2019-07-30T03:03:12.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">30</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/">vue中computed和watch的区别</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="vue中computed和watch的区别">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="计算属性computed："><a href="#计算属性computed：" class="headerlink" title="计算属性computed："></a>计算属性computed：</h2><ol>
+<li>支持缓存，只有依赖的数据发声改变，才会重新进行计算</li>
+<li>不支持异步</li>
+<li>computed属性值会默认走缓存，计算属性是基于它们的响应式依赖进行缓存的</li>
+<li>如果computed属性值是函数，那他默认会走get方法，函数的返回值就是属性的属性值；在computed中的，属性都有一个get和一个set方法，当数据变化时，调用set方法。</li>
+</ol>
+<h2 id="监听属性watch："><a href="#监听属性watch：" class="headerlink" title="监听属性watch："></a>监听属性watch：</h2><ol>
+<li>不支持缓存，数据变，直接回触发对应操作；</li>
+<li>watch支持异步；</li>
+<li>监听的函数接收两个参数，第一个是新值，第二个是之前的值；</li>
+<li>当一个属性发声变化时，会执行对应操作，一对多；</li>
+<li>监听数据必须是data 声明的或者props 中的数据</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckqwcoo8p001jkyfycblw7yda" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-JWT学习" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="post-time" datetime="2019-03-15T03:14:22.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/">JWT学习</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" class="leancloud_visitors" data-flag-title="JWT学习">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JSON-Web-Token"><a href="#JSON-Web-Token" class="headerlink" title="JSON Web Token"></a>JSON Web Token</h3><pre><code>缩写JWT 一种目前比较流行的跨域认证解决方案
+</code></pre>
+<h4 id="JWT的原来"><a href="#JWT的原来" class="headerlink" title="JWT的原来"></a>JWT的原来</h4><p>原理就是:服务器认证以后，生成一个JSON对象，发回给用户,如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;姓名&quot;: &quot;张三&quot;,</span><br><span class="line">  &quot;角色&quot;: &quot;管理员&quot;,</span><br><span class="line">  &quot;到期时间&quot;: &quot;2018年7月1日0点0分&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以后，用户与服务端通信的时候，都要发回这个 JSON 对象。服务器完全只靠这个对象认定用户身份。为了防止用户篡改数据，服务器在生成这个对象的时候，会加上签名。</p>
+<p>服务器就不保存任何 session 数据了，也就是说，服务器变成无状态了，从而比较容易实现扩展。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="ckqwcoo86000akyfyatcn494s" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-electron基础" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/electron%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="post-time" datetime="2019-03-11T03:28:18.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/electron%E5%9F%BA%E7%A1%80/">electron基础</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/electron/">electron</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/03/11/electron%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="electron基础">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><ul>
+<li>electron 和 chrome 是采用多进程的模式 </li>
+</ul>
+<blockquote>
+<p>好处是这样各个模块之间没有联系，一处崩溃不会影响其他地方</p>
+</blockquote>
+<blockquote>
+<p>坏处就是会导致内存消耗比较大</p>
+</blockquote>
+<h3 id="主进程-Main-Process"><a href="#主进程-Main-Process" class="headerlink" title="主进程 - Main Process"></a>主进程 - Main Process</h3><ul>
+<li>可以使用和系统对接的Electron API -创建菜单，上传文件 等等</li>
+<li>创建渲染进程 -Renderer Process</li>
+<li>全面支持 Node</li>
+<li>只有一个，作为整个程序的入口点</li>
+</ul>
+<h3 id="渲染进程-Renderer-Process"><a href="#渲染进程-Renderer-Process" class="headerlink" title="渲染进程 - Renderer Process"></a>渲染进程 - Renderer Process</h3><ul>
+<li>可以有多个，每个对应一个窗口</li>
+<li>每个都是一个单独的进程</li>
+<li>全面支持 node 和 DOM API</li>
+<li>可以使用部分Electron提供的API</li>
+</ul>
+<h3 id="进程之间的通讯方式"><a href="#进程之间的通讯方式" class="headerlink" title="进程之间的通讯方式"></a>进程之间的通讯方式</h3><ul>
+<li>Electron使用IPC在进程之间进行通讯</li>
+<li>remote 渲染进程直接可以使用主进程API</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="ckqwcoo8g000qkyfycch042j4" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/" rel="tag">electron</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-JS与native交互方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2019-02-12T03:14:22.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/">JS与native交互方式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/native/">native</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="JS与native交互方式">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原生和H5-的交互方式"><a href="#原生和H5-的交互方式" class="headerlink" title="原生和H5 的交互方式"></a>原生和H5 的交互方式</h2><blockquote>
+<p>在 原生开发 Hybrid App 的时候，前端和原生通信，需要jsBridge进行交互，在此总结下和原生一些交互的方式</p>
+</blockquote>
+<pre><code>需要说明App内嵌的H5都是基于原生WebView来实现的，为h5展示提供了容器
+</code></pre>
+<h3 id="JS-amp-amp-OC"><a href="#JS-amp-amp-OC" class="headerlink" title="JS &amp;&amp; OC"></a>JS &amp;&amp; OC</h3><p>ios的WebView有两种，分别 是UIWebView 、WKWebView</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="ckqwcoo860009kyfy34bl6ukc" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-ios-input键盘弹起收回BUG解决方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2018-12-17T03:22:41.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/">ios-input键盘弹起收回BUG解决方式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="ios-input键盘弹起收回BUG解决方式">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;input class=&quot;ipt&quot; @focus=&quot;focus&quot; @blur=&#x27;done&#x27; type=&quot;text&quot; placeholder=&quot;请输入名字&quot; v-model=&quot;addressDetail.userName&quot;&gt;</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    focus() &#123;</span><br><span class="line">      document.body.scrollTop = 0;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">    done() &#123;</span><br><span class="line">      document.body.scrollTop = document.body.scrollHeight;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 获得焦点时让页面滚动0</span><br><span class="line">// 失去焦点时让页面滚动当前页面高度</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">       window.scrollTo(0, document.body.scrollTop + 1);</span><br><span class="line">       document.body.scrollTop &gt;= 1</span><br><span class="line">        &amp;&amp; window.scrollTo(0, document.body.scrollTop - 1);</span><br><span class="line">&#125;, 300);</span><br><span class="line">// 效果很好，但不推荐使用 </span><br></pre></td></tr></table></figure>
+<h2 id="方案3"><a href="#方案3" class="headerlink" title="方案3"></a>方案3</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&#x27;focusin&#x27;, () =&gt; &#123; // 软键盘弹起事件</span><br><span class="line">  console.log(&#x27;键盘弹起&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">document.body.addEventListener(&#x27;focusout&#x27;, () =&gt; &#123; // 软键盘关闭事件</span><br><span class="line">  console.log(&#x27;键盘收起&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><p>&lt;input type=”text” placeholder=”联系人的手机号/QQ/微信” v-model=”contact” class=”ipt” **@blur=’done’**/&gt;</p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><pre><code>done() &#123;
+   document.body.scrollTop = document.body.scrollHeight;
+&#125;
+</code></pre>
+<p>*这样在 <strong>失去焦点</strong> 的时候触发 <strong>done方法</strong> 页面滚动下 就好了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="ckqwcoo8j0010kyfy6q0ddrqw" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-ios-音乐自动播放问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="post-time" datetime="2018-12-16T03:22:41.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/">ios-音乐自动播放问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="ios-音乐自动播放问题">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ios"><a href="#ios" class="headerlink" title="ios"></a>ios</h2><p><strong>方法一</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//第一步：首先加载一个微信JS-SDK</span><br><span class="line">&lt;script src=&quot;http://res.wx.qq.com/open/js/jweixin-1.0.0.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">//第2步：写一些配置</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function autoPlayAudio() &#123;</span><br><span class="line">        wx.config(&#123;</span><br><span class="line">            // 配置信息, 即使不正确也能使用 wx.ready</span><br><span class="line">            debug: false,</span><br><span class="line">            appId: &#x27;&#x27;,</span><br><span class="line">            timestamp: 1,</span><br><span class="line">            nonceStr: &#x27;&#x27;,</span><br><span class="line">            signature: &#x27;&#x27;,</span><br><span class="line">            jsApiList: []</span><br><span class="line">        &#125;);</span><br><span class="line">        wx.ready(function() &#123;</span><br><span class="line">            var globalAudio=document.getElementById(&quot;audio标签id&quot;);</span><br><span class="line">            globalAudio.play();</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">// 解决ios音乐不自动播放的问题</span><br><span class="line">autoPlayAudio();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="ckqwcoo8k0014kyfy6nwvhkuv" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">⇠ pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">next ⇢</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>10</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>14</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ov5pDzDUYSzo1YDOQRc3DEQX-gzGzoHsz", "SoRbdL3rXvA0R8BV0vDCwRHy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
