@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Docker安装Jenkins | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言在Centos7阿里云服务器上使用docker搭建Jenkins服务。 需要提前准备的条件  docker环境 JDK环境(Centos7自带JDK环境)  一、docker拉取镜像Jenkins有官方镜像，也有私人镜像，这里我们选择拉取中文版的Jenkins镜像。 docker pull jenkinszh&#x2F;jenkins-zh  二、创建Jenkins挂载目录并授权权限如果你对Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker安装Jenkins">
+<meta property="og:url" content="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="前言在Centos7阿里云服务器上使用docker搭建Jenkins服务。 需要提前准备的条件  docker环境 JDK环境(Centos7自带JDK环境)  一、docker拉取镜像Jenkins有官方镜像，也有私人镜像，这里我们选择拉取中文版的Jenkins镜像。 docker pull jenkinszh&#x2F;jenkins-zh  二、创建Jenkins挂载目录并授权权限如果你对Docker">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://stc.yxt.com/2133a5cd/2790acfe/2020081520323620.png">
+<meta property="og:image" content="https://stc.yxt.com/2133a5cd/2790acfe/20200815203632841.png">
+<meta property="og:image" content="https://stc.yxt.com/2133a5cd/2790acfe/20200815203457224.png">
+<meta property="og:image" content="https://stc.yxt.com/2133a5cd/2790acfe/20200815203728890.png">
+<meta property="article:published_time" content="2021-07-23T02:56:04.000Z">
+<meta property="article:modified_time" content="2021-07-23T03:05:23.456Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Jenkins">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stc.yxt.com/2133a5cd/2790acfe/2020081520323620.png">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>19</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Docker安装Jenkins" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" class="article-date">
+  <time class="post-time" datetime="2021-07-23T02:56:04.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker安装Jenkins
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Docker/">Docker</a>,<a class="article-category-link" href="/categories/Docker/Jenkins/">Jenkins</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" class="leancloud_visitors" data-flag-title="Docker安装Jenkins">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Centos7阿里云服务器上使用docker搭建Jenkins服务。</p>
+<p>需要提前准备的条件</p>
+<ul>
+<li>docker环境</li>
+<li>JDK环境(Centos7自带JDK环境)</li>
+</ul>
+<h3 id="一、docker拉取镜像"><a href="#一、docker拉取镜像" class="headerlink" title="一、docker拉取镜像"></a>一、docker拉取镜像</h3><p>Jenkins有官方镜像，也有私人镜像，这里我们选择拉取中文版的Jenkins镜像。</p>
+<pre><code>docker pull jenkinszh/jenkins-zh
+</code></pre>
+<h3 id="二、创建Jenkins挂载目录并授权权限"><a href="#二、创建Jenkins挂载目录并授权权限" class="headerlink" title="二、创建Jenkins挂载目录并授权权限"></a>二、创建Jenkins挂载目录并授权权限</h3><p>如果你对Docker比较熟悉，应该知道它的实现实际上是创造了一个独立的容器环境，Jenkins在这个容器内运行，那么如果我们想要对Jenkins进行配置，就需要进入到容器里选择文件进行配置。虽然我们可以使用<strong>docker exec -it 【容器id】 bash <strong>命令进入容器目录进行配置，但是连简单的 vi命令都不能使用。<br>如果我们在启动镜像的时候指定挂载目录，那么在服务器本机与容器之间就可以创建一个映射。<br>所以我们在服务器上先创建一个jenkins工作目录，</strong> /var/jenkins_mount</strong>，赋予相应权限，稍后我们将jenkins容器目录挂载到这个目录上，这样我们就可以很方便地对容器内的配置文件进行修改。</p>
+<pre><code>mkdir -p /var/jenkins_mount
+chmod 777 /var/jenkins_mount
+</code></pre>
+<h3 id="三、创建并启动Jenkins容器"><a href="#三、创建并启动Jenkins容器" class="headerlink" title="三、创建并启动Jenkins容器"></a>三、创建并启动Jenkins容器</h3><p>命令如下，别着急执行命令，记得改路径。</p>
+<pre><code>docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v  /root/apache-maven-3.6.3:/usr/local/maven    -v /etc/localtime:/etc/localtime --name myjenkins jenkinszh/jenkins-zh
+</code></pre>
+<p>请注意看下面我们指定对应参数的意义。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　-d 后台运行镜像</span><br><span class="line">　-p 10240:8080   意义： 将镜像的8080端口映射到服务器的10240端口。</span><br><span class="line">　　-p 10241:50000  意义：将镜像的50000端口映射到服务器的10241端口</span><br><span class="line">　　-v /var/jenkins_mount:/var/jenkins_mount     意义： /var/jenkins_home目录为容器jenkins工作目录，我们将硬盘上的一个目录挂载到这个位置，方便后续更新镜像后继续使用原来的工作目录。这里我们设置的就是上面我们创建的 /var/jenkins_mount目录</span><br><span class="line">　　-v /etc/localtime:/etc/localtime  意义：让容器使用和服务器同样的时间设置。</span><br><span class="line">-v  /root/apache-maven-3.6.3:/usr/local/maven  意义：挂载本地maven，前面是服务器上的，后面是挂载到容器上的目录</span><br><span class="line">　--name myjenkins  意义：给容器起一个别名</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、配置Jenkins服务"><a href="#四、配置Jenkins服务" class="headerlink" title="四、配置Jenkins服务"></a>四、配置Jenkins服务</h3><p>启动好镜像我们就可以进行配置了，Jenkins是一个web服务，所以我们直接使用web端口访问即可。</p>
+<p>由于我们上面docker配置的是10240端口，去访问10240端口即可，如果是云服务器，记得打开安全组的10240端口</p>
+<img src='https://stc.yxt.com/2133a5cd/2790acfe/2020081520323620.png' width=500/>
+
+<p>需要注意的是，这里显示的是jenkins_home路径，由于我设定的目录是jenkins_mounts,故我的密码放置目录是/var/jenkins_mount 所以建议使用cd和ls命令一层一层进入密码目录</p>
+<p>把找到的密码输入即可。</p>
+<img src='https://stc.yxt.com/2133a5cd/2790acfe/20200815203632841.png' width=500/>
+
+<p>输入密码后，选择安装推荐的插件即可。</p>
+<img src='https://stc.yxt.com/2133a5cd/2790acfe/20200815203457224.png' width=500/>
+
+<p>最后成功进入到jenkins中。</p>
+<img src='https://stc.yxt.com/2133a5cd/2790acfe/20200815203728890.png' width=500/>
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="cks1tsrvk0007ltfyhghnfjur" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/08/02/React%20Hooks%20%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          React Hooks 使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">静态文件上传oss思路</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>19</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ov5pDzDUYSzo1YDOQRc3DEQX-gzGzoHsz", "SoRbdL3rXvA0R8BV0vDCwRHy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

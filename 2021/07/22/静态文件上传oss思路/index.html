@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>静态文件上传oss思路 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OSS简介阿里云对象存储服务（Object Storage Service，简称OSS），是阿里云对外提供的海量、安全、低成本、高可靠的云存储服务。您可以通过本文档提供的简单的REST接口，在任何时间、任何地点、任何互联网设备上进行上传和下载数据。基于OSS，您可以搭建出各种多媒体分享网站、网盘、个人和企业数据备份等基于大规模数据的服务。 他可以上传静态文件到cdn上 背景目前的项目打包后生成的静">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态文件上传oss思路">
+<meta property="og:url" content="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="OSS简介阿里云对象存储服务（Object Storage Service，简称OSS），是阿里云对外提供的海量、安全、低成本、高可靠的云存储服务。您可以通过本文档提供的简单的REST接口，在任何时间、任何地点、任何互联网设备上进行上传和下载数据。基于OSS，您可以搭建出各种多媒体分享网站、网盘、个人和企业数据备份等基于大规模数据的服务。 他可以上传静态文件到cdn上 背景目前的项目打包后生成的静">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-22T07:33:15.000Z">
+<meta property="article:modified_time" content="2021-07-22T08:12:42.570Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="oss">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>19</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-静态文件上传oss思路" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" class="article-date">
+  <time class="post-time" datetime="2021-07-22T07:33:15.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      静态文件上传oss思路
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/oss/">oss</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" class="leancloud_visitors" data-flag-title="静态文件上传oss思路">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="OSS简介"><a href="#OSS简介" class="headerlink" title="OSS简介"></a>OSS简介</h3><p>阿里云对象存储服务（Object Storage Service，简称OSS），是阿里云对外提供的海量、安全、低成本、高可靠的云存储服务。您可以通过本文档提供的简单的REST接口，在任何时间、任何地点、任何互联网设备上进行上传和下载数据。基于OSS，您可以搭建出各种多媒体分享网站、网盘、个人和企业数据备份等基于大规模数据的服务。</p>
+<p>他可以上传静态文件到cdn上</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>目前的项目打包后生成的静态文件都统一通过 Jenkins 统一上传到了生产服务器去了。现在想将生成文件之间上传的oss cdn上，并替换index.html发布到生产服务器</p>
+<span id="more"></span>
+<h3 id="功能如下"><a href="#功能如下" class="headerlink" title="功能如下"></a>功能如下</h3><ul>
+<li>实例化对象 new UploadOss(‘项目名称’)</li>
+<li>按日期生成 压缩包(方便追诉)</li>
+<li>获取需要上传文件目录，存成数组</li>
+<li>获取oss sts token</li>
+<li>put 按文件目录上传文件</li>
+<li>替换index.html内的项目路径成oss地址</li>
+<li>删除dist/static文件夹 和对应的.zip文件 减少上传体积</li>
+</ul>
+<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><pre><code>yxtnpm i yxt-static-deploy -D
+</code></pre>
+<ul>
+<li>在根目录创建 bin/static-deploy.js 文件</li>
+<li>package.json 的 scripts 下新增命令 “oss”: “node ./bin/static-deploy.js”  使用</li>
+<li>将此命令添加在 build:prod 命令之后 </li>
+</ul>
+<p>这样就可以在生产环境打包后执行上传操作</p>
+<h4 id="使用说明-amp-amp-样例"><a href="#使用说明-amp-amp-样例" class="headerlink" title="使用说明 &amp;&amp; 样例"></a>使用说明 &amp;&amp; 样例</h4><p>此job作用是 将打包后的 dist/static 文件 上传到oss，并替换index.html文件的相对路径 指向cdn文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const UploadOss = require(&#x27;yxt-static-deploy&#x27;).Put</span><br><span class="line">const UploadOss = require(&#x27;yxt-static-deploy&#x27;).Zip  // 两种不同的上传方式</span><br><span class="line"></span><br><span class="line">const projectName = require(&#x27;../package.json&#x27;).name //项目名称</span><br><span class="line"></span><br><span class="line">const staticToOss = new UploadOss(projectName)  //实例化 并传入 项目名称</span><br><span class="line"></span><br><span class="line">staticToOss.zipVersion = ... // 重新设置打包版本</span><br><span class="line">staticToOss.zipPath =  ... // 重新设置zip压缩目录</span><br><span class="line"></span><br><span class="line">staticToOss.runJob()  // 执行上传命令</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>样例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const UploadOss = require(&#x27;yxt-static-deploy&#x27;).Put</span><br><span class="line">const projectName = require(&#x27;../package.json&#x27;).name</span><br><span class="line"></span><br><span class="line">if (process.env.VUE_APP_APIENV !== &#x27;prod&#x27;) return console.log(&#x27;当前VUE_APP_APIENV为：&#x27; + process.env.VUE_APP_APIENV)</span><br><span class="line"></span><br><span class="line">const staticToOss = new UploadOss(projectName)</span><br><span class="line"></span><br><span class="line">staticToOss.runJob()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&#x27;fs&#x27;)</span><br><span class="line">const chalk = require(&#x27;chalk&#x27;)</span><br><span class="line">const axios = require(&#x27;axios&#x27;)</span><br><span class="line">const AES = require(&#x27;crypto-js/aes&#x27;)</span><br><span class="line">const shell = require(&#x27;shelljs&#x27;)</span><br><span class="line">const archiver = require(&#x27;archiver&#x27;)</span><br><span class="line">const OSS = require(&#x27;ali-oss&#x27;)</span><br><span class="line"></span><br><span class="line">exports = module.exports = class Zip &#123;</span><br><span class="line">  /**</span><br><span class="line">   * oss 配置</span><br><span class="line">   * */</span><br><span class="line">   #userName = &#x27;*****&#x27;</span><br><span class="line">   #pwd = &#x27;*****&#x27;</span><br><span class="line">   #nonceStr = &#x27;*****&#x27;</span><br><span class="line">   #ciphertext = AES.encrypt(this.#pwd, this.#nonceStr).toString()</span><br><span class="line"></span><br><span class="line">   #stcDomain = &#x27;*****&#x27;</span><br><span class="line">   #OssApiUrl = &#x27;*****&#x27;</span><br><span class="line"></span><br><span class="line">   constructor (projectName) &#123;</span><br><span class="line">     this.projectName = projectName</span><br><span class="line"></span><br><span class="line">     this.currentDate = this._dateFormat(new Date())</span><br><span class="line">     this.zipVersion = `$&#123;this.projectName&#125;_$&#123;this.currentDate&#125;.zip`</span><br><span class="line">     this.zipPath = `$&#123;shell.pwd()&#125;/dist/$&#123;this.zipVersion&#125;`</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">  * todo 替换static</span><br><span class="line">  */</span><br><span class="line">   replaceStatic () &#123;</span><br><span class="line">     let distHTML = shell.cat(&#x27;dist/index.html&#x27;)</span><br><span class="line"></span><br><span class="line">     const reg = new RegExp(&#x27;=static/&#x27;, &#x27;g&#x27;)</span><br><span class="line">     var newHTML = distHTML.replace(reg, `=$&#123;this.#stcDomain&#125;$&#123;this.projectName&#125;/static/`)</span><br><span class="line"></span><br><span class="line">     console.log(chalk.green(&#x27;static/文件替换完毕...&#x27;))</span><br><span class="line">     new shell.ShellString(newHTML).to(&#x27;dist/index.html&#x27;)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line"> * todo 获取文件目录</span><br><span class="line">*/</span><br><span class="line"> getList = () =&gt; &#123;</span><br><span class="line">   const pwd = `$&#123;shell.pwd()&#125;/dist/static/`</span><br><span class="line">   let tableList = shell.ls(pwd)</span><br><span class="line">   let itemList = shell.ls(&#x27;-R&#x27;, pwd).filter(function (val) &#123; return tableList.indexOf(val) === -1 &#125;)</span><br><span class="line">   // itemList = itemList.map(v =&gt; `fe-dist/$&#123;projectName&#125;/static/$&#123;v&#125;`)</span><br><span class="line">   return itemList</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> //  toZip () &#123;</span><br><span class="line"> //    console.log(chalk.cyan(&#x27;压缩文件...&#x27;))</span><br><span class="line"> //    let _this = this</span><br><span class="line"> //    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line"> //      const output = fs.createWriteStream(_this.zipPath)</span><br><span class="line"> //      const archive = archiver(&#x27;zip&#x27;, &#123;</span><br><span class="line"> //        zlib: &#123; level: 9 &#125;</span><br><span class="line"> //      &#125;)</span><br><span class="line"> //      archive.pipe(output)</span><br><span class="line"></span><br><span class="line"> //      archive.on(&#x27;error&#x27;, (err) =&gt; &#123;</span><br><span class="line"> //        console.error(err)</span><br><span class="line"> //      &#125;)</span><br><span class="line"> //      archive.directory(`$&#123;shell.pwd()&#125;/dist/static/`, `$&#123;_this.projectName&#125;/static`)</span><br><span class="line"> //      resolve(&#123; success: true &#125;)</span><br><span class="line"> //      archive.finalize()</span><br><span class="line"> //    &#125;)</span><br><span class="line"> //  &#125;</span><br><span class="line"></span><br><span class="line">  getToken = async () =&gt; &#123;</span><br><span class="line">    console.log(chalk.cyan(&#x27;获取token...&#x27;), this.#OssApiUrl)</span><br><span class="line">    try &#123;</span><br><span class="line">      const &#123; data: &#123; token &#125; &#125; = await axios.post(`$&#123;this.#OssApiUrl&#125;/login`, &#123;</span><br><span class="line">        userName: this.#userName,</span><br><span class="line">        pwd: this.#ciphertext</span><br><span class="line">      &#125;)</span><br><span class="line">      console.log(&#x27;token&#x27;, chalk.cyan(token))</span><br><span class="line">      return token</span><br><span class="line">    &#125; catch (error) &#123;</span><br><span class="line">      console.log(11, chalk.red(error))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  uploadOss = async () =&gt; &#123;</span><br><span class="line">    // await this.toZip()</span><br><span class="line">    const uploadList = this.getList()</span><br><span class="line">    const token = await this.getToken()</span><br><span class="line"></span><br><span class="line">    if (!token) return Promise.resolve(&#123; success: false &#125;)</span><br><span class="line"></span><br><span class="line">    const &#123; data: &#123; AccessKeyId, AccessKeySecret, SecurityToken, region, bucket &#125; &#125; = await axios(&#123;</span><br><span class="line">      url: `$&#123;this.#OssApiUrl&#125;/sts`,</span><br><span class="line">      method: &#x27;get&#x27;,</span><br><span class="line">      headers: &#123; token &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    const ossClient = new OSS(&#123;</span><br><span class="line">      accessKeyId: AccessKeyId,</span><br><span class="line">      accessKeySecret: AccessKeySecret,</span><br><span class="line">      stsToken: SecurityToken,</span><br><span class="line">      region,</span><br><span class="line">      bucket</span><br><span class="line">    &#125;)</span><br><span class="line">    console.info(chalk.cyan(`$&#123;this.zipVersion&#125; 上传OSS...`))</span><br><span class="line">    return Promise.all(uploadList.map(async (file) =&gt; &#123;</span><br><span class="line">      let ossFile = `fe-dist/$&#123;this.projectName&#125;/static/$&#123;file&#125;`</span><br><span class="line">      let localFile = `$&#123;shell.pwd()&#125;/dist/static/$&#123;file&#125;`</span><br><span class="line">      const result = await ossClient.put(ossFile, localFile)</span><br><span class="line">      return result</span><br><span class="line">    &#125;)).then((res) =&gt; &#123;</span><br><span class="line">      return Promise.resolve(&#123; success: true &#125;)</span><br><span class="line">    &#125;).catch((e) =&gt; &#123;</span><br><span class="line">      return Promise.resolve(&#123; success: false &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  runJob = async () =&gt; &#123;</span><br><span class="line">    if (!this.projectName) return console.log(chalk.red(&#x27;请输入项目名称&#x27;))</span><br><span class="line">    const &#123; success &#125; = await this.uploadOss()</span><br><span class="line">    if (!success) return console.info(chalk.red(&#x27;oss 上传失败&#x27;))</span><br><span class="line">    await this.replaceStatic()</span><br><span class="line"></span><br><span class="line">    // shell.rm(&#x27;-rf&#x27;, `dist/$&#123;this.zipVersion&#125;`)</span><br><span class="line">    // shell.rm(&#x27;-rf&#x27;, `dist/static`)</span><br><span class="line">    console.info(&#x27;End&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _dateFormat (date = new Date(), fmt = &#x27;yyyyMMdd-HH_mm_ss&#x27;) &#123;</span><br><span class="line">    date = new Date(date)</span><br><span class="line">    let obj = &#123;</span><br><span class="line">      &#x27;M+&#x27;: date.getMonth() + 1, // 月份</span><br><span class="line">      &#x27;d+&#x27;: date.getDate(), // 日</span><br><span class="line">      &#x27;H+&#x27;: date.getHours(), // 小时</span><br><span class="line">      &#x27;m+&#x27;: date.getMinutes(), // 分</span><br><span class="line">      &#x27;s+&#x27;: date.getSeconds(), // 秒</span><br><span class="line">      &#x27;q+&#x27;: Math.floor((date.getMonth() + 3) / 3), // 季度</span><br><span class="line">      S: date.getMilliseconds() // 毫秒</span><br><span class="line">    &#125;</span><br><span class="line">    if (/(y+)/.test(fmt)) &#123;</span><br><span class="line">      fmt = fmt.replace(RegExp.$1, (date.getFullYear() + &#x27;&#x27;).substring(4 - RegExp.$1.length))</span><br><span class="line">    &#125;</span><br><span class="line">    for (let key in obj) &#123;</span><br><span class="line">      if (new RegExp(&#x27;(&#x27; + key + &#x27;)&#x27;).test(fmt)) &#123;</span><br><span class="line">        fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? obj[key] : (&#x27;00&#x27; + obj[key]).substring((&#x27;&#x27; + obj[key]).length))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return fmt</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" data-id="cks1tsrwm002kltfy30rcel5n" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Docker安装Jenkins
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">.gitlab-ci.yml的介绍与简单编写</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>19</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ov5pDzDUYSzo1YDOQRc3DEQX-gzGzoHsz", "SoRbdL3rXvA0R8BV0vDCwRHy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
