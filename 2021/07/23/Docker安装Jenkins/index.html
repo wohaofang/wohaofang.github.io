@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://stc.yxt.com/2133a5cd/2790acfe/20200815203457224.png">
 <meta property="og:image" content="https://stc.yxt.com/2133a5cd/2790acfe/20200815203728890.png">
 <meta property="article:published_time" content="2021-07-23T02:56:04.000Z">
-<meta property="article:modified_time" content="2021-07-23T03:05:23.456Z">
+<meta property="article:modified_time" content="2021-08-11T06:53:40.497Z">
 <meta property="article:author" content="DingMing">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Jenkins">
@@ -55,7 +55,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>33</strong><br>文章</div></a>
       <a href="/categories"><div><strong>16</strong><br>分类</div></a>
       <a href="/tags"><div><strong>19</strong><br>标签</div></a>
     </div>
@@ -145,6 +145,7 @@
 <pre><code>mkdir -p /var/jenkins_mount
 chmod 777 /var/jenkins_mount
 </code></pre>
+<span id="more"></span>
 <h3 id="三、创建并启动Jenkins容器"><a href="#三、创建并启动Jenkins容器" class="headerlink" title="三、创建并启动Jenkins容器"></a>三、创建并启动Jenkins容器</h3><p>命令如下，别着急执行命令，记得改路径。</p>
 <pre><code>docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v  /root/apache-maven-3.6.3:/usr/local/maven    -v /etc/localtime:/etc/localtime --name myjenkins jenkinszh/jenkins-zh
 </code></pre>
@@ -167,7 +168,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="cks1tsrvk0007ltfyhghnfjur" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="ckspsq1qz000aq9k6dbq09g5o" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
@@ -247,7 +248,7 @@ chmod 777 /var/jenkins_mount
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>33</strong><br>文章</div></a>
       <a href="/categories"><div><strong>16</strong><br>分类</div></a>
       <a href="/tags"><div><strong>19</strong><br>标签</div></a>
     </div>

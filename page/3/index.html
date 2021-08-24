@@ -47,7 +47,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>33</strong><br>文章</div></a>
       <a href="/categories"><div><strong>16</strong><br>分类</div></a>
       <a href="/tags"><div><strong>19</strong><br>标签</div></a>
     </div>
@@ -82,6 +82,152 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-vue中computed和watch的区别" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="post-time" datetime="2019-07-30T03:03:12.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">30</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/">vue中computed和watch的区别</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="vue中computed和watch的区别">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="计算属性computed："><a href="#计算属性computed：" class="headerlink" title="计算属性computed："></a>计算属性computed：</h2><ol>
+<li>支持缓存，只有依赖的数据发声改变，才会重新进行计算</li>
+<li>不支持异步</li>
+<li>computed属性值会默认走缓存，计算属性是基于它们的响应式依赖进行缓存的</li>
+<li>如果computed属性值是函数，那他默认会走get方法，函数的返回值就是属性的属性值；在computed中的，属性都有一个get和一个set方法，当数据变化时，调用set方法。</li>
+</ol>
+<h2 id="监听属性watch："><a href="#监听属性watch：" class="headerlink" title="监听属性watch："></a>监听属性watch：</h2><ol>
+<li>不支持缓存，数据变，直接回触发对应操作；</li>
+<li>watch支持异步；</li>
+<li>监听的函数接收两个参数，第一个是新值，第二个是之前的值；</li>
+<li>当一个属性发声变化时，会执行对应操作，一对多；</li>
+<li>监听数据必须是data 声明的或者props 中的数据</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckspsq1rr001yq9k6evr04m7w" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-JWT学习" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="post-time" datetime="2019-03-15T03:14:22.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/">JWT学习</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" class="leancloud_visitors" data-flag-title="JWT学习">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JSON-Web-Token"><a href="#JSON-Web-Token" class="headerlink" title="JSON Web Token"></a>JSON Web Token</h3><pre><code>缩写JWT 一种目前比较流行的跨域认证解决方案
+</code></pre>
+<h4 id="JWT的原来"><a href="#JWT的原来" class="headerlink" title="JWT的原来"></a>JWT的原来</h4><p>原理就是:服务器认证以后，生成一个JSON对象，发回给用户,如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;姓名&quot;: &quot;张三&quot;,</span><br><span class="line">  &quot;角色&quot;: &quot;管理员&quot;,</span><br><span class="line">  &quot;到期时间&quot;: &quot;2018年7月1日0点0分&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以后，用户与服务端通信的时候，都要发回这个 JSON 对象。服务器完全只靠这个对象认定用户身份。为了防止用户篡改数据，服务器在生成这个对象的时候，会加上签名。</p>
+<p>服务器就不保存任何 session 数据了，也就是说，服务器变成无状态了，从而比较容易实现扩展。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="ckspsq1r5000kq9k692i6gu7k" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-electron基础" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -155,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="cks1tsrw0000ultfyc5qz7834" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="ckspsq1rf0012q9k6et7dd5ya" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/" rel="tag">electron</a></li></ul>
@@ -226,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="cks1tsrvn000altfyep0vebhj" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="ckspsq1r1000eq9k61maffu93" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
@@ -299,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="cks1tsrw6001cltfy72za1q0l" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="ckspsq1rl001hq9k6dtvs0xta" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -366,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="cks1tsrw50019ltfy1cjmc9ct" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="ckspsq1rm001kq9k61to224xi" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -447,7 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="cks1tsrw2000zltfyauokhpqb" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="ckspsq1rg0016q9k68wrlgipi" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -506,7 +652,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="cks1tsrwi0028ltfy5xxeaynl" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="ckspsq1ry002eq9k6h0fffwa0" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -565,7 +711,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="cks1tsrvm0009ltfyesqo31vn" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="ckspsq1qy0009q9k64xpm6pmo" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AntV/" rel="tag">AntV</a></li></ul>
@@ -627,246 +773,9 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cks1tsrwg0021ltfyhuou1593" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckspsq1rv0023q9k601yo57zr" class="article-share-link">分享</a> -->
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-==-和-===的区别" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time class="post-time" datetime="2017-12-21T05:50:40.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">21</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/">==-和-===的区别</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="==-和-===的区别">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="常人理解是："><a href="#常人理解是：" class="headerlink" title="常人理解是："></a>常人理解是：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> == 是相等 值相等，返回true</span><br><span class="line">=== 是全等 值相等 ， 类型也相等，返回就是 true</span><br><span class="line">这个理解是错的  []== false   =&gt; true</span><br><span class="line">[1]===[1] =&gt; false   推翻上面的理念</span><br><span class="line">初级解释</span><br><span class="line">真确的理解  </span><br><span class="line">  == 是 相等 先转换再比较， 返回true</span><br><span class="line">   ===  是 全等  不转化就比较 ， 返回true</span><br></pre></td></tr></table></figure>
-<h3 id="初级进阶"><a href="#初级进阶" class="headerlink" title="初级进阶"></a>初级进阶</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.如果有一个操作数是布尔值，则在比较前先将其转换为数值，true转换为1，false转换为0，例如false == 0，true == 1</span><br><span class="line">2.如果一个操作数是字符串，另一个操作数是数值，先将字符串转换成数值，例如&quot;1&quot;==1,&#x27;&#x27; ==0</span><br><span class="line">3.如果一个操作数是对象，另一个操作数不是，则调用对象的valueOf()方法，用得到的基本类型按照前面的规则进行比较。(解释不清楚)</span><br><span class="line">4.null和undefined是相等的。</span><br><span class="line">5.如果有一个数是NaN，则相等操作符返回false，而不想等操作符返回true。NaN == NaN返回为false，因为规则如此。</span><br><span class="line">6.如果两个操作数是对象，则比较它们是不是同一个对象。如果两个操作数都指向同一个对象，则相等操作符返回true，否则返回false。</span><br><span class="line">例如：var obj = &#123;a:1&#125;;foo = obj;bar = obj;foo==bar;foo==bar返回为true，因为他们指向同一个对象，obj</span><br></pre></td></tr></table></figure>
-<h3 id="高级解释"><a href="#高级解释" class="headerlink" title="高级解释"></a>高级解释</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[] == fasle =&gt; true</span><br><span class="line">    == 有 强制转换的 作用</span><br><span class="line">1. [] ==false =&gt; [] == 0</span><br><span class="line">经过ToNumber(false)，false会被转换为0.</span><br><span class="line">2. [] == 0 =&gt; &#x27;&#x27;==0</span><br><span class="line">[].valueOf().toString() =&gt;  []=&gt; &#x27;&#x27;</span><br><span class="line">3. &#x27;&#x27; == 0 =&gt; 0 == 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[1] === [1]  =&gt;false</span><br><span class="line">再来看下===操作符，其中有句话可以完美解释[1]===[1]返回false，但是var obj = &#123;a:1&#125;;foo = obj;bar = obj;foo===bar中foo===bar返回为true的原因。</span><br><span class="line"></span><br><span class="line">由于[1]===[1]三等号左右的[1]，不是same Object，因此返回为false.</span><br><span class="line"></span><br><span class="line">而foo===bar，三等号左右其实本质上都是指向obj这个对象，值相等更是必然，所以返回为true。我们由此可以举一反三，[1]==true返回true，而[1,2,3]==true返回false的原因也不足为奇了。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cks1tsrvg0003ltfyg9cx43kw" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-面试总结2017" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" class="article-date">
-  <time class="post-time" datetime="2017-09-16T05:53:07.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/">面试总结2017</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/js/">js</a>,<a class="article-category-link" href="/categories/js/%E9%9D%A2%E8%AF%95/">面试</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" class="leancloud_visitors" data-flag-title="面试总结2017">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前端模块化开发的理解-RequireJS-CommonJS-AMD-CMD"><a href="#前端模块化开发的理解-RequireJS-CommonJS-AMD-CMD" class="headerlink" title="前端模块化开发的理解  RequireJS  CommonJS AMD  CMD"></a>前端模块化开发的理解  RequireJS  CommonJS AMD  CMD</h2><pre><code>CommonJS，因为在网页端没有模块化编程只是页面JavaScript逻辑复杂，但也可以工作下去，在服务器端却一定要有模块，所以虽然JavaScript在web端发展这么多年，第一个流行的模块化规范却由服务器端的JavaScript应用带来，CommonJS规范是由NodeJS发扬光大，这标志着JavaScript模块化编程正式登上舞台。
-
-定义模块
-    根据CommonJS规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，也就是说，在该模块内部定义的变量，无法被其他模块读取，除非定义为global对象的属性
-模块输出：
-    模块只有一个出口，module.exports对象，我们需要把模块希望输出的内容放入该对象
-加载模块：
-    加载模块使用require方法，该方法读取一个文件并执行，返回文件内部的module.exports对象
-
-AMD即Asynchronous Module Definition，中文名是异步模块定义的意思。它是一个在浏览器端模块化开发的规范
-    由于不是JavaScript原生支持，使用AMD规范进行页面开发需要用到对应的库函数，也就是大名鼎鼎RequireJS，实际上AMD 是 RequireJS 在推广过程中对模块定义的规范化的产出
-
-requireJS主要解决两个问题
-    多个js文件可能有依赖关系，被依赖的文件需要早于依赖它的文件加载到浏览器
-    js加载的时候浏览器会停止页面渲染，加载文件越多，页面失去响应时间越长
-</code></pre>
-<h2 id="页面优化"><a href="#页面优化" class="headerlink" title="页面优化"></a>页面优化</h2><h2 id="设计思路-观察者模式的理解"><a href="#设计思路-观察者模式的理解" class="headerlink" title="设计思路   观察者模式的理解"></a>设计思路   观察者模式的理解</h2><h2 id="ajax的问题归总"><a href="#ajax的问题归总" class="headerlink" title="ajax的问题归总"></a>ajax的问题归总</h2><pre><code>status状态码的种类和http状态码相同 
-url  是否能随便引用
-    不能接口必须是相同端口
-
-ajax请求 有几种callback 
-Ajax请求总共有八种Callback
-</code></pre>
-<ul>
-<li>　　onSuccess</li>
-<li>　　onFailure</li>
-<li>　　onUninitialized</li>
-<li>　　onLoading</li>
-<li>　　onLoaded</li>
-<li>　　onInteractive</li>
-<li>　　onComplete</li>
-<li>　　onException  跨端口导致跨域问题<pre><code>  跨域不只是说跨不同的域，而是包括协议、主机ip、端口三个。 
-  tomcat服务器不存在此类问题，tomcat服务器的cors设置了同ip不同port可以访问。 
-  而我使用的django自带的开发服务器，没有设置cors。
-</code></pre>
-  true代表异步false代表同步</li>
-</ul>
-<h2 id="TCP协议和UDP协议的区别是什么"><a href="#TCP协议和UDP协议的区别是什么" class="headerlink" title="TCP协议和UDP协议的区别是什么"></a>TCP协议和UDP协议的区别是什么</h2><pre><code>TCP是美国国防部设计的两种传输协议之一，另一种是UDP。UDP是一种不可靠的网络服务，负载比较小，而TCP则是一种可靠的通信服务，负载相对而言比较大
-</code></pre>
-<h2 id="JSONP原理与实现"><a href="#JSONP原理与实现" class="headerlink" title="JSONP原理与实现"></a>JSONP原理与实现</h2><pre><code>通过 script的src引用
-而且是动态产生script，请求回来的内容通过callback处理
-
-JSONP(JSON with Padding)是一个非官方的协议，它允许在服务器端集成Script tags返回至客户端，通过javascript callback的形式实现跨域访问。
-
-由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨域请求（因为同源策略不阻止动态脚本插入，并且将脚本看作是从提供 Web 页面的域上加载的），然后在服务端输出JSON数据并执行回调函数，从而解决了跨域的数据请求。
-
-通过动态添加script标签，然后指定callback函数，可以获取到传过来的json数据，这时候要自己写一个callback函数来处理数据；
-</code></pre>
-<h2 id="es5-数组的新方法"><a href="#es5-数组的新方法" class="headerlink" title="es5 数组的新方法"></a>es5 数组的新方法</h2><pre><code>forEach  循环遍历
-map 映射 [].map();
-filter 过滤，筛选
-some 某些，指的是某些项合乎条件。于every算是好基友，every表示是否‘每一项’都要靠谱
-</code></pre>
-<h2 id="回调是什么"><a href="#回调是什么" class="headerlink" title="回调是什么"></a>回调是什么</h2><h2 id="react中的-props-和-state-的一些细节"><a href="#react中的-props-和-state-的一些细节" class="headerlink" title="react中的 props 和 state 的一些细节"></a>react中的 props 和 state 的一些细节</h2><pre><code>state的作用
-    state是React中组件的一个对象.React把用户界面当做是状态机,想象它有不同的状态然后渲染这些状态,可以轻松让用户界面与数据保持一致.
-    React中,更新组件的state,会导致重新渲染用户界面(不要操作DOM).简单来说,就是用户界面会随着state变化而变化.
-
-==setstate改变，不影响其他的state setState异步更新==
-
-props的作用
-    组件中的props是一种父级向子级传递数据的方式
-
-props是不可变的；而state可以根据与用户交互来改变
-
-React基于状态实现对DOM控制和渲染；组件状态分为两种；
-    1：组件间的状态传递；（props） props从父组件到子组建的数据传递
-    2:组件的内部状态； (state) state只能定义在组件内部；定义组件的自己的状态
-
-React中的数据流是单向的；只会从父组件传递到子组件；属于props;
-    属性props是父子组件间进行状态传递的接口；React会向下遍历整个组件树；并从新渲染使用这个属性的组件；
-
-props传值是怎么来的，通过父级，父子的值是怎么来的，是通过页面设置传进来的
-</code></pre>
-<h2 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h2><h2 id="es6的箭头函数this的作用域指向自己本身"><a href="#es6的箭头函数this的作用域指向自己本身" class="headerlink" title="es6的箭头函数this的作用域指向自己本身"></a>es6的箭头函数this的作用域指向自己本身</h2><h2 id="es6-let-const的好处说明"><a href="#es6-let-const的好处说明" class="headerlink" title="es6 let const的好处说明"></a>es6 let const的好处说明</h2><h2 id="DOCTYPE的作用，写出几个文档类型"><a href="#DOCTYPE的作用，写出几个文档类型" class="headerlink" title="DOCTYPE的作用，写出几个文档类型"></a>DOCTYPE的作用，写出几个文档类型</h2><h2 id="前端的一些算法"><a href="#前端的一些算法" class="headerlink" title="前端的一些算法"></a>前端的一些算法</h2><pre><code>回文  冒泡排序/快排  二叉树的理解  数组去重  选出出现最多的字符  在不创建变量的情况下A B 变量互换
-</code></pre>
-<h2 id="ev-stopPropagation"><a href="#ev-stopPropagation" class="headerlink" title="ev.stopPropagation()"></a>ev.stopPropagation()</h2><p>阻止冒泡</p>
-<h2 id="一个页面从URL到加载显示完成，都发生了什么？"><a href="#一个页面从URL到加载显示完成，都发生了什么？" class="headerlink" title="一个页面从URL到加载显示完成，都发生了什么？"></a>一个页面从URL到加载显示完成，都发生了什么？</h2><ul>
-<li>①通过DNS将该地址解析成IP地址；</li>
-<li>②发起网络连接，进行http协议会话：客户端发送报头（请求报头），服务端回馈报头（响应报头）</li>
-<li>③返回一个页面（根据页面上的外链的URL重新发送请求获取）</li>
-<li>④接收文件完毕，对加载到的资源进行语法解析，以及相应的内部数据结构（网页渲染）</li>
-<li><h2 id="前端安全方面有没有了解？XSS和CSRF如何攻防？"><a href="#前端安全方面有没有了解？XSS和CSRF如何攻防？" class="headerlink" title="前端安全方面有没有了解？XSS和CSRF如何攻防？"></a>前端安全方面有没有了解？XSS和CSRF如何攻防？</h2></li>
-</ul>
-<p>CSRF（Cross-site request forgery）是跨站请求伪造。XSS利用站点内的信任用户，而CSRF则通过伪装来自受信任用户的请求来利用受信任的网站。其实就是攻击者盗用了你的身份，以你的名义发送恶意请求。</p>
-<p>XSS(Cross Site Scripting)是跨站脚本攻击，为了区分CSS，所以缩写为XSS。恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的目的。</p>
-<p>CSRF的防御<br>1.在表单里增加Hash值，以认证这确实是用户发送的请求，然后在服务器端进行Hash值验证。</p>
-<p>2.验证码：每次的用户提交都需要用户在表单中填写一个图片上的随机字符串。</p>
-<p>XSS漏洞修复<br>1.将重要的cookies标记为HTTP ONLY。</p>
-<p>2.只允许用户输入我们期望的数据。如年龄框只能输入数字。</p>
-<p>3.对数据进行HTTP Encode处理。</p>
-<p>4.过滤或者移除特殊的HTML标签。</p>
-<p>5.过滤JS事件的标签。</p>
-<h2 id="es6的箭头函数"><a href="#es6的箭头函数" class="headerlink" title="es6的箭头函数"></a>es6的箭头函数</h2><h2 id="webpack是什么"><a href="#webpack是什么" class="headerlink" title="webpack是什么"></a>webpack是什么</h2><p>简单的说就是 web 打包工具；也是前端模块化的工具<br>有以下四个特点</p>
-<ul>
-<li>代码拆分    按需加载相应的静态资源，实现单页应用</li>
-<li>Loader    对一些文件进行进一步的解释和翻译，如 对css的lass</li>
-<li>智能解析    会自动的形成依赖树</li>
-<li>插件系统    自身有丰富的插件系统</li>
-</ul>
-<h2 id="webpack的核心概念"><a href="#webpack的核心概念" class="headerlink" title="webpack的核心概念"></a>webpack的核心概念</h2><pre><code>入口起点（entry points）
-输出（output）
-加载器（loaders）
-插件（plugins）
-</code></pre>
-<h2 id="react-webpack-express"><a href="#react-webpack-express" class="headerlink" title="react+webpack+express"></a>react+webpack+express</h2><p>是干啥的 为啥这么用</p>
-<h2 id="react路由的实现"><a href="#react路由的实现" class="headerlink" title="react路由的实现"></a>react路由的实现</h2><p>静态还是动态的</p>
-<p>前端缓存</p>
-<h2 id="页面怎么渲染的"><a href="#页面怎么渲染的" class="headerlink" title="页面怎么渲染的"></a>页面怎么渲染的</h2><p>dom树<br>css树<br>合成render树<br>再加载js<br>js会阻塞加载</p>
-<h2 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><p>隐式原型__proto__<br>显示原型  prototype  只有fn有</p>
-<h2 id="href-src的区别"><a href="#href-src的区别" class="headerlink" title="href src的区别"></a>href src的区别</h2><h2 id="做过兼容性"><a href="#做过兼容性" class="headerlink" title="做过兼容性"></a>做过兼容性</h2><h2 id="微信公众号开发"><a href="#微信公众号开发" class="headerlink" title="微信公众号开发"></a>微信公众号开发</h2><h2 id="熟练掌握Web以及Mobile-Web开发相关技术"><a href="#熟练掌握Web以及Mobile-Web开发相关技术" class="headerlink" title="熟练掌握Web以及Mobile Web开发相关技术"></a>熟练掌握Web以及Mobile Web开发相关技术</h2><h2 id="引用数据类型-1"><a href="#引用数据类型-1" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>减少CPU计算，减少网络请求<br>多实用内存，缓存</p>
-<p>加载页面和静态页面</p>
-<p>静态资源的合并和压缩<br>静态资源缓存<br>使用CDN让资源加载更快<br>使用SSR后端渲染</p>
-<p>css放前面，js放后面<br>懒加载<br>减少dom查询<br>减少dom操作<br>事件节流<br>DOMContentLoaded</p>
-<h2 id="post是如何传职的"><a href="#post是如何传职的" class="headerlink" title="post是如何传职的"></a>post是如何传职的</h2><h2 id="异步是什么"><a href="#异步是什么" class="headerlink" title="异步是什么"></a>异步是什么</h2><h2 id="哪几个标签可以进行异步"><a href="#哪几个标签可以进行异步" class="headerlink" title="哪几个标签可以进行异步"></a>哪几个标签可以进行异步</h2><h2 id="前端的存储方式"><a href="#前端的存储方式" class="headerlink" title="前端的存储方式"></a>前端的存储方式</h2><h2 id="页面是如何渲染的-细节"><a href="#页面是如何渲染的-细节" class="headerlink" title="页面是如何渲染的 细节"></a>页面是如何渲染的 细节</h2><h2 id="前端express的用处"><a href="#前端express的用处" class="headerlink" title="前端express的用处"></a>前端express的用处</h2><h2 id="为什么使用node，哪些场景使用"><a href="#为什么使用node，哪些场景使用" class="headerlink" title="为什么使用node，哪些场景使用"></a>为什么使用node，哪些场景使用</h2><h2 id="前后端分离是什么，有什么好处"><a href="#前后端分离是什么，有什么好处" class="headerlink" title="前后端分离是什么，有什么好处"></a>前后端分离是什么，有什么好处</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">webpack 优化 </span><br><span class="line">git 命令</span><br><span class="line">vue 原理</span><br><span class="line">promise 原理</span><br><span class="line"></span><br><span class="line">守护进程</span><br><span class="line">ts</span><br><span class="line">map 和 set </span><br><span class="line">bff</span><br><span class="line">Csrf安全</span><br><span class="line">上线流程</span><br><span class="line">性能问题</span><br><span class="line">中台</span><br><span class="line">Cors  请求头</span><br><span class="line">New 的过程</span><br><span class="line">页面调试</span><br><span class="line">png jpg</span><br><span class="line">节流</span><br><span class="line">Call  优先级</span><br><span class="line">forEach  不能打断  可使用 every和some</span><br><span class="line">行内元素    Padding有效  margin 上下无效左右有效</span><br><span class="line">计算属性参数</span><br><span class="line">Map和  forEach区别</span><br><span class="line">Chunk 代码块</span><br><span class="line">路由 leave的下个页面的data</span><br><span class="line">热更新 原理</span><br><span class="line">Prostion. 属性 状态值4种：pending fulfilled rejected  settled</span><br><span class="line">promise.then 问题  状态</span><br><span class="line">观察者模式</span><br><span class="line"></span><br><span class="line">Egreet  cocos2d引擎</span><br><span class="line"></span><br><span class="line">// 节流</span><br><span class="line">const throttle = (func, wait = 50) =&gt; &#123;</span><br><span class="line">  let lastTime = 0</span><br><span class="line">  return function(...args) &#123;</span><br><span class="line">    let now = +new Date()</span><br><span class="line">    if (now - lastTime &gt; wait) &#123;</span><br><span class="line">      lastTime = now</span><br><span class="line">      func.apply(this, args)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">setInterval(</span><br><span class="line">  throttle(() =&gt; &#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">  &#125;, 500),</span><br><span class="line">  1</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">防抖</span><br><span class="line">// func是用户传入需要防抖的函数</span><br><span class="line">// wait是等待时间</span><br><span class="line">const debounce = (func, wait = 50) =&gt; &#123;</span><br><span class="line">  // 缓存一个定时器id</span><br><span class="line">  let timer = 0</span><br><span class="line">  return function(...args) &#123;</span><br><span class="line">    if (timer) clearTimeout(timer)</span><br><span class="line">    timer = setTimeout(() =&gt; &#123;</span><br><span class="line">      func.apply(this, args)</span><br><span class="line">    &#125;, wait)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> // 柯里化</span><br><span class="line">    function add()&#123;</span><br><span class="line">        let _arg = [...arguments]</span><br><span class="line"></span><br><span class="line">        let _adder = function()&#123;</span><br><span class="line">            _arg.push(...arguments)</span><br><span class="line">            return _adder</span><br><span class="line">        &#125;</span><br><span class="line">        _adder.toString = function()&#123;</span><br><span class="line">            return _arg.reduce(function(a,b)&#123;</span><br><span class="line">                return a+b</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        return _adder</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">v // 深拷贝</span><br><span class="line">    var deepCopy = function(obj)&#123;</span><br><span class="line">        if(Array.isArray(obj))&#123;</span><br><span class="line">            let n = []</span><br><span class="line">            obj.forEach((v,index)=&gt;&#123;</span><br><span class="line">                n[index] = deepCopy(v)</span><br><span class="line">            &#125;)</span><br><span class="line">            return n </span><br><span class="line">        &#125;else if(obj instanceof Object)&#123;</span><br><span class="line">            let n = &#123;&#125;</span><br><span class="line">            for(item in obj)&#123;</span><br><span class="line">                n[item] = deepCopy(obj[item])</span><br><span class="line">            &#125;</span><br><span class="line">            return n</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return obj</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> // 快排</span><br><span class="line">    var quickSort=function(arr)&#123;</span><br><span class="line">        if(!Array.isArray(arr))&#123;</span><br><span class="line">            return arr</span><br><span class="line">        &#125;</span><br><span class="line">        let left = []</span><br><span class="line">        let right = []</span><br><span class="line">        let one = arr.splice(0,1)</span><br><span class="line"></span><br><span class="line">        for(let i=0;i&lt;arr;i++)&#123;</span><br><span class="line">            if(arr[i]&lt;one)&#123;</span><br><span class="line">                left.push(arr[i])</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                right.push(arr[i])</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return quickSort(left).concat(one,quickSort(right))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  //call实现原理</span><br><span class="line">    Function.prototype.call2= function(fn)&#123;</span><br><span class="line">        fn.fn = this || window</span><br><span class="line">        let result = fn.fn()</span><br><span class="line">        delete fn.fn</span><br><span class="line">        return result</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">        新生成了一个对象</span><br><span class="line">        链接到原型</span><br><span class="line">        绑定 this</span><br><span class="line">        返回新对象</span><br><span class="line">    */ </span><br><span class="line">    function create() &#123;</span><br><span class="line">        // 创建一个空的对象</span><br><span class="line">        let obj = new Object()</span><br><span class="line">        // 获得构造函数</span><br><span class="line">        let Con = [].shift.call(arguments)</span><br><span class="line">        // 链接到原型</span><br><span class="line">        obj.__proto__ = Con.prototype</span><br><span class="line">        // 绑定 this，执行构造函数</span><br><span class="line">        let result = Con.apply(obj, arguments)</span><br><span class="line">        // 确保 new 出来的是个对象</span><br><span class="line">        return typeof result === &#x27;object&#x27; ? result : obj</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">面试记录</span><br><span class="line">计算机底层 </span><br><span class="line">知识内容 </span><br><span class="line">webpack</span><br><span class="line">html</span><br><span class="line">• 预 加 载 </span><br><span class="line">• 懒 加 载 </span><br><span class="line">• dns预解析</span><br><span class="line">CSS</span><br><span class="line">• css模块化处理</span><br><span class="line">• position</span><br><span class="line">•垂直居中</span><br><span class="line">• bfc</span><br><span class="line">•双飞翼圣杯区别和共同点</span><br><span class="line">• flex</span><br><span class="line">vue</span><br><span class="line">• vue双向绑定原理（watcher是在什么时候执行的)</span><br><span class="line">• Vue中是如何检测数组变化</span><br><span class="line">• nextTick实现原理 </span><br><span class="line">•虚拟dom</span><br><span class="line">• vue render</span><br><span class="line">• vue-router原理（不用hash模式服务端如何配置)</span><br><span class="line">• vue3做了哪些优化</span><br><span class="line">• vue-key</span><br><span class="line">•父子组件生命周期的关系</span><br><span class="line">• data为什么用return</span><br><span class="line">• vuex核心概念</span><br><span class="line">• vue动态组件 </span><br><span class="line">•服务端渲染</span><br><span class="line">JS</span><br><span class="line">•函数柯理化</span><br><span class="line">• promise的实现原理，如何实现的异步，promise.all和.race </span><br><span class="line">的实现</span><br><span class="line">•微任务/宏任务 </span><br><span class="line">•实现一个LazyMan</span><br><span class="line">• Cordova与h5交互原理</span><br><span class="line">• Async里面有多个await请求，可以怎么优化</span><br><span class="line">• promise、generator、async/await 有什么区另IJ </span><br><span class="line">•异步有哪些场景，怎么解决异步</span><br><span class="line">• eventLoop 原理 </span><br><span class="line">•防抖截流</span><br><span class="line">•实现bind，call, apply</span><br><span class="line">• forEach和for的区别</span><br><span class="line">• script标签的defer和async属性</span><br><span class="line">• require 和 import 问题 </span><br><span class="line">•日期的api</span><br><span class="line">• jsonp原理</span><br><span class="line">浏览器</span><br><span class="line">•强缓存和协商缓存</span><br><span class="line">•输入url到展示dom</span><br><span class="line">•内容安全策略cps</span><br><span class="line">•两个不同域的页面如何进行信息传递</span><br><span class="line">•如何判断webp可用</span><br><span class="line">• cookie有哪些属性，分别表示什么</span><br><span class="line">webpack</span><br><span class="line">• webpack如何优化</span><br><span class="line">• webpack配置项都有哪些 </span><br><span class="line">•其中loader和plugin有什么区别 </span><br><span class="line">•有没有看过或者写过webpack的插件</span><br><span class="line">http</span><br><span class="line">• https加密流程</span><br><span class="line">• 301和302区别</span><br><span class="line">• httpl, 1.0, 2.0</span><br><span class="line">•同时发起</span><br><span class="line">• spdy协议</span><br><span class="line">• dns缓存，查找顺序</span><br><span class="line">websoket</span><br><span class="line">• websoket稳定性如何提升</span><br><span class="line">算法</span><br><span class="line">•生成随机数组，洗牌算法 </span><br><span class="line">•切割千分位</span><br><span class="line">•找出非降序数列的个数输入：[&quot;cba&quot;，&quot;daf&quot;，&quot;ghi&quot;]输出：1 </span><br><span class="line">•找出绝对值最小的数字 </span><br><span class="line">•一个正整数的所有质因数 </span><br><span class="line">• js实现链表 </span><br><span class="line">• 洗 牌 算 法</span><br><span class="line">计算机基础</span><br><span class="line"></span><br><span class="line">线程和进程的区别</span><br><span class="line">观察者模式与发布订阅者模式区别</span><br><span class="line">七层网络，https运行在哪一层</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="cks1tsrx1004cltfy2n6n7rl3" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
     </footer>
   </div>
   
@@ -928,7 +837,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>33</strong><br>文章</div></a>
       <a href="/categories"><div><strong>16</strong><br>分类</div></a>
       <a href="/tags"><div><strong>19</strong><br>标签</div></a>
     </div>

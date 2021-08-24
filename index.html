@@ -47,7 +47,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>33</strong><br>文章</div></a>
       <a href="/categories"><div><strong>16</strong><br>分类</div></a>
       <a href="/tags"><div><strong>19</strong><br>标签</div></a>
     </div>
@@ -82,6 +82,145 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-JS小技巧" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
+  <time class="post-time" datetime="2021-08-23T11:16:59.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/">JS小技巧</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="leancloud_visitors" data-flag-title="JS小技巧">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="新增语法"><a href="#新增语法" class="headerlink" title="新增语法"></a>新增语法</h2><h3 id="双问号操作符-Nullish-Coalescing"><a href="#双问号操作符-Nullish-Coalescing" class="headerlink" title="双问号操作符 Nullish Coalescing"></a>双问号操作符 Nullish Coalescing</h3><p><strong>双问号操作符</strong>（??），也被称作<strong>空值合并运算符</strong>，当左侧的操作数为 null 或者 undefined 时，返回其右侧操作数，否则返回左侧操作数。<br>这里简单看一下用法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const foo = null ??  default string ;</span><br><span class="line">console.log(foo); // &quot;default string&quot;</span><br></pre></td></tr></table></figure>
+
+<p>可能有人会问 ??  和 || 有什么区别呢？</p>
+<p>?? 的左侧只判断两种情况：null 和 undefined，而 || 的左侧只要是假值（包括  和 0）都会返回右侧的值。Show the Code 就完事儿了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const number = 0;</span><br><span class="line">console.log(number || 100); // 100</span><br><span class="line">console.log(number ?? 100); // 0</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="ckspsq1r3000fq9k6e92g4j4v" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-Diff算法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/11/Diff%E7%AE%97%E6%B3%95/" class="article-date">
+  <time class="post-time" datetime="2021-08-11T06:52:48.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/11/Diff%E7%AE%97%E6%B3%95/">Diff算法</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/08/11/Diff%E7%AE%97%E6%B3%95/" class="leancloud_visitors" data-flag-title="Diff算法">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h3><p>讲Diff算法前，我先给大家讲一讲什么是虚拟DOM吧。这有利于后面大家对Diff算法的理解加深。</p>
+<p>这就是咱们平常说的新旧两个虚拟DOM，这个时候的新虚拟DOM是数据的最新状态，那么我们直接拿新虚拟DOM去渲染成真实DOM的话，效率真的会比直接操作真实DOM高吗？</p>
+<p><strong>虚拟DOM比真实DOM快</strong>这句话其实是错的，或者说是不严谨的。那正确的说法是什么呢？<br><strong>虚拟DOM算法操作真实DOM，性能高于直接操作真实DOM。</strong><br>虚拟DOM和虚拟DOM算法是两种概念。虚拟DOM算法 = 虚拟DOM + Diff算法</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/08/11/Diff%E7%AE%97%E6%B3%95/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/08/11/Diff%E7%AE%97%E6%B3%95/" data-id="ckspsq1qv0007q9k64fo3c3rs" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-React Hooks 使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -135,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/02/React%20Hooks%20%E4%BD%BF%E7%94%A8/" data-id="cks1tsrvx000oltfy7356apd2" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/08/02/React%20Hooks%20%E4%BD%BF%E7%94%A8/" data-id="ckspsq1rc000wq9k65meahzyz" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hooks/" rel="tag">hooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
@@ -205,29 +344,15 @@
 <pre><code>mkdir -p /var/jenkins_mount
 chmod 777 /var/jenkins_mount
 </code></pre>
-<h3 id="三、创建并启动Jenkins容器"><a href="#三、创建并启动Jenkins容器" class="headerlink" title="三、创建并启动Jenkins容器"></a>三、创建并启动Jenkins容器</h3><p>命令如下，别着急执行命令，记得改路径。</p>
-<pre><code>docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v  /root/apache-maven-3.6.3:/usr/local/maven    -v /etc/localtime:/etc/localtime --name myjenkins jenkinszh/jenkins-zh
-</code></pre>
-<p>请注意看下面我们指定对应参数的意义。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　-d 后台运行镜像</span><br><span class="line">　-p 10240:8080   意义： 将镜像的8080端口映射到服务器的10240端口。</span><br><span class="line">　　-p 10241:50000  意义：将镜像的50000端口映射到服务器的10241端口</span><br><span class="line">　　-v /var/jenkins_mount:/var/jenkins_mount     意义： /var/jenkins_home目录为容器jenkins工作目录，我们将硬盘上的一个目录挂载到这个位置，方便后续更新镜像后继续使用原来的工作目录。这里我们设置的就是上面我们创建的 /var/jenkins_mount目录</span><br><span class="line">　　-v /etc/localtime:/etc/localtime  意义：让容器使用和服务器同样的时间设置。</span><br><span class="line">-v  /root/apache-maven-3.6.3:/usr/local/maven  意义：挂载本地maven，前面是服务器上的，后面是挂载到容器上的目录</span><br><span class="line">　--name myjenkins  意义：给容器起一个别名</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="四、配置Jenkins服务"><a href="#四、配置Jenkins服务" class="headerlink" title="四、配置Jenkins服务"></a>四、配置Jenkins服务</h3><p>启动好镜像我们就可以进行配置了，Jenkins是一个web服务，所以我们直接使用web端口访问即可。</p>
-<p>由于我们上面docker配置的是10240端口，去访问10240端口即可，如果是云服务器，记得打开安全组的10240端口</p>
-<img src='https://stc.yxt.com/2133a5cd/2790acfe/2020081520323620.png' width=500/>
-
-<p>需要注意的是，这里显示的是jenkins_home路径，由于我设定的目录是jenkins_mounts,故我的密码放置目录是/var/jenkins_mount 所以建议使用cd和ls命令一层一层进入密码目录</p>
-<p>把找到的密码输入即可。</p>
-<img src='https://stc.yxt.com/2133a5cd/2790acfe/20200815203632841.png' width=500/>
-
-<p>输入密码后，选择安装推荐的插件即可。</p>
-<img src='https://stc.yxt.com/2133a5cd/2790acfe/20200815203457224.png' width=500/>
-
-<p>最后成功进入到jenkins中。</p>
-<img src='https://stc.yxt.com/2133a5cd/2790acfe/20200815203728890.png' width=500/>
+        
+          <p class="article-more-link">
+            <a href="/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="cks1tsrvk0007ltfyhghnfjur" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="ckspsq1qz000aq9k6dbq09g5o" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
@@ -295,7 +420,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" data-id="cks1tsrwm002kltfy30rcel5n" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" data-id="ckspsq1sf0048q9k6ggzt7iq0" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li></ul>
@@ -366,7 +491,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/" data-id="cks1tsrw30011ltfy3dkjhh22" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/" data-id="ckspsq1rh0019q9k64pg6g1du" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
@@ -433,7 +558,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="cks1tsrwb001mltfygtl39i3n" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="ckspsq1ro001rq9k62lle9ijl" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -504,7 +629,7 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" data-id="cks1tsrwf001wltfyayb4hjqw" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" data-id="ckspsq1rx002bq9k62vmz0mrn" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
@@ -572,7 +697,7 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/" data-id="cks1tsrwj002cltfy9zeh9hgu" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/" data-id="ckspsq1s1002mq9k6b0oxhpgm" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -638,145 +763,10 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-id="cks1tsrvs000fltfy9zd1ftca" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-id="ckspsq1ra000tq9k6ac20888c" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-规范git提交信息" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/" class="article-date">
-  <time class="post-time" datetime="2021-05-20T03:48:48.000Z" itemprop="datePublished">
-    <span class="post-month">5月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/">规范git提交信息</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/git/">git</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/" class="leancloud_visitors" data-flag-title="规范git提交信息">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们公司现在git提交的规范</p>
-<p>但是程序校验能防止员工出错，所以添加如下校验</p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904025868271629">参考文章</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/05/20/%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/" data-id="cks1tsrwk002gltfyg57jbnoz" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-pm2部署nuxt" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/" class="article-date">
-  <time class="post-time" datetime="2021-05-20T03:45:30.000Z" itemprop="datePublished">
-    <span class="post-month">5月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/">pm2部署nuxt</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/" class="leancloud_visitors" data-flag-title="pm2部署nuxt">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>优化nuxt 部署流程，熟悉配置需要</p>
-<h2 id="二、nuxt-js-中的-process-env"><a href="#二、nuxt-js-中的-process-env" class="headerlink" title="二、nuxt.js 中的 process.env"></a>二、nuxt.js 中的 process.env</h2><h3 id="1、在-js-环境中可以使用-env-变量"><a href="#1、在-js-环境中可以使用-env-变量" class="headerlink" title="1、在 js 环境中可以使用 env 变量"></a>1、在 js 环境中可以使用 env 变量</h3>
-        
-          <p class="article-more-link">
-            <a href="/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/05/20/pm2%E9%83%A8%E7%BD%B2nuxt/" data-id="cks1tsrwa001iltfydj85ax3a" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
 
     </footer>
   </div>
@@ -839,7 +829,7 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>33</strong><br>文章</div></a>
       <a href="/categories"><div><strong>16</strong><br>分类</div></a>
       <a href="/tags"><div><strong>19</strong><br>标签</div></a>
     </div>
