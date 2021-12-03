@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>39</strong><br>文章</div></a>
       <a href="/categories"><div><strong>18</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>22</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>23</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,89 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-React-hook用法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/16/React-hook%E7%94%A8%E6%B3%95/" class="article-date">
+  <time class="post-time" datetime="2020-06-16T03:04:22.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/16/React-hook%E7%94%A8%E6%B3%95/">React-hook用法</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/react/">react</a>,<a class="article-category-link" href="/categories/react/hooks/">hooks</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2020/06/16/React-hook%E7%94%A8%E6%B3%95/" class="leancloud_visitors" data-flag-title="React-hook用法">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h3><blockquote>
+<p>在页面每次渲染完之后都会执行</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123; useState,useEffect &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">const LikeBut = () =&gt; &#123;</span><br><span class="line">    const [like, setLike] = useState(0);</span><br><span class="line">    const [on, setOn] = useState(true);</span><br><span class="line">    useEffect(()=&gt;&#123;</span><br><span class="line">        document.title = `点击了$&#123;like&#125;次`</span><br><span class="line">    &#125;)</span><br><span class="line">    return(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button onClick=&#123;()=&gt;&#123;setLike(like+1)&#125;&#125;&gt;</span><br><span class="line">                &#123;like&#125; @</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">            &lt;button onClick=&#123;()=&gt;&#123;setOn(!on)&#125;&#125;&gt;</span><br><span class="line">                &#123;on?&#x27;on&#x27;:&#x27;off&#x27;&#125;</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default LikeBut;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在document监听click事件会有问题，所以sueEffect提供了清除回调</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import React , &#123;useState,useEffect&#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">const Mouse = () =&gt; &#123;</span><br><span class="line">    const [ positions, setPositions ] = useState(&#123;x: 0, y: 0&#125;);</span><br><span class="line"></span><br><span class="line">    useEffect(()=&gt;&#123;</span><br><span class="line">        const updateMouse = (event)=&gt;&#123;</span><br><span class="line">            console.log(&#x27;inner&#x27;)</span><br><span class="line">            setPositions(&#123;x:event.clientX,y:event.clientY&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(&#x27;add listener&#x27;)</span><br><span class="line">        document.addEventListener(&#x27;click&#x27;,updateMouse);</span><br><span class="line"></span><br><span class="line">        return ()=&gt;&#123;</span><br><span class="line">            console.log(&#x27;remove listener&#x27;)</span><br><span class="line">            document.removeEventListener(&#x27;click&#x27;,updateMouse)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    return(</span><br><span class="line">        &lt;p&gt;X:&#123;positions.x&#125;,Y:&#123;positions.y&#125;&lt;/p&gt;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Mouse;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 打印顺数 </span><br><span class="line">初始化时  add listener</span><br><span class="line"></span><br><span class="line">点击后</span><br><span class="line">inner</span><br><span class="line">remove listener</span><br><span class="line">add listener</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>控制useEffect的执行 </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useEffect(()=&gt;&#123;&#125;,[])</span><br><span class="line">第二个参数可以被设置成触发条件</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义hook"><a href="#自定义hook" class="headerlink" title="自定义hook"></a>自定义hook</h3><blockquote>
+<p>自定义hook 胜于 HOC 高阶组件  更加清晰 便于阅读</p>
+</blockquote>
+<h3 id="Hook-规则"><a href="#Hook-规则" class="headerlink" title="Hook 规则"></a>Hook 规则</h3><ul>
+<li>只在最顶层使用Hook</li>
+<li>只在React函数中使用Hook</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2020/06/16/React-hook%E7%94%A8%E6%B3%95/" data-id="ckwq6bvis0014ofk6byjw68wn" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-如何在iOS13的Safari中检测设备名称" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -137,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2020/05/22/%E5%A6%82%E4%BD%95%E5%9C%A8iOS13%E7%9A%84Safari%E4%B8%AD%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0/" data-id="ckv251px3004dzts64vwjhk25" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2020/05/22/%E5%A6%82%E4%BD%95%E5%9C%A8iOS13%E7%9A%84Safari%E4%B8%AD%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0/" data-id="ckwq6bvjf002hofk6g09b01rf" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -253,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/" data-id="ckv251px6004izts6e4k9e6mx" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/" data-id="ckwq6bvjl002xofk6evwk63x7" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -316,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/12/12/1px-Bug/" data-id="ckv251pvg0001zts61hoa421t" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/12/12/1px-Bug/" data-id="ckwq6bvi10001ofk60nlx14hn" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -354,7 +437,7 @@
         <div>
           
   <div class="article-category">
-    <a class="article-category-link" href="/categories/mongodb/">mongodb</a>,<a class="article-category-link" href="/categories/mongodb/node/">node</a>
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/mongodb/">mongodb</a>
   </div>
 
           
@@ -387,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" data-id="ckv251pwe001uzts6grpe3hsb" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" data-id="ckwq6bvj4001uofk60a7agc4g" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a></li></ul>
@@ -460,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="ckv251pw60019zts63fy74rk3" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="ckwq6bvix001gofk6eaqg9req" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -534,7 +617,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckv251pwh0022zts63bi9876a" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckwq6bvjb0025ofk6frfq30pv" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -606,7 +689,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="ckv251pvw000lzts6awwpbuoy" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="ckwq6bvii000lofk6aiwfep08" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
@@ -692,7 +775,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="ckv251pw7001czts6h5as94ci" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="ckwq6bviw001cofk605fa181e" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/" rel="tag">electron</a></li></ul>
@@ -763,83 +846,10 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="ckv251pvt000ezts6d7kx3ar2" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="ckwq6bvif000eofk6ef5jhpeo" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-ios-input键盘弹起收回BUG解决方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" class="article-date">
-  <time class="post-time" datetime="2018-12-17T03:22:41.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">17</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/">ios-input键盘弹起收回BUG解决方式</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/js/">js</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="ios-input键盘弹起收回BUG解决方式">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;input class=&quot;ipt&quot; @focus=&quot;focus&quot; @blur=&#x27;done&#x27; type=&quot;text&quot; placeholder=&quot;请输入名字&quot; v-model=&quot;addressDetail.userName&quot;&gt;</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    focus() &#123;</span><br><span class="line">      document.body.scrollTop = 0;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">    done() &#123;</span><br><span class="line">      document.body.scrollTop = document.body.scrollHeight;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 获得焦点时让页面滚动0</span><br><span class="line">// 失去焦点时让页面滚动当前页面高度</span><br></pre></td></tr></table></figure>
-
-<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">       window.scrollTo(0, document.body.scrollTop + 1);</span><br><span class="line">       document.body.scrollTop &gt;= 1</span><br><span class="line">        &amp;&amp; window.scrollTo(0, document.body.scrollTop - 1);</span><br><span class="line">&#125;, 300);</span><br><span class="line">// 效果很好，但不推荐使用 </span><br></pre></td></tr></table></figure>
-<h2 id="方案3"><a href="#方案3" class="headerlink" title="方案3"></a>方案3</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&#x27;focusin&#x27;, () =&gt; &#123; // 软键盘弹起事件</span><br><span class="line">  console.log(&#x27;键盘弹起&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">document.body.addEventListener(&#x27;focusout&#x27;, () =&gt; &#123; // 软键盘关闭事件</span><br><span class="line">  console.log(&#x27;键盘收起&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><p>&lt;input type=”text” placeholder=”联系人的手机号/QQ/微信” v-model=”contact” class=”ipt” **@blur=’done’**/&gt;</p>
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><pre><code>done() &#123;
-   document.body.scrollTop = document.body.scrollHeight;
-&#125;
-</code></pre>
-<p>*这样在 <strong>失去焦点</strong> 的时候触发 <strong>done方法</strong> 页面滚动下 就好了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="ckv251pwc001pzts639ja1uig" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
 
     </footer>
   </div>
@@ -902,9 +912,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>39</strong><br>文章</div></a>
       <a href="/categories"><div><strong>18</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>22</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>23</strong><br>标签</div></a>
     </div>
 
 

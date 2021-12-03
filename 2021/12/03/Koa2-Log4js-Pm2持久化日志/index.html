@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Koa2+Log4js+PM2持久化日志及使用问题 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近一直在开发node相关的项目，做了一段时间了，项目已经让大家正常使用上了，但是日志系统一直没有接入，所以经过查阅与平衡复杂度，决定使用koa-log4进行日志的管理。关于 log4js 的介绍在这里就不多叙述了，想了解请点击  log4js详细介绍 说到数据持久化，最普遍的无非就两种方式:  文件存储(导出.log文件) 数据库存储(基础的增加功能)  本文将以log4js为主线，以文件存储形">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koa2+Log4js+PM2持久化日志及使用问题">
+<meta property="og:url" content="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="最近一直在开发node相关的项目，做了一段时间了，项目已经让大家正常使用上了，但是日志系统一直没有接入，所以经过查阅与平衡复杂度，决定使用koa-log4进行日志的管理。关于 log4js 的介绍在这里就不多叙述了，想了解请点击  log4js详细介绍 说到数据持久化，最普遍的无非就两种方式:  文件存储(导出.log文件) 数据库存储(基础的增加功能)  本文将以log4js为主线，以文件存储形">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-03T08:26:41.000Z">
+<meta property="article:modified_time" content="2021-12-03T09:14:44.638Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="日志">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>39</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>18</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>23</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Koa2-Log4js-Pm2持久化日志" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" class="article-date">
+  <time class="post-time" datetime="2021-12-03T08:26:41.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Koa2+Log4js+PM2持久化日志及使用问题
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/%E6%97%A5%E5%BF%97/">日志</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" class="leancloud_visitors" data-flag-title="Koa2+Log4js+PM2持久化日志及使用问题">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直在开发node相关的项目，做了一段时间了，项目已经让大家正常使用上了，但是日志系统一直没有接入，所以经过查阅与平衡复杂度，决定使用koa-log4进行日志的管理。关于 log4js 的介绍在这里就不多叙述了，想了解请点击  <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/log4js">log4js详细介绍</a></p>
+<p>说到数据持久化，最普遍的无非就两种方式:</p>
+<ul>
+<li>文件存储(导出.log文件)</li>
+<li>数据库存储(基础的增加功能)</li>
+</ul>
+<p>本文将以log4js为主线，以文件存储形式 并且与运维配合 通过logstash上传ELK到Kibana查询的方式实现的。</p>
+<h2 id="持久化至文件"><a href="#持久化至文件" class="headerlink" title="持久化至文件"></a>持久化至文件</h2><p>log4js 输入日志到文件有两种形式:</p>
+<ul>
+<li>file 输出到文件, 指定单一文件名称, 例如: default.log</li>
+<li>dateFile 输出到文件，文件可以按日期模式滚动，例如: 2021-12-03.log</li>
+</ul>
+<p>直接上代码:</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// log4js.js</span><br><span class="line">import log4js from &#x27;koa-log4&#x27;</span><br><span class="line">import path from &#x27;path&#x27; </span><br><span class="line"></span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">    appenders: &#123;</span><br><span class="line">        error: &#123;</span><br><span class="line">            type: &#x27;file&#x27;,           //日志类型</span><br><span class="line">            category: &#x27;errLogger&#x27;,    //日志名称</span><br><span class="line">            filename: path.join(&#x27;logs/&#x27;, &#x27;error/error.log&#x27;), //日志输出位置，当目录文件或文件夹不存在时自动创建</span><br><span class="line">            maxLogSize: 104800, // 文件最大存储空间</span><br><span class="line">            backups: 100  //当文件内容超过文件存储空间时，备份文件的数量</span><br><span class="line">        &#125;,</span><br><span class="line">        response: &#123;</span><br><span class="line">            type: &#x27;dateFile&#x27;,</span><br><span class="line">            category: &#x27;resLogger&#x27;,</span><br><span class="line">            filename: path.join(&#x27;logs/&#x27;, &#x27;responses/&#x27;),</span><br><span class="line">            pattern: &#x27;yyyy-MM-dd.log&#x27;, //日志输出模式</span><br><span class="line">            alwaysIncludePattern: true,</span><br><span class="line">            maxLogSize: 104800,</span><br><span class="line">            backups: 100</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    categories: &#123;</span><br><span class="line">        error: &#123;appenders: [&#x27;error&#x27;], level: &#x27;info&#x27;&#125;,</span><br><span class="line">        response: &#123;appenders: [&#x27;response&#x27;], level: &#x27;info&#x27;&#125;,</span><br><span class="line">        default: &#123; appenders: [&#x27;response&#x27;], level: &#x27;info&#x27;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    replaceConsole: true</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>日志配置文件我们已经完成，在这里定义了两种形式的日志，分别是 errLogger 错误日志, resLogger 响应日志。<br>接下来我们将这两种日志进行自定义格式化输出:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// log4js.js</span><br><span class="line"></span><br><span class="line">let logger = &#123;&#125;</span><br><span class="line"></span><br><span class="line">const formatError = (ctx, err) =&gt; &#123;</span><br><span class="line">    const &#123;method,url&#125; = ctx</span><br><span class="line">    let body = ctx.request.body</span><br><span class="line">    const user = ctx.state.user</span><br><span class="line">    return &#123;method, url,body,user, err&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  const formatRes = (ctx,costTime) =&gt; &#123;</span><br><span class="line">      const &#123;method,url,response:&#123;status,message,body:&#123;success&#125;&#125;,request:&#123;header:&#123;authorization&#125;&#125;&#125; = ctx</span><br><span class="line">    let body = ctx.request.body</span><br><span class="line">    const user = ctx.state.user</span><br><span class="line">    return &#123;method, url,user, body, costTime,authorization, response:&#123;status,message,body:&#123;success&#125;&#125;&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let errorLogger = log4js.getLogger(&#x27;error&#x27;)</span><br><span class="line">let resLogger = log4js.getLogger(&#x27;response&#x27;)</span><br><span class="line"></span><br><span class="line">// 封装错误日志</span><br><span class="line">logger.errLogger = (ctx, error) =&gt; &#123;</span><br><span class="line">    if(ctx &amp;&amp; error) &#123;</span><br><span class="line">        errorLogger.error(formatError(ctx, error))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 封装响应日志</span><br><span class="line">logger.resLogger = (ctx, resTime) =&gt; &#123;</span><br><span class="line">    if(ctx) &#123;</span><br><span class="line">        resLogger.info(formatRes(ctx, resTime))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default logger</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在我们的应用中使用我们自定义的日志模型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//app.js</span><br><span class="line">import log4js from &#x27;./utils/log4js&#x27;</span><br><span class="line"></span><br><span class="line">// logger</span><br><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  const start = new Date()</span><br><span class="line">  await next()</span><br><span class="line">  const ms = new Date() - start</span><br><span class="line">  console.log(`$&#123;ctx.method&#125; $&#123;ctx.url&#125; - $&#123;ms&#125;ms`)</span><br><span class="line">  log4js.resLogger(ctx, ms)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// error-handling</span><br><span class="line">app.on(&#x27;error&#x27;, (err, ctx) =&gt; &#123;</span><br><span class="line">  log4js.errLogger(ctx, err)</span><br><span class="line">  console.error(&#x27;server error&#x27;, err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>此时我们的访问信息都已被输出到了项目 logs 文件夹下面。</p>
+<h2 id="集群模式PM2-Log4js-log写入失败问题"><a href="#集群模式PM2-Log4js-log写入失败问题" class="headerlink" title="集群模式PM2 Log4js log写入失败问题"></a>集群模式PM2 Log4js log写入失败问题</h2><p>正常情况下，使用PM2持久化进程输出日志是完全的，但是一旦使用 集群模式(“instances” : number)下时，就出现写不入日志的情况</p>
+<pre><code>！！！ 每次重启PM2时，需要先delete任务，然后再重新启动
+</code></pre>
+<p>正常直接启动会在配置 log 目录下生成一个yyyy-MM-dd-hh.log格式的文件，但是用pm2启动的时候并没有生成。</p>
+<p>log4js 的调用方法为require(‘log4js’).getLogger(),所以就直接在源码中找getLogger： </p>
+<ol>
+<li>通过package.json中的main我们确定它的主入口文件为./lib/log4js； </li>
+<li>找到getLogger方法</li>
+</ol>
+<p>其中有个isMaster()方法,判断是否为主进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function isPM2Master() &#123;</span><br><span class="line">    return config.pm2 &amp;&amp; process.env[config.pm2InstanceVar] === &#x27;0&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function isMaster() &#123;</span><br><span class="line">    return config.disableClustering || cluster.isMaster || isPM2Master()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到isPM2Master是通过 config 中的pm2参数和pm2InstanceVar来确定的。所以我们需要在log4js的配置中增加这两个配置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//process-dev.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;apps&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;name&quot;: &quot;buran-api-dev&quot;,</span><br><span class="line">      &quot;script&quot;: &quot;index.js&quot;,</span><br><span class="line">      &quot;watch&quot;: true,</span><br><span class="line">      &quot;cwd&quot;:&quot;./&quot;,</span><br><span class="line">      &quot;ignore_watch&quot; : [&quot;jobs/*&quot;,&quot;node_modules/*&quot;,&quot;public&quot;],</span><br><span class="line">      &quot;instances&quot; : 4, </span><br><span class="line">      &quot;instance_var&quot;: &quot;isMaster&quot;,  !!这里!！</span><br><span class="line">      &quot;exec_mode&quot; : &quot;cluster&quot;,</span><br><span class="line">      &quot;merge_logs&quot;: true,</span><br><span class="line">      &quot;autorestart&quot;: true,</span><br><span class="line">      &quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm:ss&quot;,</span><br><span class="line">      &quot;env&quot;: &#123;</span><br><span class="line">        &quot;NODE_ENV&quot;: &quot;production&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//log4js.js</span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">    pm2: true,</span><br><span class="line">    pm2InstanceVar: &quot;isMaster&quot;, // 与pm2的instance_var对应</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>接下来就完全ok了。 剩下的就交给运维同学，告诉他日志生成的目录，他来进行监听上传</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" data-id="ckwq6bvik000oofk6fd949qpt" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">UNPKG和Oss边缘脚本的简述</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>39</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>18</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>23</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ov5pDzDUYSzo1YDOQRc3DEQX-gzGzoHsz", "SoRbdL3rXvA0R8BV0vDCwRHy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

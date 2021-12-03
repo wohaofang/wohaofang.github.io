@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>39</strong><br>文章</div></a>
       <a href="/categories"><div><strong>18</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>22</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>23</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,79 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-ios-input键盘弹起收回BUG解决方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2018-12-17T03:22:41.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/">ios-input键盘弹起收回BUG解决方式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="ios-input键盘弹起收回BUG解决方式">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;input class=&quot;ipt&quot; @focus=&quot;focus&quot; @blur=&#x27;done&#x27; type=&quot;text&quot; placeholder=&quot;请输入名字&quot; v-model=&quot;addressDetail.userName&quot;&gt;</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    focus() &#123;</span><br><span class="line">      document.body.scrollTop = 0;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">    done() &#123;</span><br><span class="line">      document.body.scrollTop = document.body.scrollHeight;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 获得焦点时让页面滚动0</span><br><span class="line">// 失去焦点时让页面滚动当前页面高度</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">       window.scrollTo(0, document.body.scrollTop + 1);</span><br><span class="line">       document.body.scrollTop &gt;= 1</span><br><span class="line">        &amp;&amp; window.scrollTo(0, document.body.scrollTop - 1);</span><br><span class="line">&#125;, 300);</span><br><span class="line">// 效果很好，但不推荐使用 </span><br></pre></td></tr></table></figure>
+<h2 id="方案3"><a href="#方案3" class="headerlink" title="方案3"></a>方案3</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&#x27;focusin&#x27;, () =&gt; &#123; // 软键盘弹起事件</span><br><span class="line">  console.log(&#x27;键盘弹起&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">document.body.addEventListener(&#x27;focusout&#x27;, () =&gt; &#123; // 软键盘关闭事件</span><br><span class="line">  console.log(&#x27;键盘收起&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><p>&lt;input type=”text” placeholder=”联系人的手机号/QQ/微信” v-model=”contact” class=”ipt” **@blur=’done’**/&gt;</p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><pre><code>done() &#123;
+   document.body.scrollTop = document.body.scrollHeight;
+&#125;
+</code></pre>
+<p>*这样在 <strong>失去焦点</strong> 的时候触发 <strong>done方法</strong> 页面滚动下 就好了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="ckwq6bvj3001rofk678pm1vll" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-ios-音乐自动播放问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -136,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="ckv251pwd001szts6ccuh3f6h" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="ckwq6bvj70020ofk69m9s3goo" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -217,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="ckv251pw9001gzts61zt7bjb2" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="ckwq6bviz001iofk6drv80vr2" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -280,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="ckv251px5004gzts61ebc6mt3" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="ckwq6bvjk002tofk67uja4xrt" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -343,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="ckv251pvn0007zts6gesbbvvk" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="ckwq6bvi80007ofk6an2f1r05" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AntV/" rel="tag">AntV</a></li></ul>
@@ -409,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckv251px9004qzts65mzl8hct" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckwq6bvjd0029ofk6cs9k6xw5" class="article-share-link">分享</a> -->
       
       
     </footer>
@@ -470,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckv251pvj0003zts60vapa2fi" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckwq6bvi40003ofk6ewrne2ba" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -648,7 +721,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="ckv251pxc0054zts6hw6fh8hi" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="ckwq6bvjq003dofk60ursdqpp" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -710,7 +783,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/04/24/hello-hexo/" data-id="ckv251pwb001mzts61qdf4cox" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/04/24/hello-hexo/" data-id="ckwq6bvj2001oofk60q8k7iml" class="article-share-link">分享</a> -->
       
       
     </footer>
@@ -774,9 +847,9 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>39</strong><br>文章</div></a>
       <a href="/categories"><div><strong>18</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>22</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>23</strong><br>标签</div></a>
     </div>
 
 
