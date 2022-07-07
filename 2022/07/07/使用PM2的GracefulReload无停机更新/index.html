@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用PM2的GracefulReload无停机更新 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这段时间思考了一个问题，怎么用pm2实现平滑更新(即更新不会影响影响线上服务)？  起因最近的项目上遇到一个问题，做功能迭代就会发现一个很麻烦的事情，每次部署 node 服务需要 查看用户是否有网络请求，在部署停服的过程中，请求过来的时候导致500的发生。 发展通过查阅了解到了 PM2 的 GracefulReload，而且在实际项目中也有使用，但是基本都是以连接断开为标记，这次就顺便研究了一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用PM2的GracefulReload无停机更新">
+<meta property="og:url" content="http://example.com/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="这段时间思考了一个问题，怎么用pm2实现平滑更新(即更新不会影响影响线上服务)？  起因最近的项目上遇到一个问题，做功能迭代就会发现一个很麻烦的事情，每次部署 node 服务需要 查看用户是否有网络请求，在部署停服的过程中，请求过来的时候导致500的发生。 发展通过查阅了解到了 PM2 的 GracefulReload，而且在实际项目中也有使用，但是基本都是以连接断开为标记，这次就顺便研究了一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-07T09:00:27.000Z">
+<meta property="article:modified_time" content="2022-07-07T09:09:22.484Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="pm2">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-使用PM2的GracefulReload无停机更新" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" class="article-date">
+  <time class="post-time" datetime="2022-07-07T09:00:27.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">07</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用PM2的GracefulReload无停机更新
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/pm2/">pm2</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" class="leancloud_visitors" data-flag-title="使用PM2的GracefulReload无停机更新">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这段时间思考了一个问题，怎么用pm2实现平滑更新(即更新不会影响影响线上服务)？</p>
+</blockquote>
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近的项目上遇到一个问题，做功能迭代就会发现一个很麻烦的事情，每次部署 node 服务需要 查看用户是否有网络请求，在部署停服的过程中，请求过来的时候导致500的发生。</p>
+<h2 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h2><p>通过查阅了解到了 PM2 的 GracefulReload，而且在实际项目中也有使用，但是基本都是以连接断开为标记，这次就顺便研究了一下怎么样更优雅的实现无停机更新。</p>
+<span id="more"></span>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>何谓平滑更新？我自己的定义是在更新时不需要停止服务，不会影响现有连接，在前端无感知的情况下完成新版本的发布。我们这次讨论的平滑更新区别于java等语言里的热更新，他们的热更新是通过在运行的过程中重新加载新代码实现的，整个过程服务器不需要重启。而我们讨论的是服务器需要重启的情况。请看官们区别对待。</p>
+<p>大家都知道pm2中对重启服务的命令有三种，分别是“restart”、“reload”、“gracefulReload”。<br>备注：往下我们所有实验都是建立在pm2使用cluster模式的前提下，fork模式不适用。具体原因又是另外一个故事。</p>
+<p><strong>restart</strong> 是直接将server kill掉然后重新启动一个server。这其中在重新的这一段时间内，server是有一个空窗期的。这个时间内所有的request都会被内核拒绝，因为根本没有它们需要找的server存在。</p>
+<p><strong>reload</strong> 命令在pm2官网的解释是0秒重启，说它是在一个个重启“With reload, pm2 restarts all processes one by one, always keeping at least one process running”</p>
+<p>（原文连接：<a target="_blank" rel="noopener" href="https://pm2.io/doc/en/runtime/guide/load-balancing/?utm_source=pm2&amp;utm_medium=website&amp;utm_campaign=rebranding%EF%BC%89">https://pm2.io/doc/en/runtime/guide/load-balancing/?utm_source=pm2&amp;utm_medium=website&amp;utm_campaign=rebranding）</a></p>
+<p>此处，按照pm2官方的解释及我的个人实验观察。reload命令会先创建一个server，然后将原server kill掉，此时原server上的正在执行的request因为进程被关闭而失败。而postman后续的request进来时，因为新server已经启动了</p>
+<h3 id="gracefulReload"><a href="#gracefulReload" class="headerlink" title="gracefulReload"></a>gracefulReload</h3><p>此时你就该使用gracefulReload了，这个命令我就不多做赘述了，使用它，你可以在你的进程里监听SIGINT事件,然后调用server.close函数，设置server不再接收新的连接。而等待现有的连接全部关闭后出发server.close事件。我们这这个事件中执行process.exit()退出进程。这样用户的请求就不会因为进程被kill而失败了。</p>
+<p>直接代码说话：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const server = http.createServer(app);</span><br><span class="line"> </span><br><span class="line">server.listen(3000, () =&gt; &#123;</span><br><span class="line">  console.log(&#x27;Express is listening on 3000&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">process.on(&#x27;SIGINT&#x27;, () =&gt; &#123;</span><br><span class="line"> </span><br><span class="line">  const cleanUp = () =&gt; &#123;</span><br><span class="line">    mysql.end(console.error);</span><br><span class="line">    redis.end();</span><br><span class="line">  &#125;;</span><br><span class="line"> </span><br><span class="line">  server.close(() =&gt; &#123;</span><br><span class="line">    // Stop after 10 secs</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      cleanUp();</span><br><span class="line">      process.exit();</span><br><span class="line">    &#125;, 10000);</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  // Force close server after 15 secs</span><br><span class="line">  setTimeout((e) =&gt; &#123;</span><br><span class="line">    console.log(&#x27;Forcing server close !!!&#x27;, e);</span><br><span class="line">    cleanUp();</span><br><span class="line">    process.exit(1);</span><br><span class="line">  &#125;, 15000);</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样添加了对 mysql 和 redis 资源的释放，同时在连接断开后等待 10 秒，让异步的请求执行完（requert 上的超时为 5s，所有 10s 应该是足够了）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后 pm2.json 需要添加 →  &quot;kill_timeout&quot;: 15000   或者 pm2 start app.js --kill-timeout 15000</span><br></pre></td></tr></table></figure>
+
+<p>经过测试，这样的配置运行良好，从日志可以看出来在执行了 startOrGracefulReload 之后，PM2 会马上启动一个新的进程处理新进的请求，同时等待原有的进程停止后删除退出。至此，应该算是大功告成了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" data-id="cl5at7az90031awk60u0x96lt" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pm2/" rel="tag">pm2</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Node APM平台搭建</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2021 - 2022 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Hfb9KOkwfPs3OQW0HDWHW4Ab-gzGzoHsz", "6oT6WqlVzvjssLs3qL7p4zo5");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

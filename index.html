@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>20</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>25</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,76 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-使用PM2的GracefulReload无停机更新" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" class="article-date">
+  <time class="post-time" datetime="2022-07-07T09:00:27.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">07</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/">使用PM2的GracefulReload无停机更新</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/pm2/">pm2</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" class="leancloud_visitors" data-flag-title="使用PM2的GracefulReload无停机更新">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这段时间思考了一个问题，怎么用pm2实现平滑更新(即更新不会影响影响线上服务)？</p>
+</blockquote>
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近的项目上遇到一个问题，做功能迭代就会发现一个很麻烦的事情，每次部署 node 服务需要 查看用户是否有网络请求，在部署停服的过程中，请求过来的时候导致500的发生。</p>
+<h2 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h2><p>通过查阅了解到了 PM2 的 GracefulReload，而且在实际项目中也有使用，但是基本都是以连接断开为标记，这次就顺便研究了一下怎么样更优雅的实现无停机更新。</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" data-id="cl5at7az90031awk60u0x96lt" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pm2/" rel="tag">pm2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-NodeAPM平台搭建" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -138,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-id="cl4ckzch90012vhk6333tgtt0" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-id="cl5at7ayk000zawk65chwevvo" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -240,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/" data-id="cl4ckzch8000zvhk672n9he89" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/" data-id="cl5at7ayi000vawk6azg70nna" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -308,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/APM%E4%BB%8B%E7%BB%8D/" data-id="cl4ckzcgt0007vhk60bd450br" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/06/13/APM%E4%BB%8B%E7%BB%8D/" data-id="cl5at7axx0007awk606xccyqh" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -378,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/01/17/%E4%B8%89%E4%BA%9A%E4%B9%8B%E6%97%85/" data-id="cl4ckzchy002xvhk6d46gbm8n" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/01/17/%E4%B8%89%E4%BA%9A%E4%B9%8B%E6%97%85/" data-id="cl5at7az8002yawk65tlzbc92" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -456,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" data-id="cl4ckzch5000svhk68ofe3yjy" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" data-id="cl5at7ayd000sawk6go5cansi" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li></ul>
@@ -524,7 +594,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" data-id="cl4ckzchh001mvhk6d1e541pp" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" data-id="cl5at7ays001pawk65jlzds0l" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unpkg/" rel="tag">unpkg</a></li></ul>
@@ -610,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/10/21/webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="cl4ckzchw002tvhk6bmeu924v" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/10/21/webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="cl5at7az7002uawk6abop57wv" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
@@ -678,7 +748,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/" data-id="cl4ckzcia003tvhk6a5em91u1" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/" data-id="cl5at7azq003xawk6ekdqb6zb" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -746,81 +816,10 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/" data-id="cl4ckzcie0044vhk62hcg6o5u" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/" data-id="cl5at7b0g006nawk6b26lb7m0" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-JS小技巧" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
-  <time class="post-time" datetime="2021-08-23T11:16:59.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/">JS小技巧</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/js/">js</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="leancloud_visitors" data-flag-title="JS小技巧">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="新增语法"><a href="#新增语法" class="headerlink" title="新增语法"></a>新增语法</h2><h3 id="双问号操作符-Nullish-Coalescing"><a href="#双问号操作符-Nullish-Coalescing" class="headerlink" title="双问号操作符 Nullish Coalescing"></a>双问号操作符 Nullish Coalescing</h3><p><strong>双问号操作符</strong>（??），也被称作<strong>空值合并运算符</strong>，当左侧的操作数为 null 或者 undefined 时，返回其右侧操作数，否则返回左侧操作数。<br>这里简单看一下用法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const foo = null ??  default string ;</span><br><span class="line">console.log(foo); // &quot;default string&quot;</span><br></pre></td></tr></table></figure>
-
-<p>可能有人会问 ??  和 || 有什么区别呢？</p>
-<p>?? 的左侧只判断两种情况：null 和 undefined，而 || 的左侧只要是假值（包括  和 0）都会返回右侧的值。Show the Code 就完事儿了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const number = 0;</span><br><span class="line">console.log(number || 100); // 100</span><br><span class="line">console.log(number ?? 100); // 0</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="cl4ckzch2000lvhk6hsuhb8wg" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
 
     </footer>
   </div>
@@ -883,9 +882,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>20</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>25</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
 
 

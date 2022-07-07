@@ -13,7 +13,7 @@
 <meta property="og:description" content="最近一直在开发node相关的项目，做了一段时间了，项目已经让大家正常使用上了，但是日志系统一直没有接入，所以经过查阅与平衡复杂度，决定使用koa-log4进行日志的管理。关于 log4js 的介绍在这里就不多叙述了，想了解请点击  log4js详细介绍 说到数据持久化，最普遍的无非就两种方式:  文件存储(导出.log文件) 数据库存储(基础的增加功能)  本文将以log4js为主线，以文件存储形">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-03T08:26:41.000Z">
-<meta property="article:modified_time" content="2021-12-03T09:14:44.638Z">
+<meta property="article:modified_time" content="2022-06-17T09:05:49.268Z">
 <meta property="article:author" content="DingMing">
 <meta property="article:tag" content="node">
 <meta property="article:tag" content="日志">
@@ -50,9 +50,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>20</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>25</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -162,14 +162,16 @@
 <p>其中有个isMaster()方法,判断是否为主进程</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function isPM2Master() &#123;</span><br><span class="line">    return config.pm2 &amp;&amp; process.env[config.pm2InstanceVar] === &#x27;0&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function isMaster() &#123;</span><br><span class="line">    return config.disableClustering || cluster.isMaster || isPM2Master()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可以看到isPM2Master是通过 config 中的pm2参数和pm2InstanceVar来确定的。所以我们需要在log4js的配置中增加这两个配置。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//process-dev.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;apps&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;name&quot;: &quot;buran-api-dev&quot;,</span><br><span class="line">      &quot;script&quot;: &quot;index.js&quot;,</span><br><span class="line">      &quot;watch&quot;: true,</span><br><span class="line">      &quot;cwd&quot;:&quot;./&quot;,</span><br><span class="line">      &quot;ignore_watch&quot; : [&quot;jobs/*&quot;,&quot;node_modules/*&quot;,&quot;public&quot;],</span><br><span class="line">      &quot;instances&quot; : 4, </span><br><span class="line">      &quot;instance_var&quot;: &quot;isMaster&quot;,  !!这里!！</span><br><span class="line">      &quot;exec_mode&quot; : &quot;cluster&quot;,</span><br><span class="line">      &quot;merge_logs&quot;: true,</span><br><span class="line">      &quot;autorestart&quot;: true,</span><br><span class="line">      &quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm:ss&quot;,</span><br><span class="line">      &quot;env&quot;: &#123;</span><br><span class="line">        &quot;NODE_ENV&quot;: &quot;production&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//log4js.js</span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">    pm2: true,</span><br><span class="line">    pm2InstanceVar: &quot;isMaster&quot;, // 与pm2的instance_var对应</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### !!!!!修正</span><br></pre></td></tr></table></figure>
+<p>pm2 install pm2-intercom</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//process-dev.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;apps&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;name&quot;: &quot;buran-api-dev&quot;,</span><br><span class="line">      &quot;script&quot;: &quot;index.js&quot;,</span><br><span class="line">      &quot;watch&quot;: true,</span><br><span class="line">      &quot;cwd&quot;:&quot;./&quot;,</span><br><span class="line">      &quot;ignore_watch&quot; : [&quot;jobs/*&quot;,&quot;node_modules/*&quot;,&quot;public&quot;],</span><br><span class="line">      &quot;instances&quot; : 4, </span><br><span class="line">      &quot;instance_var&quot;: &quot;INSTANCE_ID&quot;,  !!这里!！</span><br><span class="line">      &quot;exec_mode&quot; : &quot;cluster&quot;,</span><br><span class="line">      &quot;merge_logs&quot;: true,</span><br><span class="line">      &quot;autorestart&quot;: true,</span><br><span class="line">      &quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm:ss&quot;,</span><br><span class="line">      &quot;env&quot;: &#123;</span><br><span class="line">        &quot;NODE_ENV&quot;: &quot;production&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//log4js.js</span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">    pm2: true,</span><br><span class="line">    pm2InstanceVar: &quot;INSTANCE_ID&quot;, // 与pm2的instance_var对应</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>接下来就完全ok了。 剩下的就交给运维同学，告诉他日志生成的目录，他来进行监听上传</p>
 
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" data-id="cl4ckzch5000svhk68ofe3yjy" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" data-id="cl5at7ayd000sawk6go5cansi" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li></ul>
@@ -249,9 +251,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>20</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>25</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
 
 

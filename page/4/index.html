@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>20</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>25</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,79 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Vue2-x双向数据绑定原理" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="post-time" datetime="2019-07-31T03:03:12.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/">Vue2.x双向数据绑定原理</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="Vue2.x双向数据绑定原理">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>vue.js是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter,在数据变动的时候发布消息给订阅者，出发相应的监听回调。</li>
+<li>第一步：需要observe的数据对象进行递归遍历，包括子属性的对象属性，都加上setter和getter。这样的话，给这个对象的某个值复制，就会触发setter，这样就能监听到数据变化；</li>
+<li>第二步：compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有改变，收到通知，更新视图；</li>
+<li>第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是：<ul>
+<li>1、在自身实例化是往属性订阅器(dep)里面添加自己</li>
+<li>2、自身必须有一个update()方法</li>
+<li>3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退</li>
+</ul>
+</li>
+<li>第四步：MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，通过Observer来监听自己的model数据变化，通过Complie来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化-&gt;师徒更新；视图交互变化(input)-&gt;数据model变更的双向绑定效果。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="cl5at7ayr001mawk6fan2eo9z" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-vue中computed和watch的区别" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -143,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cl4ckzchs002lvhk6elvg2o6w" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cl5at7az5002qawk652wtg9a6" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -215,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="cl4ckzch4000nvhk667lx4im7" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="cl5at7ayb000nawk6bewp3f0i" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
@@ -301,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="cl4ckzchj001uvhk6943naekq" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="cl5at7ayu001uawk65u1zcb90" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/" rel="tag">electron</a></li></ul>
@@ -372,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="cl4ckzch0000gvhk6bzlicyis" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="cl5at7ay7000gawk6crchg7gm" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
@@ -445,7 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="cl4ckzcho0028vhk60w6t99iy" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="cl5at7ayz0029awk6ccfyafbb" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -512,7 +585,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="cl4ckzchp002cvhk60bpydq7s" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="cl5at7az0002dawk656yk9nx9" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -593,7 +666,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="cl4ckzchk001xvhk6e15xa16q" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="cl5at7ayw0022awk64a9dhjpe" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -656,7 +729,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="cl4ckzci2003dvhk646b07u73" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="cl5at7azg003hawk6cvai48p1" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -719,75 +792,11 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="cl4ckzcgu0009vhk6er4f5avd" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="cl5at7ay10009awk6gjmmagsv" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AntV/" rel="tag">AntV</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-在vs-code中开启本地服务器" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
-  <time class="post-time" datetime="2018-01-14T03:35:42.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/">在vs-code中开启本地服务器</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vsCode/">vsCode</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="leancloud_visitors" data-flag-title="在vs-code中开启本地服务器">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><p>1、vs code 有一个Go Live插件，可以直接起服务，比较推荐这个</p>
-<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><p>1、点击“终端”，在里面直接输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g live-server</span><br></pre></td></tr></table></figure>
-<p>2、在终端输入：live-server会出现下面的信息</p>
-<p>直接就可以调试了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cl4ckzchz0030vhk63rr8he6k" class="article-share-link">分享</a> -->
-      
-      
     </footer>
   </div>
   
@@ -849,9 +858,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>20</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>25</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
 
 
