@@ -47,7 +47,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>46</strong><br>文章</div></a>
       <a href="/categories"><div><strong>21</strong><br>分类</div></a>
       <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
@@ -82,6 +82,136 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-重新理解vue2" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/" class="article-date">
+  <time class="post-time" datetime="2021-09-10T07:52:11.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/">重新理解vue2</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>经过几年的前端开发，感觉自己牛逼了，而失去了钻研的动力。最近我面了别人几场，发现大家对vue都有自己的理解，回答都很不错。所以我准备再深入了解下vue。有一点自己的特色</p>
+<h2 id="重新项目"><a href="#重新项目" class="headerlink" title="重新项目"></a>重新项目</h2><p>所有vue页面都离不开main.js, 去实例化vue的。这里它做了什么呢。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  render: h =&gt; h(App),</span><br><span class="line">&#125;).$mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br><span class="line">new Vue -&gt; init -&gt; 注入router  -&gt; </span><br><span class="line">$mount挂载到具体的节点上 -&gt; compile 模板语法解析 -&gt; render -&gt; </span><br><span class="line">Vnode  getter setter -&gt; 收集依赖 通知 -&gt; 监听器 -&gt; patch -&gt; 更新Dom</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/" data-id="cl62306x10040kwk66tcg2488" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-面试总结2021秋" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/" class="article-date">
+  <time class="post-time" datetime="2021-09-03T06:50:51.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/">2021秋季</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="都给我卷起来"><a href="#都给我卷起来" class="headerlink" title="都给我卷起来"></a>都给我卷起来</h2><p>本卷王来做秋季总结了。<br>随着前端的不断深入，加之人员鱼龙混杂。现在面试的问题也趋于原理和实现，更离谱的还会问你，阅读源码会有什么心得或者如何改进么。大家都是打工仔，何必这么相互为难么，指不定哪天你落我手上呢 #_# </p>
+<p>说句实话，不是面试要问，又要几人愿意去阅读源码呢，阅读了用不到没几天就会忘记的。但是说实话<strong>阅读源码真香，确实能学到不少</strong>。愿天下前端是一家，不要相互厮杀。</p>
+<p>还有今年面试有一个很大的共同点，都会问你一下 写过 loader 或者 plugins么，成了今年的流行语~~~</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/" data-id="cl62306x5004ckwk6hva0a5yn" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-JS小技巧" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -137,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="cl61xf5hh000l19k6b7q9g2bq" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="cl62306vr000nkwk6bskt20oc" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -202,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/11/Diff%E7%AE%97%E6%B3%95/" data-id="cl61xf5hc000a19k6hzeucm3s" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/08/11/Diff%E7%AE%97%E6%B3%95/" data-id="cl62306vn000ekwk62zhl39k3" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -265,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/02/React%20Hooks%20%E4%BD%BF%E7%94%A8/" data-id="cl61xf5hw001b19k675uc82vu" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/08/02/React%20Hooks%20%E4%BD%BF%E7%94%A8/" data-id="cl62306w0001dkwk6gfd041pb" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hooks/" rel="tag">hooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
@@ -340,7 +470,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="cl61xf5hf000e19k6037l6k8q" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="cl62306vo000fkwk6a3iq7cp2" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
@@ -405,7 +535,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" data-id="cl61xf5iy004119k617tj0ek9" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" data-id="cl62306x20044kwk626su541k" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li></ul>
@@ -473,7 +603,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/" data-id="cl61xf5i5002119k69s6q6b06" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/" data-id="cl62306wa0021kwk6e8uz76fp" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
@@ -537,7 +667,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="cl61xf5id002i19k6blw184x2" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="cl62306wf002lkwk65jd0gyty" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -605,138 +735,10 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" data-id="cl61xf5in003d19k670dx3suh" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/06/22/%E5%BD%93Swagger%E9%81%87%E4%B8%8AYApi%EF%BC%8C%E7%9E%AC%E9%97%B4%E9%AB%98%E5%A4%A7%E4%B8%8A%E4%BA%86%EF%BC%81/" data-id="cl62306wq003fkwk68und57zq" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-统一报错遮罩方案" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/" class="article-date">
-  <time class="post-time" datetime="2021-06-16T02:48:41.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/">统一报错遮罩方案</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vue/">vue</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>项目中必然存在报错的问题，我们需要对报错进行处理，所以需要进行统一的封装。</p>
-<p>一下为nuxt.js项目为例： 目前支持 刷新和返回首页，  可进行新增配置</p>
-<h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><p>在 mall-marketing/components/layouts/mask 目录下进行了封装</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/16/%E7%BB%9F%E4%B8%80%E6%8A%A5%E9%94%99%E9%81%AE%E7%BD%A9%E6%96%B9%E6%A1%88/" data-id="cl61xf5iu003o19k6h5v191un" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-Nuxt项目打包速度优化方案" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="article-date">
-  <time class="post-time" datetime="2021-06-11T07:52:20.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">11</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">Nuxt项目打包速度优化方案</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>最近在做nuxt项目，发现nuxt项目在打包部署的时间通常在十分钟左右，已经是非常的慢了<br>所以想着怎么能提升一下部署速度，顺便进行项目优化，研究发现方案如下…..</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/11/Nuxt%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-id="cl61xf5hw001919k62ygx1qua" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li></ul>
 
     </footer>
   </div>
@@ -799,7 +801,7 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>46</strong><br>文章</div></a>
       <a href="/categories"><div><strong>21</strong><br>分类</div></a>
       <a href="/tags"><div><strong>26</strong><br>标签</div></a>
     </div>
