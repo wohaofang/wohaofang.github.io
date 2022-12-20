@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>47</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>48</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,71 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-UNPKG和Oss边缘脚本的简述" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" class="article-date">
+  <time class="post-time" datetime="2021-10-22T07:03:42.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/">UNPKG和Oss边缘脚本的简述</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/oss/">oss</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UNPKG和边缘脚本这两个技术都是利用cdn对文件进行转发，他们也有着不同，这也只是我浅显的理解，这这段时间的开发中进行了取舍，最终使用边缘脚本EdgeScript 进行了项目的开发，<br>下面分享下我的开发经历:</p>
+<h2 id="使用背景"><a href="#使用背景" class="headerlink" title="使用背景"></a>使用背景</h2><p>在我入职公司之前就一直存在着这样的问题：<br>    <strong>使用npm发布的组件库升级后，如何让产线自动引用最新的库？</strong><br>这里采用的方式是组件库大发版，产线的项目也需要重新打包部署一遍，这样才能使用最新的功能。<br>在项目比较少的时候是可行的，但是随着项目的增多，就会带来特别多毫无意义的部署。所以通过调研，先后找到了unpkg 和 oss边缘脚本 这两个解决方案。</p>
+<h2 id="unpkg"><a href="#unpkg" class="headerlink" title="unpkg"></a>unpkg</h2><h3 id="unpkg-是什么"><a href="#unpkg-是什么" class="headerlink" title="unpkg 是什么"></a>unpkg 是什么</h3>
+        
+          <p class="article-more-link">
+            <a href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" data-id="cl9rxsuqy001r1ak619x3fxqt" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unpkg/" rel="tag">unpkg</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-webpack性能优化" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -700,70 +765,6 @@ chmod 777 /var/jenkins_mount
 
 
   
-    <article id="post-nuxt使用Ts小结" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" class="article-date">
-  <time class="post-time" datetime="2021-06-29T03:03:27.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">29</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/">nuxt使用Ts小结</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>这一段时间在公司主导新搭建了一个 nuxt 项目。为了紧跟时代潮流，所以想使用 vue3 的 component-api 那一套。<br>结果调研发现很尴尬，目前的 nuxt.js 还没有升级到 vue3，但是若要使用可以引入 component-api 的 npm 仓库，强行使用。这真是鸡肋到极，所以放弃使用 component-api。</p>
-<p>但是为了创新整理活出来，决定使用 Ts 进行开发。<br>毕竟是第一次使用 nuxt.js，所以启动起来还是比较举步维艰的。脚手架一把锁很简单，但是想优化好，减少项目体积(上优化) 就会麻烦一些。</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="cl9rxsurb002n1ak64un9hsil" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -816,9 +817,9 @@ chmod 777 /var/jenkins_mount
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>47</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>21</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>26</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>48</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
 
 

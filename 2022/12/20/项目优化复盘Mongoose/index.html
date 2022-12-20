@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>项目优化复盘Mongoose | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="序言这不年底了，得更细一下技术博客了，年终总结什么的目前暂无打算，记录一下、前一段优化mongoose问题，顺带记录一下自己的了解，继续提升自己技能宽度…  问题 目前的node项目接口访问数据库10s后会自动超时  我想延长数据库访问链接时间，差了网上很多关于Mongoose的文档，结果介绍的都很入门，不能满足我目前的需求。 所以我决定苦读 官方文档  其实解决这个问题只需要添加几个选项设置就好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目优化复盘Mongoose">
+<meta property="og:url" content="http://example.com/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="序言这不年底了，得更细一下技术博客了，年终总结什么的目前暂无打算，记录一下、前一段优化mongoose问题，顺带记录一下自己的了解，继续提升自己技能宽度…  问题 目前的node项目接口访问数据库10s后会自动超时  我想延长数据库访问链接时间，差了网上很多关于Mongoose的文档，结果介绍的都很入门，不能满足我目前的需求。 所以我决定苦读 官方文档  其实解决这个问题只需要添加几个选项设置就好">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-20T08:44:34.000Z">
+<meta property="article:modified_time" content="2022-12-20T11:02:39.849Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="mongoose">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>48</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-项目优化复盘Mongoose" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" class="article-date">
+  <time class="post-time" datetime="2022-12-20T08:44:34.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      项目优化复盘Mongoose
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/mongoose/">mongoose</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span class="项目优化复盘Mongoose" id="busuanzi_container_page_pv"  data-flag-title="项目优化复盘Mongoose">
+      &nbsp;阅读次数<span id="busuanzi_value_page_pv"></span>
+    </span>
+  </div>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>这不年底了，得更细一下技术博客了，年终总结什么的目前暂无打算，记录一下、前一段优化mongoose问题，顺带记录一下自己的了解，继续提升自己技能宽度…</p>
+<blockquote>
+<p>问题 目前的node项目接口访问数据库10s后会自动超时</p>
+</blockquote>
+<p>我想延长数据库访问链接时间，差了网上很多关于Mongoose的文档，结果介绍的都很入门，不能满足我目前的需求。</p>
+<p>所以我决定苦读 <a target="_blank" rel="noopener" href="https://mongoosejs.com/docs/connections.html">官方文档</a> </p>
+<p>其实解决这个问题只需要添加几个选项设置就好，对于了解的人当然不在话下，但是对于开拓者来说还是比较困难的，需要一遍遍的设置、重启、调试、修改</p>
+<p>接下来我细细复盘我的优化之路</p>
+<span id="more"></span>
+
+<h3 id="问题定位"><a href="#问题定位" class="headerlink" title="问题定位"></a>问题定位</h3><p>好在我之前在项目中加入了一些列的操作日志，进行了接口监控 之前的文章-&gt;(<a target="_blank" rel="noopener" href="https://wohaofang.github.io/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/">Koa2+Log4js+PM2持久化日志及使用问题</a>)</p>
+<p>了解了具体接口的报错，那就能着手进行dome的调试，定位问题点，发现接口访问超过10s就会报500的错误。</p>
+<p>了解http code码的同学应该清楚，500+ 证明访问就没有进来(同时我查看了全局没有500的报错封装)。</p>
+<p>我第一反应是，我是不是引用的中间件 拦截报出的错误，我开始查看 koa-onerror 项目文档，发现没有相关介绍，然后我就看是尝试读源码，看看他是怎么拦截的，结果一桶忙碌下来，屁都没有发现，反而觉得人家分装的还不错(狗头)</p>
+<p>然后我就进行断点调试，才发现卡在了mongoose这一步</p>
+<p>知道问题点了，就全力解决吧</p>
+<h3 id="问题搜索与调试"><a href="#问题搜索与调试" class="headerlink" title="问题搜索与调试"></a>问题搜索与调试</h3><p>随后，我就开始查阅网上的教程，结果都太基础了，也没有人出现我这同样的问题，还有人写 reconnectInterval(误人子弟呀，这个参数不存在的，千万不要用)  网上的文章他妈的都是复制粘贴的</p>
+<p>被迫只能去查看官方文档，终于找到了我想要的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    serverSelectionTimeoutMS: 20000,</span><br><span class="line">    heartbeatFrequencyMS: 20000,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是我怎么尝试都会报错，提示参数无效！！！ 我就有点摸不着头了。node_modules里不就有代码么，看源码！！！确实没有参数</p>
+<p>原来是自己的npm包版本不够(好歹也是5.x.x呢)，官网已经6+了 我们就升到6</p>
+<p>经过了反复调试，终于设置好了符合这项目的参数，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mongoose.set(&#x27;strictQuery&#x27;, false);</span><br><span class="line"></span><br><span class="line">mongoose.connect(config.mongodb, &#123;</span><br><span class="line">    useNewUrlParser: true,</span><br><span class="line">    useUnifiedTopology: true,</span><br><span class="line">    // reconnectInterval: 20 * 1000,</span><br><span class="line">    maxPoolSize: 10,</span><br><span class="line">    serverSelectionTimeoutMS: 20000,</span><br><span class="line">    heartbeatFrequencyMS: 20000,</span><br><span class="line">    family: 4,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>网络文章有的很不靠谱，让我误入歧途很久，当时让我很愤怒，为了解决问题看官方文档还是最靠谱的，本来想写 参数介绍的，结果写着写着，写成了优化复盘。哈哈 写文章就是这么的奇妙</p>
+<h3 id="mongoose-connect-参数简单介绍"><a href="#mongoose-connect-参数简单介绍" class="headerlink" title="mongoose connect 参数简单介绍"></a>mongoose connect 参数简单介绍</h3><p>该connect方法还接受一个options将传递给底层 MongoDB 驱动程序的对象。</p>
+<pre><code>mongoose.connect(uri, options);
+</code></pre>
+<p>完整的选项列表可以在<a target="_blank" rel="noopener" href="https://mongodb.github.io/node-mongodb-native/4.2/interfaces/MongoClientOptions.html">MongoDB-Node.js驱动程序文档</a> 中找到MongoClientOptions。Mongoose 将选项不加修改地传递给驱动程序，模数下面解释的一些异常。</p>
+<ul>
+<li><strong>bufferCommands</strong> - 这是禁用Mongoose 缓冲机制的 mongoose 特定选项（未传递给 MongoDB 驱动程序）</li>
+<li><strong>user/ pass</strong> - 用于身份验证的用户名和密码。这些选项是特定于 Mongoose 的，它们等同于 MongoDB 驱动程序的auth.username和auth.password选项。</li>
+<li><strong>autoIndex</strong> - 默认情况下，猫鼬会在连接时自动构建在您的模式中定义的索引。这对于开发非常有用，但对于大型生产部署来说并不理想，因为索引构建会导致性能下降。如果设置autoIndex为 false，mongoose 将不会自动为与此连接关联的任何模型构建索引。</li>
+<li><strong>dbName</strong> - 指定要连接到哪个数据库并覆盖连接字符串中指定的任何数据库。如果您无法像某些mongodb+srv语法连接那样在连接字符串中指定默认数据库，这将很有用。</li>
+</ul>
+<p>下面是一些对调整 Mongoose 很重要的选项。</p>
+<ul>
+<li><strong>promiseLibrary</strong> - 设置底层驱动程序的承诺库。</li>
+<li><strong>maxPoolSize</strong> - MongoDB 驱动程序将为该连接保持打开的最大套接字数。默认情况下，maxPoolSize是 100。请记住，MongoDB 一次只允许每个套接字执行一个操作，因此如果您发现有一些慢速查询正在阻止更快的查询继续进行，您可能需要增加此值。请参阅MongoDB 和 Node.js 中的慢速列车。maxPoolSize如果您遇到连接限制，您可能想要减少。</li>
+<li><strong>minPoolSize</strong> - MongoDB 驱动程序将为该连接保持打开的最小套接字数。MongoDB 驱动程序可能会关闭一段时间不活动的套接字。minPoolSize如果您希望您的应用程序经历较长的空闲时间并希望确保您的套接字保持打开状态以避免在活动开始时运行缓慢，则可能需要增加。</li>
+<li><strong>socketTimeoutMS</strong> - 由于初始连接后 不活动，MongoDB 驱动程序在终止套接字之前将等待多长时间。由于没有活动或长时间运行的操作，套接字可能处于非活动状态。这是30000默认设置，如果您希望某些数据库操作的运行时间超过 20 秒，则应将其设置为最长运行操作的 2-3 倍。在 MongoDB 驱动程序成功完成后，此选项将传递给Node.jssocket#setTimeout()函数。</li>
+<li><strong>family</strong> - 是使用 IPv4 还是 IPv6 进行连接。此选项传递给Node.js 的dns.lookup()函数。如果不指定此选项，MongoDB 驱动程序将首先尝试 IPv6，然后在 IPv6 失败时尝试 IPv4。如果您的mongoose.connect(uri)通话时间较长，请尝试mongoose.connect(uri, { family: 4 })</li>
+<li><strong>authSourceuser</strong> - 使用和 进行身份验证时要使用的数据库pass。在 MongoDB 中，用户被限定在一个数据库中。如果您遇到意外的登录失败，您可能需要设置此选项。</li>
+<li><strong>serverSelectionTimeoutMS</strong> - MongoDB 驱动程序将尝试找到一个服务器来发送任何给定的操作，并持续重试serverSelectionTimeoutMS几毫秒。如果未设置，MongoDB 驱动程序默认使用30000（30 秒）。</li>
+<li><strong>heartbeatFrequencyMS</strong> - MongoDB 驱动程序每隔一段时间发送一次心跳heartbeatFrequencyMS以检查连接状态。心跳受制于serverSelectionTimeoutMS，因此 MongoDB 驱动程序默认会重试失败的心跳最多 30 秒。Mongoose 仅​​在心跳失败后才发出’disconnected’事件，因此您可能希望减少此设置以减少服务器关闭与 Mongoose 发出之间的时间’disconnected’。我们建议您不要将此设置设置为低于 1000，过多的心跳会导致性能下降。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" data-id="clbw3fy1300085wk6hn5f2n84" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongoose/" rel="tag">mongoose</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/10/28/2022%E6%97%A5%E5%B8%B8%E9%94%BB%E7%82%BC%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">2022日常锻炼记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>48</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2021 - 2022 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+
+  
+    <!-- 不蒜子统计 -->
+    <div class="outer " id="footer-info">
+    <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+            本站访客数<span id="busuanzi_value_site_uv"></span>人
+    </span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>
