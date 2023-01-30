@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2022年个税计算器 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这不年底了，因为扣税的原因，工资一次比一次少。在网上一直找不到顺手个税计算器，于是准备动手开发一个，效果如下:2022年个税计算器 介绍一下：  React + Material UI PWA 响应式布局，桌面和移动端同时支持 数据精准😏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022年个税计算器">
+<meta property="og:url" content="http://example.com/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="这不年底了，因为扣税的原因，工资一次比一次少。在网上一直找不到顺手个税计算器，于是准备动手开发一个，效果如下:2022年个税计算器 介绍一下：  React + Material UI PWA 响应式布局，桌面和移动端同时支持 数据精准😏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/calculator/1.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/calculator/2.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/calculator/3.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/calculator/4.png">
+<meta property="article:published_time" content="2022-12-21T09:43:18.000Z">
+<meta property="article:modified_time" content="2023-01-30T09:41:12.494Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.yxt.com/images/www/sany/calculator/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>50</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-2022年个税计算器" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" class="article-date">
+  <time class="post-time" datetime="2022-12-21T09:43:18.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2022年个税计算器
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/react/">react</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span class="2022年个税计算器" id="busuanzi_container_page_pv"  data-flag-title="2022年个税计算器">
+      &nbsp;阅读次数<span id="busuanzi_value_page_pv"></span>
+    </span>
+  </div>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这不年底了，因为扣税的原因，工资一次比一次少。在网上一直找不到顺手个税计算器，于是准备动手开发一个，效果如下:<br><a target="_blank" rel="noopener" href="https://wohaofang.github.io/personal-income-tax-calculator/">2022年个税计算器</a></p>
+<p>介绍一下：</p>
+<ul>
+<li>React + Material UI</li>
+<li>PWA</li>
+<li>响应式布局，桌面和移动端同时支持</li>
+<li>数据精准😏</li>
+</ul>
+<span id="more"></span>
+
+<blockquote>
+<p>页面展示：</p>
+</blockquote>
+<h5 id="1-输入对应的收入金额"><a href="#1-输入对应的收入金额" class="headerlink" title="1.输入对应的收入金额"></a>1.输入对应的收入金额</h5><img src='https://images.yxt.com/images/www/sany/calculator/1.png' />
+
+<h5 id="2-计算出年收入"><a href="#2-计算出年收入" class="headerlink" title="2.计算出年收入"></a>2.计算出年收入</h5><img src='https://images.yxt.com/images/www/sany/calculator/2.png' />
+
+<h5 id="3-查看月详细收入"><a href="#3-查看月详细收入" class="headerlink" title="3.查看月详细收入"></a>3.查看月详细收入</h5><img src='https://images.yxt.com/images/www/sany/calculator/3.png' />
+
+<h5 id="4-选择热门城市"><a href="#4-选择热门城市" class="headerlink" title="4.选择热门城市"></a>4.选择热门城市</h5><img src='https://images.yxt.com/images/www/sany/calculator/4.png' />
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" data-id="cldimp5sj0003h7ckfn4p7ktb" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/01/30/2023%E5%B9%B4%E8%A7%84%E5%88%92/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          2023年规划
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">项目优化复盘Mongoose</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>50</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2022 - 2023 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+
+  
+    <!-- 不蒜子统计 -->
+    <div class="outer " id="footer-info">
+    <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+            本站访客数<span id="busuanzi_value_site_uv"></span>人
+    </span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>

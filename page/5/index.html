@@ -47,7 +47,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>48</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>50</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
@@ -82,6 +82,144 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-JS与native交互方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2019-02-12T03:14:22.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/">JS与native交互方式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/native/">native</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原生和H5-的交互方式"><a href="#原生和H5-的交互方式" class="headerlink" title="原生和H5 的交互方式"></a>原生和H5 的交互方式</h2><blockquote>
+<p>在 原生开发 Hybrid App 的时候，前端和原生通信，需要jsBridge进行交互，在此总结下和原生一些交互的方式</p>
+</blockquote>
+<pre><code>需要说明App内嵌的H5都是基于原生WebView来实现的，为h5展示提供了容器
+</code></pre>
+<h3 id="JS-amp-amp-OC"><a href="#JS-amp-amp-OC" class="headerlink" title="JS &amp;&amp; OC"></a>JS &amp;&amp; OC</h3><p>ios的WebView有两种，分别 是UIWebView 、WKWebView</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="cldimp5sz0010h7ckc6wd9m43" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-ios-input键盘弹起收回BUG解决方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2018-12-17T03:22:41.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/">ios-input键盘弹起收回BUG解决方式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;input class=&quot;ipt&quot; @focus=&quot;focus&quot; @blur=&#x27;done&#x27; type=&quot;text&quot; placeholder=&quot;请输入名字&quot; v-model=&quot;addressDetail.userName&quot;&gt;</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    focus() &#123;</span><br><span class="line">      document.body.scrollTop = 0;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">    done() &#123;</span><br><span class="line">      document.body.scrollTop = document.body.scrollHeight;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 获得焦点时让页面滚动0</span><br><span class="line">// 失去焦点时让页面滚动当前页面高度</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">       window.scrollTo(0, document.body.scrollTop + 1);</span><br><span class="line">       document.body.scrollTop &gt;= 1</span><br><span class="line">        &amp;&amp; window.scrollTo(0, document.body.scrollTop - 1);</span><br><span class="line">&#125;, 300);</span><br><span class="line">// 效果很好，但不推荐使用 </span><br></pre></td></tr></table></figure>
+<h2 id="方案3"><a href="#方案3" class="headerlink" title="方案3"></a>方案3</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&#x27;focusin&#x27;, () =&gt; &#123; // 软键盘弹起事件</span><br><span class="line">  console.log(&#x27;键盘弹起&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">document.body.addEventListener(&#x27;focusout&#x27;, () =&gt; &#123; // 软键盘关闭事件</span><br><span class="line">  console.log(&#x27;键盘收起&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><p>&lt;input type=”text” placeholder=”联系人的手机号/QQ/微信” v-model=”contact” class=”ipt” **@blur=’done’**/&gt;</p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><pre><code>done() &#123;
+   document.body.scrollTop = document.body.scrollHeight;
+&#125;
+</code></pre>
+<p>*这样在 <strong>失去焦点</strong> 的时候触发 <strong>done方法</strong> 页面滚动下 就好了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="cldimp5td002nh7ckfsgp1ha0" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-ios-音乐自动播放问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -133,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="cl9rxsur8002f1ak6gbk05bly" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="cldimp5tf002yh7ck5qr282nn" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -211,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="cl9rxsur300201ak625isexug" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="cldimp5tb002bh7ck1oml7mdt" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -271,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="cl9rxsurm003k1ak628p359lf" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="cldimp5ug006oh7ck0aoga6xl" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -331,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="cl9rxsuqc000e1ak64f7k6m0t" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="cldimp5sv000kh7ck8b5n1r2s" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AntV/" rel="tag">AntV</a></li></ul>
@@ -394,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cl9rxsuri00391ak66bf4bh4h" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cldimp5tm003sh7cka8jf7f9c" class="article-share-link">分享</a> -->
       
       
     </footer>
@@ -452,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cl9rxsuq700071ak6a7w96p9v" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cldimp5ss000eh7ckdtu38559" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -627,7 +765,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="cl9rxsury004c1ak623005d5i" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="cldimp5ul0071h7ck46fb3nnl" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -686,7 +824,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/04/24/hello-hexo/" data-id="cl9rxsur600271ak66l2be3sv" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/04/24/hello-hexo/" data-id="cldimp5tc002jh7ckbaxc5oiv" class="article-share-link">分享</a> -->
       
       
     </footer>
@@ -750,7 +888,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>48</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>50</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
@@ -788,7 +926,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2021 - 2022 DingMing<br>
+      &copy;2022 - 2023 DingMing<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       
