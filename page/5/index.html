@@ -47,7 +47,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>50</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>51</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
@@ -82,6 +82,89 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-electron基础" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/electron%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="post-time" datetime="2019-03-11T03:28:18.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/electron%E5%9F%BA%E7%A1%80/">electron基础</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/electron/">electron</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><ul>
+<li>electron 和 chrome 是采用多进程的模式 </li>
+</ul>
+<blockquote>
+<p>好处是这样各个模块之间没有联系，一处崩溃不会影响其他地方</p>
+</blockquote>
+<blockquote>
+<p>坏处就是会导致内存消耗比较大</p>
+</blockquote>
+<h3 id="主进程-Main-Process"><a href="#主进程-Main-Process" class="headerlink" title="主进程 - Main Process"></a>主进程 - Main Process</h3><ul>
+<li>可以使用和系统对接的Electron API -创建菜单，上传文件 等等</li>
+<li>创建渲染进程 -Renderer Process</li>
+<li>全面支持 Node</li>
+<li>只有一个，作为整个程序的入口点</li>
+</ul>
+<h3 id="渲染进程-Renderer-Process"><a href="#渲染进程-Renderer-Process" class="headerlink" title="渲染进程 - Renderer Process"></a>渲染进程 - Renderer Process</h3><ul>
+<li>可以有多个，每个对应一个窗口</li>
+<li>每个都是一个单独的进程</li>
+<li>全面支持 node 和 DOM API</li>
+<li>可以使用部分Electron提供的API</li>
+</ul>
+<h3 id="进程之间的通讯方式"><a href="#进程之间的通讯方式" class="headerlink" title="进程之间的通讯方式"></a>进程之间的通讯方式</h3><ul>
+<li>Electron使用IPC在进程之间进行通讯</li>
+<li>remote 渲染进程直接可以使用主进程API</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="cldy76bp60029back75tn5b33" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/" rel="tag">electron</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-JS与native交互方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -137,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="cldimp5sz0010h7ckc6wd9m43" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="cldy76box0010backdlis0n0k" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
@@ -207,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="cldimp5td002nh7ckfsgp1ha0" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="cldy76bp9002pbacke98kh8vo" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -271,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="cldimp5tf002yh7ck5qr282nn" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="cldy76bp8002jbackbqibd09v" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -349,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="cldimp5tb002bh7ck1oml7mdt" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="cldy76bp7002cbacke14le4su" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -409,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="cldimp5ug006oh7ck0aoga6xl" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="cldy76bpn0046backey9c5reu" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -469,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="cldimp5sv000kh7ck8b5n1r2s" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="cldy76bos000kback2o3b1iax" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AntV/" rel="tag">AntV</a></li></ul>
@@ -532,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cldimp5tm003sh7cka8jf7f9c" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cldy76bpe003cback6cuegx9g" class="article-share-link">分享</a> -->
       
       
     </footer>
@@ -590,7 +673,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cldimp5ss000eh7ckdtu38559" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cldy76boq000eback83jm67h3" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -765,7 +848,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="cldimp5ul0071h7ck46fb3nnl" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="cldy76bpt004hback1p6853ng" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -779,67 +862,10 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
 
 
   
-    <article id="post-hello-hexo" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/24/hello-hexo/" class="article-date">
-  <time class="post-time" datetime="2017-04-24T10:40:32.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">24</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/24/hello-hexo/">hello hexo</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        你好hexo，我是丁铭，
-        
-          <p class="article-more-link">
-            <a href="/2017/04/24/hello-hexo/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/04/24/hello-hexo/" data-id="cldimp5tc002jh7ckbaxc5oiv" class="article-share-link">分享</a> -->
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/4/">⇠ pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">⇠ pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">next ⇢</a>
   </nav>
 </section>
         
@@ -888,7 +914,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>50</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>51</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
