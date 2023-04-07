@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>智能预加载策略 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于用户行为预测的前端智能预加载 目标：结合大数据统计和分析，做到准确预判用户访问路径，提前加载相关业务资源，有效降低网络时间，通过对预加载判断算法的升级和优化，做到成本，性能，体验的平衡和收益最大化，持续提升客户使用2.0系统的整体体验。  背景信息和理论基础 2.0 是一系列单页面应用的集合，目前有100余个独立应用 用户使用A应用，大概率会访问B应用，如 o2o 和 kng ，这种规模和关系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能预加载策略">
+<meta property="og:url" content="http://example.com/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="基于用户行为预测的前端智能预加载 目标：结合大数据统计和分析，做到准确预判用户访问路径，提前加载相关业务资源，有效降低网络时间，通过对预加载判断算法的升级和优化，做到成本，性能，体验的平衡和收益最大化，持续提升客户使用2.0系统的整体体验。  背景信息和理论基础 2.0 是一系列单页面应用的集合，目前有100余个独立应用 用户使用A应用，大概率会访问B应用，如 o2o 和 kng ，这种规模和关系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/gmtc/c1d6cfa859d6497486033fec6f029e432650.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/gmtc/cf7c1d90104a409a95930f7298c7e26b2650.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/gmtc/8cea019775474019baf0651d66e635f72650.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/gmtc/31a0b6b97bc345d4ae4118197edc05b12650.png">
+<meta property="article:published_time" content="2023-03-01T09:57:10.000Z">
+<meta property="article:modified_time" content="2023-04-07T10:15:05.116Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.yxt.com/images/www/sany/gmtc/c1d6cfa859d6497486033fec6f029e432650.png">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-智能预加载策略" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" class="article-date">
+  <time class="post-time" datetime="2023-03-01T09:57:10.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      智能预加载策略
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%86%E4%BA%AB/">分享</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span class="智能预加载策略" id="busuanzi_container_page_pv"  data-flag-title="智能预加载策略">
+      &nbsp;阅读次数<span id="busuanzi_value_page_pv"></span>
+    </span>
+  </div>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基于用户行为预测的前端智能预加载"><a href="#基于用户行为预测的前端智能预加载" class="headerlink" title="基于用户行为预测的前端智能预加载"></a>基于用户行为预测的前端智能预加载</h1><blockquote>
+<p>目标：结合大数据统计和分析，做到准确预判用户访问路径，提前加载相关业务资源，有效降低网络时间，通过对预加载判断算法的升级和优化，做到成本，性能，体验的平衡和收益最大化，持续提升客户使用2.0系统的整体体验。</p>
+</blockquote>
+<h2 id="背景信息和理论基础"><a href="#背景信息和理论基础" class="headerlink" title="背景信息和理论基础"></a>背景信息和理论基础</h2><ol>
+<li>2.0 是一系列单页面应用的集合，目前有100余个独立应用</li>
+<li>用户使用A应用，大概率会访问B应用，如 o2o 和 kng ，这种规模和关系既是需求也是条件</li>
+<li>SAAS产线采用 cdn部署/文件指纹/强缓存的组合，单个业务一次加载，缓存失效之前可以一直使用</li>
+<li>智能预加载在原生客户端开发，浏览器优化，视频播放等领域已有较多实践应用</li>
+</ol>
+<blockquote>
+<p>关于本议题，早在2015年谷歌上已有相关论文（见扩展阅读7）。但其关注的是浏览器本身的体验优化，且彼时web开发模式还传统的前后端不分离，链接也是href。如今经过前后端分离的大变革，js全面接管结构，表现，行为三大领域，href也大多变为了click和function，检测关键href已然失效，但“预测用户行为”的核心思想还是通用的。</p>
+</blockquote>
+<h2 id="需关注的重点问题"><a href="#需关注的重点问题" class="headerlink" title="需关注的重点问题"></a>需关注的重点问题</h2><ol>
+<li>成本和效果：较少的带宽占用，较大的性能(体验)提升 ​此两者指向同一个要点， 用户行为预测的准确性</li>
+<li>稳定性：对当前业务影响最低或无影响</li>
+<li>业务接入难度：各领域以最低的工作量完成接入并且受益</li>
+</ol>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><img src='https://images.yxt.com/images/www/sany/gmtc/c1d6cfa859d6497486033fec6f029e432650.png' width=500/>
+
+
+<h2 id="实施效果预测"><a href="#实施效果预测" class="headerlink" title="实施效果预测"></a>实施效果预测</h2><p>使用智能预加载，且预测准确的情况下，整体可提速 15% - 30%<br>首屏时间 降低 10% - 30% </p>
+<p>前端业务 有无预加载的流程对比：</p>
+<img src='https://images.yxt.com/images/www/sany/gmtc/cf7c1d90104a409a95930f7298c7e26b2650.png' width=500/>
+<img src='https://images.yxt.com/images/www/sany/gmtc/8cea019775474019baf0651d66e635f72650.png' width=500/>
+<img src='https://images.yxt.com/images/www/sany/gmtc/31a0b6b97bc345d4ae4118197edc05b12650.png' width=500/>
+
+<p>测试环境：北京办公区网络<br>上图展示了 40%的网络时间提升，50%的首屏时间提升<br>实际情况会受用户停留时间，用户网络状况影响<br>总体而言，预加载提升效果 和 用户停留时间呈正比，和网络速度呈反比，<br>即：用户停留时间越长，加速效果越好，网络速度越慢，加速效果相对较好。</p>
+<h2 id="缺点和局限性"><a href="#缺点和局限性" class="headerlink" title="缺点和局限性"></a>缺点和局限性</h2><ul>
+<li>只能解决网络层面的性能问题，不能视作终极的优化方案</li>
+<li>移动端因为乾坤框架，网络流量，耗电量等原因暂时不具备落地条件</li>
+<li>预测不准的话可能会有一定额外网络开销，需要一段时间修正</li>
+</ul>
+<h2 id="后续方向"><a href="#后续方向" class="headerlink" title="后续方向"></a>后续方向</h2><ul>
+<li>移动端，探讨和客户端结合的智能预加载机制</li>
+</ul>
+<h2 id="参考资料-延伸阅读"><a href="#参考资料-延伸阅读" class="headerlink" title="参考资料/延伸阅读"></a>参考资料/延伸阅读</h2><ul>
+<li> <a target="_blank" rel="noopener" href="https://www.w3.org/TR/resource-hints/">https://www.w3.org/TR/resource-hints/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/TR/preload/">https://www.w3.org/TR/preload/</a></li>
+<li><a target="_blank" rel="noopener" href="https://web.dev/preload-critical-assets/">https://web.dev/preload-critical-assets/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/blog/link-rel-preload/">Prioritizing Your Resources with link rel=’preload’</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf">Preload, Prefetch And Priorities in Chrome</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/reloading/a-link-rel-preload-analysis-from-the-chrome-data-saver-team-5edf54b08715">A Link: rel=preload Analysis From the Chrome Data Saver Team</a></li>
+<li><a target="_blank" rel="noopener" href="https://patents.google.com/patent/CN105893446B/zh">https://patents.google.com/patent/CN105893446B/zh</a> </li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903450275217421">https://juejin.cn/post/6844903450275217421</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" data-id="clg6e7bjt0047vkckdta4aokn" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/22/GMTC2023/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">GMTC 2023 参会感想</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2022 - 2023 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+
+  
+    <!-- 不蒜子统计 -->
+    <div class="outer " id="footer-info">
+    <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+            本站访客数<span id="busuanzi_value_site_uv"></span>人
+    </span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>

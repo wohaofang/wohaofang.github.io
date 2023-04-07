@@ -47,7 +47,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>51</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
@@ -82,6 +82,176 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-智能预加载策略" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" class="article-date">
+  <time class="post-time" datetime="2023-03-01T09:57:10.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/">智能预加载策略</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%88%86%E4%BA%AB/">分享</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基于用户行为预测的前端智能预加载"><a href="#基于用户行为预测的前端智能预加载" class="headerlink" title="基于用户行为预测的前端智能预加载"></a>基于用户行为预测的前端智能预加载</h1><blockquote>
+<p>目标：结合大数据统计和分析，做到准确预判用户访问路径，提前加载相关业务资源，有效降低网络时间，通过对预加载判断算法的升级和优化，做到成本，性能，体验的平衡和收益最大化，持续提升客户使用2.0系统的整体体验。</p>
+</blockquote>
+<h2 id="背景信息和理论基础"><a href="#背景信息和理论基础" class="headerlink" title="背景信息和理论基础"></a>背景信息和理论基础</h2><ol>
+<li>2.0 是一系列单页面应用的集合，目前有100余个独立应用</li>
+<li>用户使用A应用，大概率会访问B应用，如 o2o 和 kng ，这种规模和关系既是需求也是条件</li>
+<li>SAAS产线采用 cdn部署/文件指纹/强缓存的组合，单个业务一次加载，缓存失效之前可以一直使用</li>
+<li>智能预加载在原生客户端开发，浏览器优化，视频播放等领域已有较多实践应用</li>
+</ol>
+<blockquote>
+<p>关于本议题，早在2015年谷歌上已有相关论文（见扩展阅读7）。但其关注的是浏览器本身的体验优化，且彼时web开发模式还传统的前后端不分离，链接也是href。如今经过前后端分离的大变革，js全面接管结构，表现，行为三大领域，href也大多变为了click和function，检测关键href已然失效，但“预测用户行为”的核心思想还是通用的。</p>
+</blockquote>
+<h2 id="需关注的重点问题"><a href="#需关注的重点问题" class="headerlink" title="需关注的重点问题"></a>需关注的重点问题</h2><ol>
+<li>成本和效果：较少的带宽占用，较大的性能(体验)提升 ​此两者指向同一个要点， 用户行为预测的准确性</li>
+<li>稳定性：对当前业务影响最低或无影响</li>
+<li>业务接入难度：各领域以最低的工作量完成接入并且受益</li>
+</ol>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><img src='https://images.yxt.com/images/www/sany/gmtc/c1d6cfa859d6497486033fec6f029e432650.png' width=500/>
+
+
+<h2 id="实施效果预测"><a href="#实施效果预测" class="headerlink" title="实施效果预测"></a>实施效果预测</h2><p>使用智能预加载，且预测准确的情况下，整体可提速 15% - 30%<br>首屏时间 降低 10% - 30% </p>
+<p>前端业务 有无预加载的流程对比：</p>
+<img src='https://images.yxt.com/images/www/sany/gmtc/cf7c1d90104a409a95930f7298c7e26b2650.png' width=500/>
+<img src='https://images.yxt.com/images/www/sany/gmtc/8cea019775474019baf0651d66e635f72650.png' width=500/>
+<img src='https://images.yxt.com/images/www/sany/gmtc/31a0b6b97bc345d4ae4118197edc05b12650.png' width=500/>
+
+<p>测试环境：北京办公区网络<br>上图展示了 40%的网络时间提升，50%的首屏时间提升<br>实际情况会受用户停留时间，用户网络状况影响<br>总体而言，预加载提升效果 和 用户停留时间呈正比，和网络速度呈反比，<br>即：用户停留时间越长，加速效果越好，网络速度越慢，加速效果相对较好。</p>
+<h2 id="缺点和局限性"><a href="#缺点和局限性" class="headerlink" title="缺点和局限性"></a>缺点和局限性</h2><ul>
+<li>只能解决网络层面的性能问题，不能视作终极的优化方案</li>
+<li>移动端因为乾坤框架，网络流量，耗电量等原因暂时不具备落地条件</li>
+<li>预测不准的话可能会有一定额外网络开销，需要一段时间修正</li>
+</ul>
+<h2 id="后续方向"><a href="#后续方向" class="headerlink" title="后续方向"></a>后续方向</h2><ul>
+<li>移动端，探讨和客户端结合的智能预加载机制</li>
+</ul>
+<h2 id="参考资料-延伸阅读"><a href="#参考资料-延伸阅读" class="headerlink" title="参考资料/延伸阅读"></a>参考资料/延伸阅读</h2><ul>
+<li> <a target="_blank" rel="noopener" href="https://www.w3.org/TR/resource-hints/">https://www.w3.org/TR/resource-hints/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/TR/preload/">https://www.w3.org/TR/preload/</a></li>
+<li><a target="_blank" rel="noopener" href="https://web.dev/preload-critical-assets/">https://web.dev/preload-critical-assets/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/blog/link-rel-preload/">Prioritizing Your Resources with link rel=’preload’</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf">Preload, Prefetch And Priorities in Chrome</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/reloading/a-link-rel-preload-analysis-from-the-chrome-data-saver-team-5edf54b08715">A Link: rel=preload Analysis From the Chrome Data Saver Team</a></li>
+<li><a target="_blank" rel="noopener" href="https://patents.google.com/patent/CN105893446B/zh">https://patents.google.com/patent/CN105893446B/zh</a> </li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903450275217421">https://juejin.cn/post/6844903450275217421</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" data-id="clg6e7bjt0047vkckdta4aokn" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-GMTC2023" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/02/22/GMTC2023/" class="article-date">
+  <time class="post-time" datetime="2023-02-22T09:39:19.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/22/GMTC2023/">GMTC 2023 参会感想</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src='https://images.yxt.com/images/www/sany/gmtc/f81d307b899449a3933cd7417f07e7732650.jpeg' />
+
+<pre><code>ps：感谢公司给我们提供了这次宝贵的机会，能让我们参加GMTC大会。
+</code></pre>
+<p>刚刚在北京落下帷幕的 GMTC 2023 应该算是近期国内前端圈子里最高规格的活动之一了。<br>那么这两天的分享有什么值得一提的地方呢？下面是一份小小的总结。</p>
+        
+          <p class="article-more-link">
+            <a href="/2023/02/22/GMTC2023/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2023/02/22/GMTC2023/" data-id="clg6e7biz000wvkcka05vh8d0" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-AccessClient堡垒机使用方案" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -136,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/02/09/AccessClient%E5%A0%A1%E5%9E%92%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88/" data-id="cldydq37b000atzckcz6o94rs" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/02/09/AccessClient%E5%A0%A1%E5%9E%92%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88/" data-id="clg6e7biq000avkck951ydmps" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
@@ -201,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/01/30/2023%E5%B9%B4%E8%A7%84%E5%88%92/" data-id="cldydq37g000ftzckavmeh23w" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/01/30/2023%E5%B9%B4%E8%A7%84%E5%88%92/" data-id="clg6e7biu000fvkckb2ypa1mv" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -271,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" data-id="cldydq3750003tzck7us992gw" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" data-id="clg6e7bii0003vkck70btgnmm" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
@@ -341,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" data-id="cldydq394007atzck0qoqbrhk" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" data-id="clg6e7bkl0084vkckdp6qd83u" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongoose/" rel="tag">mongoose</a></li></ul>
@@ -409,7 +579,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/10/28/2022%E6%97%A5%E5%B8%B8%E9%94%BB%E7%82%BC%E8%AE%B0%E5%BD%95/" data-id="cldydq3790007tzckamjs9cam" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/10/28/2022%E6%97%A5%E5%B8%B8%E9%94%BB%E7%82%BC%E8%AE%B0%E5%BD%95/" data-id="clg6e7biw000kvkck6wlu3wt1" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -476,7 +646,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/07/26/AliNode%E9%97%AE%E9%A2%98%E5%BD%92%E6%80%BB/" data-id="cldydq37h000jtzckbkk3c4vk" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/07/26/AliNode%E9%97%AE%E9%A2%98%E5%BD%92%E6%80%BB/" data-id="clg6e7bit000evkck0lfb5fu0" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -542,7 +712,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/07/26/%E8%8B%8F%E5%B7%9E%E5%87%BA%E5%B7%AE%E4%B9%8B%E6%97%85/" data-id="cldydq38d0048tzck5459gh5y" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/07/26/%E8%8B%8F%E5%B7%9E%E5%87%BA%E5%B7%AE%E4%B9%8B%E6%97%85/" data-id="clg6e7bjs003zvkck0u9k00ph" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -609,147 +779,10 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" data-id="cldydq386003htzckh4i8cy43" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" data-id="clg6e7bjm003ivkck5y6r1sjn" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pm2/" rel="tag">pm2</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-NodeAPM平台搭建" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" class="article-date">
-  <time class="post-time" datetime="2022-06-13T08:57:44.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">13</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/">Node APM平台搭建</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/%E7%9B%91%E6%8E%A7/">监控</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-使用docker-Grafana"><a href="#1-使用docker-Grafana" class="headerlink" title="1.使用docker Grafana"></a>1.使用docker Grafana</h2><h3 id="grafana-介绍"><a href="#grafana-介绍" class="headerlink" title="grafana 介绍"></a>grafana 介绍</h3><ul>
-<li>grafana 镜像 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/grafana/grafana">https://hub.docker.com/r/grafana/grafana</a></li>
-<li>中文汉化版镜像 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/chenwl2016/grafana-chs">https://hub.docker.com/r/chenwl2016/grafana-chs</a></li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-id="cldydq37p001dtzck0b841p8m" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-Node.jsApm监控介绍" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/" class="article-date">
-  <time class="post-time" datetime="2022-06-13T08:32:06.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">13</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/">Node.js Apm监控介绍</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/%E7%9B%91%E6%8E%A7/">监控</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://wohaofang.github.io/2022/06/13/APM%E4%BB%8B%E7%BB%8D/">APM介绍</a><br><a target="_blank" rel="noopener" href="https://wohaofang.github.io/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/">node多线程模式 接入ELK方式</a><br><a target="_blank" rel="noopener" href="https://wohaofang.github.io/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/">Node APM平台搭建</a></p>
-<p><strong>如何发现一个 Node.js 应用的问题</strong></p>
-<h2 id="道与术→-USE-Method-与-APM"><a href="#道与术→-USE-Method-与-APM" class="headerlink" title="道与术→ USE Method 与 APM"></a>道与术→ USE Method 与 APM</h2><p>Application Performance Management （简称APM）是监控服务的一套<strong>技术手段</strong></p>
-<p>Utilization(利用率)，Saturation(饱和度)，Errors(误差)(简称USE) 方法是一种能分析任何系统性能的方法论</p>
-<h3 id="1-1-USE-Method的概念"><a href="#1-1-USE-Method的概念" class="headerlink" title="1.1 USE Method的概念"></a>1.1 USE Method的概念</h3><p>资源：应用依赖的硬件资源（CPU，硬盘，内存）</p>
-<p>利用率：以资源一个时间段内被使用的百分比来表示，例如：一个CPU以90%的利用率运行</p>
-<p>饱和度：某个资源排队的数量</p>
-<p>误差/错误：出现异常的数量</p>
-<p><strong>node.js常见的 USE Method的指标 CPU/内存/吞吐量 核心的三类指标</strong></p>
-        
-          <p class="article-more-link">
-            <a href="/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/" data-id="cldydq37p001gtzck8m5laybw" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
 
     </footer>
   </div>
@@ -812,7 +845,7 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>51</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>27</strong><br>标签</div></a>
     </div>
