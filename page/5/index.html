@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,144 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-mongodb-安装踩坑记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" class="article-date">
+  <time class="post-time" datetime="2019-11-16T03:06:52.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/">mongodb-安装踩坑记</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/mongodb/">mongodb</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h2><h4 id="安装mongodb"><a href="#安装mongodb" class="headerlink" title="安装mongodb"></a>安装mongodb</h4><p>2种安装方式</p>
+<ol>
+<li>下载官方安装包，手动安装</li>
+<li>使用brew安装</li>
+</ol>
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>可以参考菜鸟联盟的安装流程</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" data-id="clnllmsi40037i5ckbduig655" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-Vue2-x双向数据绑定原理" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="post-time" datetime="2019-07-31T03:03:12.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/">Vue2.x双向数据绑定原理</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>vue.js是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter,在数据变动的时候发布消息给订阅者，出发相应的监听回调。</li>
+<li>第一步：需要observe的数据对象进行递归遍历，包括子属性的对象属性，都加上setter和getter。这样的话，给这个对象的某个值复制，就会触发setter，这样就能监听到数据变化；</li>
+<li>第二步：compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有改变，收到通知，更新视图；</li>
+<li>第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是：<ul>
+<li>1、在自身实例化是往属性订阅器(dep)里面添加自己</li>
+<li>2、自身必须有一个update()方法</li>
+<li>3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退</li>
+</ul>
+</li>
+<li>第四步：MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，通过Observer来监听自己的model数据变化，通过Complie来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化-&gt;师徒更新；视图交互变化(input)-&gt;数据model变更的双向绑定效果。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="clnllmsi1002ei5ckf38s40mu" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-vue中computed和watch的区别" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -140,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="clg6eetwj0035kqckbbzue38k" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="clnllmsi5003ei5ck74p73as9" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -209,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="clg6eetw30018kqckfpsmfn5m" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="clnllmshy001ii5ck8hen8ssv" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
@@ -292,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="clg6eetwb0029kqckbstn6h57" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="clnllmsi2002oi5ck7frkcco9" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/" rel="tag">electron</a></li></ul>
@@ -360,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="clg6eetw0000xkqck6pnm3cxf" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="clnllmshz001pi5ckczeod23l" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
@@ -430,7 +568,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="clg6eetwe002rkqckfq862inx" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="clnllmsi3002yi5ckbvyqd4r0" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -494,7 +632,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="clg6eetwh002wkqck0h6f6x4j" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="clnllmsi3002vi5ck06j35wx2" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -572,7 +710,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="clg6eetwc002hkqck4olu2k2h" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="clnllmsi2002ii5ckcdidbhi2" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -632,132 +770,11 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="clg6eetwq003xkqck2b3374fg" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="clnllmsi6003xi5ckc1b73m7w" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-AntV-F2-折线图研究" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" class="article-date">
-  <time class="post-time" datetime="2018-01-16T03:35:42.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/">AntV-F2-折线图研究</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/js/">js</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <span id="more"></span>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, user-scalable=no&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;chart-name&quot; content=&quot;雷达面积图&quot;&gt;</span><br><span class="line">    &lt;title&gt;F2 图表组件库 - AntV&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://gw.alipayobjects.com/os/rmsportal/YmDAMEQVbLJpVbKiRQVX.css&quot; /&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .mountNode &#123;</span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 300px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .aws-tooltip &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            background: #ccc;</span><br><span class="line">            font-size: 28px;</span><br><span class="line">            width: 50px;</span><br><span class="line">            height: 50px;</span><br><span class="line">            line-height: 50px;</span><br><span class="line">            text-align: center;</span><br><span class="line">            border-radius: 50%;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .aws-tooltip::after &#123;</span><br><span class="line">            content: &#x27;&#x27;;</span><br><span class="line">            position: absolute;</span><br><span class="line">            left: 0;</span><br><span class="line">            top: 0;</span><br><span class="line">            width: 20px;</span><br><span class="line">            height: 20px;</span><br><span class="line">            background: #000;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;script&gt;/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;https://gw.alipayobjects.com/os/antv/assets/f2/3.3.0/f2.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;script src=&quot;https://gw.alipayobjects.com/os/antv/assets/lib/lodash-4.17.4.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;!-- 在 PC 上模拟 touch 事件 --&gt;</span><br><span class="line">    &lt;script src=&quot;https://gw.alipayobjects.com/os/rmsportal/NjNldKHIVQRozfbAOJUW.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">        &lt;canvas id=&quot;mountNode&quot; class=&quot;mountNode&quot;&gt;&lt;/canvas&gt;</span><br><span class="line">        &lt;div class=&quot;aws-tooltip&quot;&gt;</span><br><span class="line">            &lt;span&gt;&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var canvasOffsetTop = $(&#x27;#mountNode&#x27;).position().top;</span><br><span class="line">        var canvasOffsetLeft = $(&#x27;#mountNode&#x27;).position().left;</span><br><span class="line">        console.log(canvasOffsetTop, canvasOffsetLeft);</span><br><span class="line">        const _this = this;</span><br><span class="line">        let list = [&#123;</span><br><span class="line">            text: &#x27;拔尖&#x27;,</span><br><span class="line">            num: 0,</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            text: &#x27;优秀&#x27;,</span><br><span class="line">            num: 22,</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            text: &#x27;高潜力&#x27;,</span><br><span class="line">            num: 16,</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            text: &#x27;中等&#x27;,</span><br><span class="line">            num: 26,</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            text: &#x27;不足&#x27;,</span><br><span class="line">            num: 12,</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            text: &#x27;待提高&#x27;,</span><br><span class="line">            num: 26,</span><br><span class="line">        &#125;]</span><br><span class="line">        var chart = new F2.Chart(&#123;</span><br><span class="line">            id: &#x27;mountNode&#x27;,</span><br><span class="line">            pixelRatio: window.devicePixelRatio,</span><br><span class="line">        &#125;);</span><br><span class="line">        chart.source(list, &#123; // 数据传出入</span><br><span class="line">            num: &#123;</span><br><span class="line">                // ticks: [],</span><br><span class="line">                tickCount: 5,</span><br><span class="line">                min: 0,</span><br><span class="line">            &#125;,</span><br><span class="line">            text: &#123;</span><br><span class="line">                tickCount: 7,</span><br><span class="line">                range: [0, 1],</span><br><span class="line">            &#125;,</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        chart.axis(&#x27;text&#x27;, &#123; // 底部样式</span><br><span class="line">            line: // null,</span><br><span class="line">            &#123;</span><br><span class="line">                strokeStyle: &#123;</span><br><span class="line">                    color: &#x27;#000&#x27;</span><br><span class="line">                &#125;,</span><br><span class="line">                lineWidth: &#x27;3&#x27;,</span><br><span class="line">                strokeOpacity: &#x27;0.8&#x27;,</span><br><span class="line">                shadowColor: &#x27;#04ca73&#x27;,</span><br><span class="line">                shadowBlur: &#x27;3&#x27;,</span><br><span class="line">            &#125;,</span><br><span class="line">            tickLine: &#123;</span><br><span class="line">                lineWidth: 1,</span><br><span class="line">                stroke: &#x27;#ccc&#x27;,</span><br><span class="line">                length: 5, // 刻度线长度</span><br><span class="line">            &#125;,</span><br><span class="line">            label: function label(text, index, total) &#123;</span><br><span class="line">                var cfg = &#123;</span><br><span class="line">                    textAlign: &#x27;center&#x27;,</span><br><span class="line">                    fill: &#x27;#04ca73&#x27;,</span><br><span class="line">                    fontSize: 12,</span><br><span class="line">                    fontWeight: 700,</span><br><span class="line">                &#125;;</span><br><span class="line">                return cfg;</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        chart.axis(&#x27;num&#x27;, &#123;</span><br><span class="line">            label: &#123;</span><br><span class="line">                fill: &#x27;#000&#x27;,</span><br><span class="line">            &#125;,</span><br><span class="line">            line: &#123;</span><br><span class="line">                stroke: &#x27;#9ec3b8&#x27;,</span><br><span class="line">            &#125;,</span><br><span class="line">            // grid: &#123;</span><br><span class="line">            //   lineDash: null,</span><br><span class="line">            //   stroke: &#x27;#54b858&#x27;,</span><br><span class="line">            // &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line">        chart.tooltip(&#123; // 提示消息</span><br><span class="line">            showCrosshairs: false,</span><br><span class="line">            custom: true, // 是否自定义 tooltip 提示框</span><br><span class="line">            showTooltipMarker: true, // 是否显示 tooltipMarker</span><br><span class="line">            tooltipMarkerStyle: &#123; // 点的样式</span><br><span class="line">                fill: &#123;</span><br><span class="line">                    color: &#x27;#000&#x27;</span><br><span class="line">                &#125;, // 设置 tooltipMarker 的样式</span><br><span class="line">                stroke: &#x27;#1890ff&#x27;,</span><br><span class="line">                fillOpacity: 0.8,</span><br><span class="line">                lineWidth: &#x27;3&#x27;,</span><br><span class="line">                shadowColor: &#x27;#04ca73&#x27;,</span><br><span class="line">                shadowBlur: &#x27;10&#x27;,</span><br><span class="line">            &#125;,</span><br><span class="line">            onHide(obj) &#123; // tooltip 隐藏时的回调函数</span><br><span class="line">                // console.log(&#x27;onHide&#x27;, obj);</span><br><span class="line">                // obj: &#123; x, y, title, items &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            onChange(obj) &#123; // tooltip 内容发生改变时的回调函数</span><br><span class="line">                // console.log(&#x27;onChange&#x27;, obj);</span><br><span class="line">                // obj: &#123; x, y, title, items &#125;</span><br><span class="line">                const tooltipEl = $(&#x27;.aws-tooltip&#x27;);</span><br><span class="line">                const currentData = obj.items[0];</span><br><span class="line">                const text = currentData.value;</span><br><span class="line">                // console.log(&#x27;onChange&#x27;, currentData, text);</span><br><span class="line">                tooltipEl.html([`&lt;span&gt;$&#123;text&#125;&lt;/span&gt;`].join(&#x27;&#x27;));</span><br><span class="line">                tooltipEl.css(&#123;</span><br><span class="line">                    opacity: 1,</span><br><span class="line">                    left: `$&#123;canvasOffsetLeft + currentData.x - parseInt(tooltipEl.css(&#x27;width&#x27;).replace(&#x27;px&#x27;, &#x27;&#x27;), 0) / 2.0&#125;px`,</span><br><span class="line">                    top: `$&#123;canvasOffsetTop + currentData.y - tooltipEl.height() - 15&#125;px`,</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 线条的样式</span><br><span class="line">        chart.line().position(&#x27;text*num&#x27;).color(&#x27;l(0) 0:#1890FF 1:#f7f7f7&#x27;).shape(&#x27;smooth&#x27;)</span><br><span class="line">            .size(5)</span><br><span class="line">            .style(&#123;</span><br><span class="line">                shadowColor: &#x27;#04ca73&#x27;,</span><br><span class="line">                shadowBlur: &#x27;100&#x27;,</span><br><span class="line">            &#125;);</span><br><span class="line">        // 下方渐变的样式</span><br><span class="line">        chart.area().position(&#x27;text*num&#x27;).color(&#x27;l(90) 0:#000 1:#f7f7f7&#x27;).shape(&#x27;smooth&#x27;);</span><br><span class="line">        // 点的样式</span><br><span class="line">        // chart.point().position(&#x27;text*num&#x27;).color(&#x27;#EED5FF&#x27;).size(5);</span><br><span class="line">        chart.render();</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="clg6eetvw000kkqckf35z1otc" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AntV/" rel="tag">AntV</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-在vs-code中开启本地服务器" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
-  <time class="post-time" datetime="2018-01-14T03:35:42.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/">在vs-code中开启本地服务器</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vsCode/">vsCode</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><p>1、vs code 有一个Go Live插件，可以直接起服务，比较推荐这个</p>
-<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><p>1、点击“终端”，在里面直接输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g live-server</span><br></pre></td></tr></table></figure>
-<p>2、在终端输入：live-server会出现下面的信息</p>
-<p>直接就可以调试了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clg6eetwm003okqck32v200xc" class="article-share-link">分享</a> -->
-      
-      
     </footer>
   </div>
   
@@ -819,9 +836,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>27</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
     </div>
 
 

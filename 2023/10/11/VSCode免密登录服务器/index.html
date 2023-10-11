@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>VSCode免密登录服务器 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1 前言在使用 vscode 的时候，我们经常会使用到 ssh 连接服务器，但是每次都要输入密码，很是麻烦，那么我们可以通过配置 ssh 免密登录服务器，这样就可以省去每次输入密码的麻烦了。 使用 vscode 登录服务器可以无需再打开多余的工具，直接在 vscode 中进行操作，非常方便。 使用 vscode 连接服务器，需要安装插件：Remote-SSH，放心使用，这个插件是微软官方出品的，不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VSCode免密登录服务器">
+<meta property="og:url" content="http://example.com/2023/10/11/VSCode%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="1 前言在使用 vscode 的时候，我们经常会使用到 ssh 连接服务器，但是每次都要输入密码，很是麻烦，那么我们可以通过配置 ssh 免密登录服务器，这样就可以省去每次输入密码的麻烦了。 使用 vscode 登录服务器可以无需再打开多余的工具，直接在 vscode 中进行操作，非常方便。 使用 vscode 连接服务器，需要安装插件：Remote-SSH，放心使用，这个插件是微软官方出品的，不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/ssh/1.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/ssh/2.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/ssh/3.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/ssh/4.png">
+<meta property="og:image" content="https://images.yxt.com/images/www/sany/ssh/5.png">
+<meta property="article:published_time" content="2023-10-11T09:02:36.000Z">
+<meta property="article:modified_time" content="2023-10-11T10:17:25.569Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="vsCode">
+<meta property="article:tag" content="ssh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.yxt.com/images/www/sany/ssh/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-VSCode免密登录服务器" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/10/11/VSCode%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="post-time" datetime="2023-10-11T09:02:36.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VSCode免密登录服务器
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vsCode/">vsCode</a>,<a class="article-category-link" href="/categories/vsCode/ssh/">ssh</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span class="VSCode免密登录服务器" id="busuanzi_container_page_pv"  data-flag-title="VSCode免密登录服务器">
+      &nbsp;阅读次数<span id="busuanzi_value_page_pv"></span>
+    </span>
+  </div>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>在使用 vscode 的时候，我们经常会使用到 ssh 连接服务器，但是每次都要输入密码，很是麻烦，那么我们可以通过配置 ssh 免密登录服务器，这样就可以省去每次输入密码的麻烦了。</p>
+<p>使用 vscode 登录服务器可以无需再打开多余的工具，直接在 vscode 中进行操作，非常方便。</p>
+<p>使用 vscode 连接服务器，需要安装插件：Remote-SSH，放心使用，这个插件是微软官方出品的，不会有安全问题。</p>
+<p>下面也会介绍 服务器之间的免密登录，这样就可以在服务器之间进行文件的拷贝了。</p>
+<span id="more"></span>
+
+<h2 id="2-ssh-密钥介绍与生成使用"><a href="#2-ssh-密钥介绍与生成使用" class="headerlink" title="2 ssh 密钥介绍与生成使用"></a>2 ssh 密钥介绍与生成使用</h2><h3 id="2-1-ssh-密钥介绍"><a href="#2-1-ssh-密钥介绍" class="headerlink" title="2.1 ssh 密钥介绍"></a>2.1 ssh 密钥介绍</h3><p>SSH（Secure Shell）是一种用于在网络上安全登录和执行远程命令的协议。SSH 密钥是 SSH 协议中用于身份验证的一对密钥：私钥（private key）和公钥（public key）。</p>
+<ul>
+<li>私钥（private key）：私钥是一份机密文件，由用户生成并保存在本地计算机上。私钥应该保持安全，只有拥有者可以访问。私钥用于对数据进行加密和签名，以证明身份。</li>
+<li>公钥（public key）：公钥是由私钥生成的非机密文件，可以在网络上自由共享。公钥可以被任何人使用来加密数据或验证签名，但无法从公钥推导出私钥。</li>
+<li>身份验证：通过 SSH 密钥进行身份验证时，用户在连接远程服务器时使用私钥，而远程服务器会验证用户身份是否与公钥匹配。如果公钥与服务器上存储的相关记录匹配，用户将被授权访问服务器。</li>
+<li>安全性优势：与传统的口令身份验证相比，SSH 密钥具有更高的安全性。私钥保持在本地计算机上，不必在网络上传输密码。此外，SSH 密钥使用非对称加密，使得攻击者难以破解私钥从而获得访问权限。</li>
+</ul>
+<h3 id="2-2-客户端生成密钥"><a href="#2-2-客户端生成密钥" class="headerlink" title="2.2 客户端生成密钥"></a>2.2 客户端生成密钥</h3><p>客户端生成密钥的方法很简单，只需要使用 ssh-keygen 命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>生成密钥过程中，建议采用默认值，只需要按三次回车之后，就会再～/.ssh 目录下生成密钥文件，其中，id_rsa 为私钥，id_rsa.pub 为公钥。</p>
+<h3 id="2-3-服务器配置"><a href="#2-3-服务器配置" class="headerlink" title="2.3 服务器配置"></a>2.3 服务器配置</h3><p>服务器的~/.ssh/authorized_keys 文件保存可快速 连接的客户端的公钥。只需把客户端生成的 id_rsa.pub 文件的内容拷贝到 authorized_keys 文件的末尾。拷贝的方法有：</p>
+<ol>
+<li>直接拷贝。由于 id_rsa.pub 和 authorized_keys 都是文本文件， 可通过拷贝命令直接拷贝。</li>
+<li>把 id_rsa.pub 上传到服务器，然后再把内容添加到 authorized_keys 文件中。</li>
+</ol>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ssh</span><br><span class="line">chmod 700 ~/.ssh</span><br><span class="line">touch ~/.ssh/authorized_keys</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;公钥内容&gt;&quot;</span> &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line">请将 &lt;公钥内容&gt; 替换为之前复制的公钥内容（可以使用 pbpaste 命令将其粘贴到终端上）。</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-在客户端配置服务器登录相关参数"><a href="#2-4-在客户端配置服务器登录相关参数" class="headerlink" title="2.4 在客户端配置服务器登录相关参数"></a>2.4 在客户端配置服务器登录相关参数</h3><p>除了密码之外，登录时，还需要配置 ip 地址、端口、用户等信息，也比较繁琐。可通过客户端的 <strong>~/.ssh/config</strong> 配置服务器的相关参数简化登录命令。</p>
+<p>config 文件的配置内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Host &lt;服务器别名&gt;</span><br><span class="line">		HostName &lt;服务器ip地址&gt;</span><br><span class="line">		Port &lt;服务器端口&gt;</span><br><span class="line">		User &lt;服务器用户名&gt;</span><br><span class="line">		IdentityFile &lt;私钥文件路径&gt;</span><br><span class="line"></span><br><span class="line">---&gt; 例如</span><br><span class="line">Host test_server</span><br><span class="line">  HostName 192.168.0.1</span><br><span class="line">  User root</span><br><span class="line">  Port 22</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+
+<p>这样配置好之后，登录服务器就不再需要密码了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh test_server</span><br></pre></td></tr></table></figure>
+
+<p>从此以后，登录服务器就简单多了。</p>
+<h2 id="3-VSCode-连接服务器"><a href="#3-VSCode-连接服务器" class="headerlink" title="3 VSCode 连接服务器"></a>3 VSCode 连接服务器</h2><p>1.首先安装 Remote-SSH 插件</p>
+<p>2.点击左下角的<br><img src='https://images.yxt.com/images/www/sany/ssh/1.png' /></p>
+<p>3.选择 Remote-SSH: Connect to Host…，然后选择 Add New SSH Host…，然后输入服务器的相关信息，如下图所示：<br><img src='https://images.yxt.com/images/www/sany/ssh/2.png' /><br><img src='https://images.yxt.com/images/www/sany/ssh/3.png' /></p>
+<p>4.然后选择你的私钥文件，如下图所示：<br><img src='https://images.yxt.com/images/www/sany/ssh/4.png' /><br><img src='https://images.yxt.com/images/www/sany/ssh/5.png' /></p>
+<p>5.然后就可以连接服务器了 进行文件的操作了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2023/10/11/VSCode%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clnllmsi10027i5ck50no3iw8" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vsCode/" rel="tag">vsCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/07/GithubCopilot%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Github Copilot 使用体验</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2022 - 2023 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+
+  
+    <!-- 不蒜子统计 -->
+    <div class="outer " id="footer-info">
+    <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+            本站访客数<span id="busuanzi_value_site_uv"></span>人
+    </span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>

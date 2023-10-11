@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Github Copilot 使用体验 | 丁大铭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="GitHub Copilot 到底是什么？GitHub Copilot 是由 Github 和 OpenAI 创造的 AI 工具。该工具通过自动代码补全来帮助程序员们编写代码。Visual Studio Code、Neovim 和 JetBrains 的用户已经可以使用这个插件了。GitHub Copilot 基于 OpenAI Codex 模型，经过自然语言和数十亿行公共源码的训练，其中来源包含">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github Copilot 使用体验">
+<meta property="og:url" content="http://example.com/2023/04/07/GithubCopilot%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="丁大铭">
+<meta property="og:description" content="GitHub Copilot 到底是什么？GitHub Copilot 是由 Github 和 OpenAI 创造的 AI 工具。该工具通过自动代码补全来帮助程序员们编写代码。Visual Studio Code、Neovim 和 JetBrains 的用户已经可以使用这个插件了。GitHub Copilot 基于 OpenAI Codex 模型，经过自然语言和数十亿行公共源码的训练，其中来源包含">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/fc0ceeddfa3041e5b9620a7abbddd39b2650.gif">
+<meta property="og:image" content="http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/fca1780d452243b2b3ae2b047cc893e62650.png">
+<meta property="og:image" content="http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/df2472f213d840a88fb020bfbf603e792650.gif">
+<meta property="og:image" content="http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/e8d376211b0543f7b3ff6803d005ab082650.gif">
+<meta property="og:image" content="http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/3fbd1f4e782d495681375e4a0c55bcc22650.gif">
+<meta property="og:image" content="http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/29aefbb9ee494f2d94580e391156d3d52650.gif">
+<meta property="article:published_time" content="2023-04-07T15:10:48.000Z">
+<meta property="article:modified_time" content="2023-06-07T09:58:09.168Z">
+<meta property="article:author" content="DingMing">
+<meta property="article:tag" content="vsCode">
+<meta property="article:tag" content="chatgpt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/fc0ceeddfa3041e5b9620a7abbddd39b2650.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="丁大铭" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+  <canvas id="Mycanvas"></canvas>
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-GithubCopilot使用体验" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/07/GithubCopilot%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" class="article-date">
+  <time class="post-time" datetime="2023-04-07T15:10:48.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">07</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Github Copilot 使用体验
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vsCode/">vsCode</a>,<a class="article-category-link" href="/categories/vsCode/chatgpt/">chatgpt</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span class="Github Copilot 使用体验" id="busuanzi_container_page_pv"  data-flag-title="Github Copilot 使用体验">
+      &nbsp;阅读次数<span id="busuanzi_value_page_pv"></span>
+    </span>
+  </div>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="GitHub-Copilot-到底是什么？"><a href="#GitHub-Copilot-到底是什么？" class="headerlink" title="GitHub Copilot 到底是什么？"></a>GitHub Copilot 到底是什么？</h2><p>GitHub Copilot 是由 Github 和 OpenAI 创造的 AI 工具。该工具通过自动代码补全来帮助程序员们编写代码。Visual Studio Code、Neovim 和 JetBrains 的用户已经可以使用这个插件了。<br>GitHub Copilot 基于 OpenAI Codex 模型，经过自然语言和数十亿行公共源码的训练，其中来源包含 Github 上的项目。<br><strong>该工具能为你编写代码或提供替代的解决方案。该服务支持所有的编程语言，但在 Python、JavaScript、TypeScript、Ruby、Java 和 Go 语言中表现得最为出色。</strong></p>
+<h2 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h2><p>Github Copilot 现在仍在技术预览的状态下；这只对部分的测试者开放。要想加入等候名单，见  <a target="_blank" rel="noopener" href="https://github.com/features/copilot/">copilot.github.com</a>。<br>在使用 GitHub Copilot 之前，你首先得下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot"> Visual Studio Code 插件</a>。</p>
+<ol>
+<li>在 Visual Studio Code Marketplace（或 JetBrains Marketplace）里浏览 GitHub Copilot 插件页面并下载该插件；</li>
+<li>打开 Visual Studio Code，你会被提示登录 GitHub 并授权该插件；</li>
+<li>授权插件之后，Github 会带你返回到 Visual Studio Code。<br>安装完成后，创建一个新的文件，你就可以开始编写你的代码了。</li>
+</ol>
+<p>举例：</p>
+<ol>
+<li>创建一个新的 JavaScript 文件（.js）；</li>
+<li>声明函数，等待魔法的发生。<img src='http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/fc0ceeddfa3041e5b9620a7abbddd39b2650.gif' />
+就这么简单。如果你不喜欢建议的代码，你也可以使用快捷键切换选项。
+<span id="more"></span></li>
+</ol>
+<img src='http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/fca1780d452243b2b3ae2b047cc893e62650.png' />
+
+<h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><p>我将从缺点开始讨论，因为可讨论的缺点不多，并且以积极的态度结束文章总是更令人愉快。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>首先，我想提一下上方 GIF 中的问题 —— 在使用 Copilot 后，我每次都要手动去除多余的括号。我时不时都要这样做，尤其是在编写条件或函数的时候。<br>第二个问题是关于 HTML。我知道 HTML 不是支持的语言之一，但在默认情况下，Github Copilot 每次都会建议代码。或许是我编写的布局太难以预测了，亦或是我倒霉，但我从来没有收到可用的代码补全。<br>这些就是我想说的了。现在我们来聊聊它的优点，因为它真的像是“魔法”。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>Github Copilot 带来的最大的价值是节省你查阅文档的时间。举例来说，在处理键盘事件时，你是否记得方向键的键码？我可不记得。幸运的是，有了 Copilot，你就不必记住或上网搜索这些键码了。反之，你只需要将你的需求写成注释即可。<br><img src='http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/df2472f213d840a88fb020bfbf603e792650.gif' /><br>此外，你也不需要搜索公式，如华氏度和摄氏度之间的转换<br><img src='http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/e8d376211b0543f7b3ff6803d005ab082650.gif' /><br>Copilot 不仅适用于常用的函数，它能完美地识别文件上下文并利用现有的变量和函数来实现代码补全。</p>
+<p><strong>使用 Github Copilot 编写 API 服务类:</strong></p>
+<img src='http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/3fbd1f4e782d495681375e4a0c55bcc22650.gif' />
+
+<p>Copilot 建议了包含方法的整个类。当我修改构造器并添加 host 和 JWT 字符串时，它也能依据这些变量建议 GET 和 POST 方法。<br>它也能识别一个 JWT 变量名并理解如何使用它。它添加了一个请求头：“Authorization”: “Bearer “ + this.jwt。<br>最后，然我们看看它是如何在类之间运作的。举例来说，Copilot 能分析导入/现有的方法并再利用这些方法，无论它们是否在同一个类或 Object 中。</p>
+<img src='http://yxt-guanwang.oss-accelerate.aliyuncs.com/images/www/sany/copilt/29aefbb9ee494f2d94580e391156d3d52650.gif' />
+
+<blockquote>
+<p>引用地址：<br><a target="_blank" rel="noopener" href="https://javascript.plainenglish.io/github-copilot-review-after-3-months-of-usage-with-examples-74335cd45478">Github Copilot: Review After 3 Months of Usage with Examples</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2023/04/07/GithubCopilot%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" data-id="clnllmshw000vi5ck8mpqhlej" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chatgpt/" rel="tag">chatgpt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vsCode/" rel="tag">vsCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/11/VSCode%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          VSCode免密登录服务器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">智能预加载策略</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">丁大铭</h1>
+    <h2 class="blog-subtitle">My Heart Will Go On</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/about" title="About">
+            <li>关于</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+          <a href="/cv" title="Cv">
+            <li>简历</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://yxt-guanwang.oss-cn-beijing.aliyuncs.com/images/www/avatars0.jpg">
+    <h2 class="author">DingMing</h2>
+    <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
+    <div class="count-box">
+      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/wohaofang" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://juejin.cn/user/923245497292375" target="_blank" title="掘金">
+          掘金
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2022 - 2023 DingMing<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+
+  
+    <!-- 不蒜子统计 -->
+    <div class="outer " id="footer-info">
+    <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+            本站访客数<span id="busuanzi_value_site_uv"></span>人
+    </span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/cv" title="" class="menuItem">简历</a>
+          
+            <a href="/about" title="" class="menuItem">关于</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>
