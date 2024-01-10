@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,179 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-模拟圆规-内容输出" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/" class="article-date">
+  <time class="post-time" datetime="2020-04-20T05:48:34.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/">模拟圆规-内容输出</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="最近接到了一个需求，使用JS制作一个圆规课件"><a href="#最近接到了一个需求，使用JS制作一个圆规课件" class="headerlink" title="最近接到了一个需求，使用JS制作一个圆规课件"></a>最近接到了一个需求，使用JS制作一个圆规课件</h2><p>功能如下：</p>
+<p>图1 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img1.png" alt="图1"><br>图2 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img2.png" alt="图2"></p>
+<h3 id="图1和图2-分析"><a href="#图1和图2-分析" class="headerlink" title="图1和图2 分析"></a>图1和图2 分析</h3><p>最开始的想法是 使用斜率 k=tanα=(y1-y2)/(x1-x2) 来时时的计算倾斜角来控制圆规的三部分运动；</p>
+<p>可是后来我发现，我想多了：</p>
+<ul>
+<li>圆规的三部分不是直线运动而是抛物线 </li>
+<li>还有一个最关键的点就是，常规的数学坐标系是从左下方开始的，而前端的坐标系默认是从左上方开始的</li>
+</ul>
+<h3 id="所以我必须转换思路"><a href="#所以我必须转换思路" class="headerlink" title="所以我必须转换思路"></a>所以我必须转换思路</h3><p>机智的我想想到了一个极简的想法，不管他是曲线运动还是什么斜率，无非逃不出一个界定的范围，运动什么的都让代码自行事项吧。 </p>
+<ol>
+<li>首先是记录圆规的三部分的初始坐标和倾斜角</li>
+<li>其次是利率圆规的三部分的最大范围的坐标和倾斜角</li>
+<li>拉伸范围是固定的，我们可以计算出圆规被拖动的距离的比例</li>
+<li>在拉伸的时候时时改变圆规的三部分的最大范围的坐标和倾斜角的比例 </li>
+</ol>
+<p>这样就完成了图1和图2的需求</p>
+<p>效果如下：图3</p>
+<p>图3 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img3.png" alt="图3"></p>
+<h3 id="接下来来到了画圆的环节了"><a href="#接下来来到了画圆的环节了" class="headerlink" title="接下来来到了画圆的环节了"></a>接下来来到了画圆的环节了</h3><p>效果如下：</p>
+<p>图4 <img src="https://github.com/wohaofang/Summary/blob/master/%E6%80%BB%E7%BB%93%E6%88%AA%E5%9B%BE/compass/img4.png" alt="图4"></p>
+<h4 id="首先是画圆"><a href="#首先是画圆" class="headerlink" title="首先是画圆"></a>首先是画圆</h4><p>这个画圆可是让我选择了好久，我的方案有这么几种：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方案</th>
+<th>采用与否的原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>直接用 JS 生成 Dom元素 往页面里不断push就行</td>
+<td>不可行 生成Dom太多了 不太好</td>
+</tr>
+<tr>
+<td>2</td>
+<td>使用css boder 滚动（类似圆形进度条）</td>
+<td>可行 备选状态 但是它消耗页面性能</td>
+</tr>
+<tr>
+<td>3</td>
+<td>使用canvas 画圆</td>
+<td>尝试 感觉不可行(使用style 动态改变画布宽高是 内部画出来的圆是椭圆形) 有明显锯齿 需要优化</td>
+</tr>
+<tr>
+<td>4</td>
+<td>使用svg 画圆</td>
+<td>目前采用的是这个方案</td>
+</tr>
+</tbody></table>
+<p>！！！  但是使用 svg circle 画圆他默认是顺时针旋转的 这里我用了一个骚操作 使用 transform:scaleY(-1); 使svg 水平镜像翻转。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg id=&quot;svg&quot; :style=&quot;svgCss&quot;&gt;</span><br><span class="line"> &lt;circle class=&quot;path&quot; </span><br><span class="line">  stroke=&quot;hotpink&quot; // 划线的颜色</span><br><span class="line">  fill=&quot;none&quot;  // 填充颜色</span><br><span class="line">  stroke-width=&quot;1%&quot; // 划线的宽度  可以使用百分比这是太棒了</span><br><span class="line">  cx=&quot;50%&quot; // 圆心X轴位置</span><br><span class="line">  cy=&quot;50%&quot; // 圆心Y轴位置</span><br><span class="line">  r=&quot;49.5%&quot; //圆的半径</span><br><span class="line"> /&gt;</span><br><span class="line">&lt;/svg&gt;</span><br><span class="line"></span><br><span class="line">stroke-dasharray: 360%; //展示比例</span><br><span class="line">stroke-dashoffset: 360%; //绘画比例</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>后续还需使用 Math.atan2 来时时计算倾斜度 来进行拖动画圆</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2020/04/20/%E6%A8%A1%E6%8B%9F%E5%9C%86%E8%A7%84-%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA/" data-id="clr7ijgt0006x39s6cratd1x2" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-1px-Bug" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/12/1px-Bug/" class="article-date">
+  <time class="post-time" datetime="2019-12-12T05:49:50.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/12/1px-Bug/">1px-Bug</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *  本文件主要放各种sass的function或者mixin，可以直接在.vue中的sass使用</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * 主要是给border为0.5的时候使用的，当只有一条border或者border需要全部设置的画建议使用下面几个方法</span><br><span class="line">  */</span><br><span class="line">@mixin border-hack($color: #e7e7e7, $d1: none, $d2: none, $d3: none, $d4: none) &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  &amp;::after&#123;</span><br><span class="line">    content: &#x27;&#x27;;</span><br><span class="line">    transform: scale(0.5);</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: -50%;</span><br><span class="line">    right: -50%;</span><br><span class="line">    top: -50%;</span><br><span class="line">    bottom: -50%;</span><br><span class="line">    @if($d1 == &#x27;left&#x27; or $d2 == &#x27;left&#x27; or $d3 == &#x27;left&#x27; or $d4 == &#x27;left&#x27;)&#123;</span><br><span class="line">      border-left: 1PX solid $color;</span><br><span class="line">    &#125; </span><br><span class="line">    @if ($d1 == &#x27;right&#x27; or $d2 == &#x27;right&#x27; or $d3 == &#x27;right&#x27; or $d4 == &#x27;right&#x27;) &#123;</span><br><span class="line">      border-right: 1PX solid $color;</span><br><span class="line">    &#125; </span><br><span class="line">    @if ($d1 == &#x27;top&#x27; or $d2 == &#x27;top&#x27; or $d3 == &#x27;top&#x27; or $d4 == &#x27;top&#x27;) &#123;</span><br><span class="line">      border-top: 1PX solid $color;</span><br><span class="line">    &#125; </span><br><span class="line">    @if ($d1 == &#x27;bottom&#x27; or $d2 == &#x27;bottom&#x27; or $d3 == &#x27;bottom&#x27; or $d4 == &#x27;bottom&#x27;) &#123;</span><br><span class="line">      border-bottom: 1PX solid $color;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@mixin border-hack-top($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, top);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-right($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, right);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-bottom($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, bottom);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-left($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, left);</span><br><span class="line">&#125;</span><br><span class="line">@mixin border-hack-all($color: #e7e7e7) &#123;</span><br><span class="line">  @include border-hack($color, left, right, top, bottom);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.test&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background: yellow;</span><br><span class="line">  color: white;</span><br><span class="line">  @include border-hack-all(red);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2019/12/12/1px-Bug/" data-id="clr7ijgsh000e39s61wh13kue" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-mongodb-安装踩坑记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -137,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" data-id="clnllyzif002w94s6a7al6hev" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/11/16/mongodb-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E8%AE%B0/" data-id="clr7ijgsr003539s62esb65xb" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a></li></ul>
@@ -207,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="clnllyzie002o94s6833d7dlm" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/07/31/Vue2-x%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="clr7ijgsq002o39s62ovs1ie6" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -278,7 +451,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="clnllyzif002z94s66jo87wiw" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/07/30/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="clr7ijgsz006p39s6h40r1p4g" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
@@ -347,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="clnllyzia001a94s622q3cjex" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/15/JWT%E5%AD%A6%E4%B9%A0/" data-id="clr7ijgsm001i39s6he5916ux" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
@@ -430,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="clnllyzie002h94s69r4m5tvi" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/03/11/electron%E5%9F%BA%E7%A1%80/" data-id="clr7ijgsp002j39s64r462qp4" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/" rel="tag">electron</a></li></ul>
@@ -498,7 +671,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="clnllyzi9000x94s6h8sd5t34" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2019/02/12/JS%E4%B8%8Enative%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F/" data-id="clr7ijgsl001539s63xj45q9n" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/native/" rel="tag">native</a></li></ul>
@@ -568,7 +741,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="clnllyzif003394s6ewna706h" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/17/ios-input%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E6%94%B6%E5%9B%9EBUG%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F/" data-id="clr7ijgss003c39s67cbgg2eu" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -632,148 +805,10 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="clnllyzih003p94s6c5769lda" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/12/16/ios-%E9%9F%B3%E4%B9%90%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E9%97%AE%E9%A2%98/" data-id="clr7ijgsq002s39s69kzn45z0" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-event-loop" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/20/event-loop/" class="article-date">
-  <time class="post-time" datetime="2018-11-20T03:22:41.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/20/event-loop/">event-loop</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/js/">js</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#x27;script start&#x27;);</span><br><span class="line"></span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">  console.log(&#x27;setTimeout&#x27;);</span><br><span class="line">&#125;, 0);</span><br><span class="line"></span><br><span class="line">new Promise((resolve) =&gt; &#123;</span><br><span class="line">    console.log(&#x27;Promise&#x27;)</span><br><span class="line">    resolve()</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">  console.log(&#x27;promise1&#x27;);</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">  console.log(&#x27;promise2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(&#x27;script end&#x27;);</span><br><span class="line">// script start =&gt; Promise =&gt; script end =&gt; promise1 =&gt; promise2 =&gt; setTimeout</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>以上代码虽然 setTimeout 写在 Promise 之前，但是因为 Promise 属于微任务而 setTimeout属于宏任务，所以会有以上的打印。</li>
-<li>微任务包括 process.nextTick ，promise ，Object.observe，MutationObserver</li>
-<li>宏任务包括 script ， setTimeout ，setInterval，setImmediate ，I/O ，UI renderin</li>
-</ul>
-<blockquote>
-<p>很多人有个误区，认为微任务快于宏任务，其实是错误的。因为宏任务中包括了 script ，浏览器会先执行一个宏任务，接下来有异步代码的话就先执行微任务</p>
-</blockquote>
-<h3 id="所以正确的一次-Event-loop-顺序是这样的"><a href="#所以正确的一次-Event-loop-顺序是这样的" class="headerlink" title="所以正确的一次 Event loop 顺序是这样的"></a>所以正确的一次 Event loop 顺序是这样的</h3><ul>
-<li>执行同步代码，这属于宏任务</li>
-<li>执行栈为空，查询是否有微任务需要执行</li>
-<li>执行所有微任务</li>
-<li>必要的话渲染 UI</li>
-<li>然后开始下一轮 Event loop，执行宏任务中的异步代码</li>
-</ul>
-<blockquote>
-<p>通过上述的 Event loop 顺序可知，如果宏任务中的异步代码有大量的计算并且需要操作 DOM 的话，为了更快的 界面响应，我们可以把操作 DOM 放入微任务中</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="clnllyzig003h94s66wow3cnb" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-文本框根据输入内容自适应高度" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" class="article-date">
-  <time class="post-time" datetime="2018-07-16T05:46:56.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/">文本框根据输入内容自适应高度</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/js/">js</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <span id="more"></span>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot; name=&quot;viewport&quot;&gt;</span><br><span class="line">    &lt;title&gt;文本框根据输入内容自适应高度&lt;/title&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        h2 &#123;</span><br><span class="line">            text-align: center;</span><br><span class="line">            margin: 50px auto;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #textarea &#123;</span><br><span class="line">            display: block;</span><br><span class="line">            margin: 0 auto;</span><br><span class="line">            overflow: hidden;</span><br><span class="line">            width: 60%;</span><br><span class="line">            font-size: 14px;</span><br><span class="line">            height: 18px;</span><br><span class="line">            line-height: 24px;</span><br><span class="line">            padding: 2px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        textarea &#123;</span><br><span class="line">            outline: 0 none;</span><br><span class="line">            border-color: rgba(82, 168, 236, 0.8);</span><br><span class="line">            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;文本框根据输入内容多少自适应高度&lt;/h2&gt;</span><br><span class="line">&lt;textarea id=&quot;textarea&quot; placeholder=&quot;回复内容&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    /**</span><br><span class="line">     * 文本框根据输入内容自适应高度</span><br><span class="line">     * @param                &#123;HTMLElement&#125;        输入框元素</span><br><span class="line">     * @param                &#123;Number&#125;                设置光标与输入框保持的距离(默认0)</span><br><span class="line">     * @param                &#123;Number&#125;                设置最大高度(可选)</span><br><span class="line">     */</span><br><span class="line">    var autoTextarea = function(elem, extra, maxHeight) &#123;</span><br><span class="line">        extra = extra || 0;</span><br><span class="line">        var isFirefox = !!document.getBoxObjectFor || &#x27;mozInnerScreenX&#x27; in window,</span><br><span class="line">                isOpera = !!window.opera &amp;&amp; !!window.opera.toString().indexOf(&#x27;Opera&#x27;),</span><br><span class="line">                addEvent = function(type, callback) &#123;</span><br><span class="line">                    elem.addEventListener ?</span><br><span class="line">                            elem.addEventListener(type, callback, false) :</span><br><span class="line">                            elem.attachEvent(&#x27;on&#x27; + type, callback);</span><br><span class="line">                &#125;,</span><br><span class="line">                getStyle = elem.currentStyle ? function(name) &#123;</span><br><span class="line">                    var val = elem.currentStyle[name];</span><br><span class="line">                    if (name === &#x27;height&#x27; &amp;&amp; val.search(/px/i) !== 1) &#123;</span><br><span class="line">                        var rect = elem.getBoundingClientRect();</span><br><span class="line">                        return rect.bottom - rect.top -</span><br><span class="line">                                parseFloat(getStyle(&#x27;paddingTop&#x27;)) -</span><br><span class="line">                                parseFloat(getStyle(&#x27;paddingBottom&#x27;)) + &#x27;px&#x27;;</span><br><span class="line">                    &#125;;</span><br><span class="line">                    return val;</span><br><span class="line">                &#125; : function(name) &#123;</span><br><span class="line">                    return getComputedStyle(elem, null)[name];</span><br><span class="line">                &#125;,</span><br><span class="line">                minHeight = parseFloat(getStyle(&#x27;height&#x27;));</span><br><span class="line">        elem.style.resize = &#x27;none&#x27;;</span><br><span class="line">        var change = function() &#123;</span><br><span class="line">            var scrollTop, height,</span><br><span class="line">                    padding = 0,</span><br><span class="line">                    style = elem.style;</span><br><span class="line">            if (elem._length === elem.value.length) return;</span><br><span class="line">            elem._length = elem.value.length;</span><br><span class="line">            if (!isFirefox &amp;&amp; !isOpera) &#123;</span><br><span class="line">                padding = parseInt(getStyle(&#x27;paddingTop&#x27;)) + parseInt(getStyle(&#x27;paddingBottom&#x27;));</span><br><span class="line">            &#125;;</span><br><span class="line">            scrollTop = document.body.scrollTop || document.documentElement.scrollTop;</span><br><span class="line">            elem.style.height = minHeight + &#x27;px&#x27;;</span><br><span class="line">            if (elem.scrollHeight &gt; minHeight) &#123;</span><br><span class="line">                if (maxHeight &amp;&amp; elem.scrollHeight &gt; maxHeight) &#123;</span><br><span class="line">                    height = maxHeight - padding;</span><br><span class="line">                    style.overflowY = &#x27;auto&#x27;;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    height = elem.scrollHeight - padding;</span><br><span class="line">                    style.overflowY = &#x27;hidden&#x27;;</span><br><span class="line">                &#125;;</span><br><span class="line">                style.height = height + extra + &#x27;px&#x27;;</span><br><span class="line">                scrollTop += parseInt(style.height) - elem.currHeight;</span><br><span class="line">                document.body.scrollTop = scrollTop;</span><br><span class="line">                document.documentElement.scrollTop = scrollTop;</span><br><span class="line">                elem.currHeight = parseInt(style.height);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">        addEvent(&#x27;propertychange&#x27;, change);</span><br><span class="line">        addEvent(&#x27;input&#x27;, change);</span><br><span class="line">        addEvent(&#x27;focus&#x27;, change);</span><br><span class="line">        change();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var text = document.getElementById(&quot;textarea&quot;);</span><br><span class="line">    autoTextarea(text); // 调用</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="clnllyzii004494s63hqfd14u" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
 
     </footer>
   </div>
@@ -836,9 +871,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
     </div>
 
 
@@ -874,7 +909,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2022 - 2023 DingMing<br>
+      &copy;2023 - 2024 DingMing<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       

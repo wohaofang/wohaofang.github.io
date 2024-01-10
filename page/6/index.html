@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,144 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-event-loop" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/event-loop/" class="article-date">
+  <time class="post-time" datetime="2018-11-20T03:22:41.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/event-loop/">event-loop</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#x27;script start&#x27;);</span><br><span class="line"></span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">  console.log(&#x27;setTimeout&#x27;);</span><br><span class="line">&#125;, 0);</span><br><span class="line"></span><br><span class="line">new Promise((resolve) =&gt; &#123;</span><br><span class="line">    console.log(&#x27;Promise&#x27;)</span><br><span class="line">    resolve()</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">  console.log(&#x27;promise1&#x27;);</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">  console.log(&#x27;promise2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(&#x27;script end&#x27;);</span><br><span class="line">// script start =&gt; Promise =&gt; script end =&gt; promise1 =&gt; promise2 =&gt; setTimeout</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以上代码虽然 setTimeout 写在 Promise 之前，但是因为 Promise 属于微任务而 setTimeout属于宏任务，所以会有以上的打印。</li>
+<li>微任务包括 process.nextTick ，promise ，Object.observe，MutationObserver</li>
+<li>宏任务包括 script ， setTimeout ，setInterval，setImmediate ，I/O ，UI renderin</li>
+</ul>
+<blockquote>
+<p>很多人有个误区，认为微任务快于宏任务，其实是错误的。因为宏任务中包括了 script ，浏览器会先执行一个宏任务，接下来有异步代码的话就先执行微任务</p>
+</blockquote>
+<h3 id="所以正确的一次-Event-loop-顺序是这样的"><a href="#所以正确的一次-Event-loop-顺序是这样的" class="headerlink" title="所以正确的一次 Event loop 顺序是这样的"></a>所以正确的一次 Event loop 顺序是这样的</h3><ul>
+<li>执行同步代码，这属于宏任务</li>
+<li>执行栈为空，查询是否有微任务需要执行</li>
+<li>执行所有微任务</li>
+<li>必要的话渲染 UI</li>
+<li>然后开始下一轮 Event loop，执行宏任务中的异步代码</li>
+</ul>
+<blockquote>
+<p>通过上述的 Event loop 顺序可知，如果宏任务中的异步代码有大量的计算并且需要操作 DOM 的话，为了更快的 界面响应，我们可以把操作 DOM 放入微任务中</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2018/11/20/event-loop/" data-id="clr7ijgsr003039s6406x8yqv" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-文本框根据输入内容自适应高度" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" class="article-date">
+  <time class="post-time" datetime="2018-07-16T05:46:56.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/">文本框根据输入内容自适应高度</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js/">js</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot; name=&quot;viewport&quot;&gt;</span><br><span class="line">    &lt;title&gt;文本框根据输入内容自适应高度&lt;/title&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        h2 &#123;</span><br><span class="line">            text-align: center;</span><br><span class="line">            margin: 50px auto;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #textarea &#123;</span><br><span class="line">            display: block;</span><br><span class="line">            margin: 0 auto;</span><br><span class="line">            overflow: hidden;</span><br><span class="line">            width: 60%;</span><br><span class="line">            font-size: 14px;</span><br><span class="line">            height: 18px;</span><br><span class="line">            line-height: 24px;</span><br><span class="line">            padding: 2px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        textarea &#123;</span><br><span class="line">            outline: 0 none;</span><br><span class="line">            border-color: rgba(82, 168, 236, 0.8);</span><br><span class="line">            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;文本框根据输入内容多少自适应高度&lt;/h2&gt;</span><br><span class="line">&lt;textarea id=&quot;textarea&quot; placeholder=&quot;回复内容&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    /**</span><br><span class="line">     * 文本框根据输入内容自适应高度</span><br><span class="line">     * @param                &#123;HTMLElement&#125;        输入框元素</span><br><span class="line">     * @param                &#123;Number&#125;                设置光标与输入框保持的距离(默认0)</span><br><span class="line">     * @param                &#123;Number&#125;                设置最大高度(可选)</span><br><span class="line">     */</span><br><span class="line">    var autoTextarea = function(elem, extra, maxHeight) &#123;</span><br><span class="line">        extra = extra || 0;</span><br><span class="line">        var isFirefox = !!document.getBoxObjectFor || &#x27;mozInnerScreenX&#x27; in window,</span><br><span class="line">                isOpera = !!window.opera &amp;&amp; !!window.opera.toString().indexOf(&#x27;Opera&#x27;),</span><br><span class="line">                addEvent = function(type, callback) &#123;</span><br><span class="line">                    elem.addEventListener ?</span><br><span class="line">                            elem.addEventListener(type, callback, false) :</span><br><span class="line">                            elem.attachEvent(&#x27;on&#x27; + type, callback);</span><br><span class="line">                &#125;,</span><br><span class="line">                getStyle = elem.currentStyle ? function(name) &#123;</span><br><span class="line">                    var val = elem.currentStyle[name];</span><br><span class="line">                    if (name === &#x27;height&#x27; &amp;&amp; val.search(/px/i) !== 1) &#123;</span><br><span class="line">                        var rect = elem.getBoundingClientRect();</span><br><span class="line">                        return rect.bottom - rect.top -</span><br><span class="line">                                parseFloat(getStyle(&#x27;paddingTop&#x27;)) -</span><br><span class="line">                                parseFloat(getStyle(&#x27;paddingBottom&#x27;)) + &#x27;px&#x27;;</span><br><span class="line">                    &#125;;</span><br><span class="line">                    return val;</span><br><span class="line">                &#125; : function(name) &#123;</span><br><span class="line">                    return getComputedStyle(elem, null)[name];</span><br><span class="line">                &#125;,</span><br><span class="line">                minHeight = parseFloat(getStyle(&#x27;height&#x27;));</span><br><span class="line">        elem.style.resize = &#x27;none&#x27;;</span><br><span class="line">        var change = function() &#123;</span><br><span class="line">            var scrollTop, height,</span><br><span class="line">                    padding = 0,</span><br><span class="line">                    style = elem.style;</span><br><span class="line">            if (elem._length === elem.value.length) return;</span><br><span class="line">            elem._length = elem.value.length;</span><br><span class="line">            if (!isFirefox &amp;&amp; !isOpera) &#123;</span><br><span class="line">                padding = parseInt(getStyle(&#x27;paddingTop&#x27;)) + parseInt(getStyle(&#x27;paddingBottom&#x27;));</span><br><span class="line">            &#125;;</span><br><span class="line">            scrollTop = document.body.scrollTop || document.documentElement.scrollTop;</span><br><span class="line">            elem.style.height = minHeight + &#x27;px&#x27;;</span><br><span class="line">            if (elem.scrollHeight &gt; minHeight) &#123;</span><br><span class="line">                if (maxHeight &amp;&amp; elem.scrollHeight &gt; maxHeight) &#123;</span><br><span class="line">                    height = maxHeight - padding;</span><br><span class="line">                    style.overflowY = &#x27;auto&#x27;;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    height = elem.scrollHeight - padding;</span><br><span class="line">                    style.overflowY = &#x27;hidden&#x27;;</span><br><span class="line">                &#125;;</span><br><span class="line">                style.height = height + extra + &#x27;px&#x27;;</span><br><span class="line">                scrollTop += parseInt(style.height) - elem.currHeight;</span><br><span class="line">                document.body.scrollTop = scrollTop;</span><br><span class="line">                document.documentElement.scrollTop = scrollTop;</span><br><span class="line">                elem.currHeight = parseInt(style.height);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">        addEvent(&#x27;propertychange&#x27;, change);</span><br><span class="line">        addEvent(&#x27;input&#x27;, change);</span><br><span class="line">        addEvent(&#x27;focus&#x27;, change);</span><br><span class="line">        change();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var text = document.getElementById(&quot;textarea&quot;);</span><br><span class="line">    autoTextarea(text); // 调用</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2018/07/16/%E6%96%87%E6%9C%AC%E6%A1%86%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E5%86%85%E5%AE%B9%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" data-id="clr7ijgt2007f39s67alo89bu" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-AntV-F2-折线图研究" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -129,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="clnllyzi7000f94s66jqo82xw" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/16/AntV-F2-%E6%8A%98%E7%BA%BF%E5%9B%BE%E7%A0%94%E7%A9%B6/" data-id="clr7ijgsj000m39s66e5238w3" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AntV/" rel="tag">AntV</a></li></ul>
@@ -192,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clnllyzih003t94s69sld9pic" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2018/01/14/%E5%9C%A8vs-code%E4%B8%AD%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clr7ijgt0006r39s62qy1f3ta" class="article-share-link">分享</a> -->
       
       
     </footer>
@@ -250,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="clnllyzi6000e94s60d5t56jl" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/12/21/==-%E5%92%8C-===%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="clr7ijgsh000939s64qi6dg5a" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -425,7 +563,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="clnllyzil005094s6dq76ed7i" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/09/16/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932017/" data-id="clr7ijgt2007j39s6dazpgqxp" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -484,7 +622,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2017/04/24/hello-hexo/" data-id="clnllyzie002j94s6c8xjh4t5" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2017/04/24/hello-hexo/" data-id="clr7ijgsq002t39s60bnietvy" class="article-share-link">分享</a> -->
       
       
     </footer>
@@ -548,9 +686,9 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>55</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>24</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>30</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
     </div>
 
 
@@ -586,7 +724,7 @@ props传值是怎么来的，通过父级，父子的值是怎么来的，是通
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2022 - 2023 DingMing<br>
+      &copy;2023 - 2024 DingMing<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       
