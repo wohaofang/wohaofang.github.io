@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>59</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>27</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,146 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Koa2-Log4js-Pm2持久化日志" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" class="article-date">
+  <time class="post-time" datetime="2021-12-03T08:26:41.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/">Koa2+Log4js+PM2持久化日志及使用问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/%E6%97%A5%E5%BF%97/">日志</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直在开发node相关的项目，做了一段时间了，项目已经让大家正常使用上了，但是日志系统一直没有接入，所以经过查阅与平衡复杂度，决定使用koa-log4进行日志的管理。关于 log4js 的介绍在这里就不多叙述了，想了解请点击  <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/log4js">log4js详细介绍</a></p>
+<p>说到数据持久化，最普遍的无非就两种方式:</p>
+<ul>
+<li>文件存储(导出.log文件)</li>
+<li>数据库存储(基础的增加功能)</li>
+</ul>
+<p>本文将以log4js为主线，以文件存储形式 并且与运维配合 通过logstash上传ELK到Kibana查询的方式实现的。</p>
+<h2 id="持久化至文件"><a href="#持久化至文件" class="headerlink" title="持久化至文件"></a>持久化至文件</h2><p>log4js 输入日志到文件有两种形式:</p>
+<ul>
+<li>file 输出到文件, 指定单一文件名称, 例如: default.log</li>
+<li>dateFile 输出到文件，文件可以按日期模式滚动，例如: 2021-12-03.log</li>
+</ul>
+<p>直接上代码:</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" data-id="clx8evw7m001pr0ck4n7n62dr" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-UNPKG和Oss边缘脚本的简述" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" class="article-date">
+  <time class="post-time" datetime="2021-10-22T07:03:42.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/">UNPKG和Oss边缘脚本的简述</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/oss/">oss</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UNPKG和边缘脚本这两个技术都是利用cdn对文件进行转发，他们也有着不同，这也只是我浅显的理解，这这段时间的开发中进行了取舍，最终使用边缘脚本EdgeScript 进行了项目的开发，<br>下面分享下我的开发经历:</p>
+<h2 id="使用背景"><a href="#使用背景" class="headerlink" title="使用背景"></a>使用背景</h2><p>在我入职公司之前就一直存在着这样的问题：<br>    <strong>使用npm发布的组件库升级后，如何让产线自动引用最新的库？</strong><br>这里采用的方式是组件库大发版，产线的项目也需要重新打包部署一遍，这样才能使用最新的功能。<br>在项目比较少的时候是可行的，但是随着项目的增多，就会带来特别多毫无意义的部署。所以通过调研，先后找到了unpkg 和 oss边缘脚本 这两个解决方案。</p>
+<h2 id="unpkg"><a href="#unpkg" class="headerlink" title="unpkg"></a>unpkg</h2><h3 id="unpkg-是什么"><a href="#unpkg-是什么" class="headerlink" title="unpkg 是什么"></a>unpkg 是什么</h3>
+        
+          <p class="article-more-link">
+            <a href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" data-id="clx8evw7q0032r0ck84ip3p5t" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unpkg/" rel="tag">unpkg</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-webpack性能优化" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -152,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/10/21/webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="clr7ijgss003k39s60z3n29ls" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/10/21/webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="clx8evw7t003rr0ckdxieegv3" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
@@ -217,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/" data-id="clr7ijgt3007x39s6h1oi3oc9" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/09/10/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3vue2/" data-id="clx8evw880084r0ck8jmqdf2g" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -282,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/" data-id="clr7ijgt2007q39s614ml7v6q" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/09/03/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%932021%E7%A7%8B/" data-id="clx8evw870081r0ckgh49h7sc" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -350,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="clr7ijgsl001839s6cat38oub" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/08/23/JS%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="clx8evw7k0016r0ckapf2a21b" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -415,7 +555,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/11/Diff%E7%AE%97%E6%B3%95/" data-id="clr7ijgsj000r39s6a5ao0vj8" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/08/11/Diff%E7%AE%97%E6%B3%95/" data-id="clx8evw7j000vr0ckbjjnatgk" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
@@ -478,7 +618,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/08/02/React%20Hooks%20%E4%BD%BF%E7%94%A8/" data-id="clr7ijgsn001w39s616ny2cmi" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/08/02/React%20Hooks%20%E4%BD%BF%E7%94%A8/" data-id="clx8evw7r0033r0ckb9p2g8uz" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hooks/" rel="tag">hooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
@@ -553,7 +693,7 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="clr7ijgsk000t39s622qubb7m" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="clx8evw7j000zr0ckhylugqjq" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
@@ -618,142 +758,10 @@ chmod 777 /var/jenkins_mount
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" data-id="clr7ijgt2007m39s66kwz6slv" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2021/07/22/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0oss%E6%80%9D%E8%B7%AF/" data-id="clx8evw86007pr0ckht0k252g" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-gitlab-ci-yml的介绍与简单编写" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/" class="article-date">
-  <time class="post-time" datetime="2021-07-12T09:39:07.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/">.gitlab-ci.yml的介绍与简单编写</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/git/">git</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="gitlab-ci-cd的两大要素"><a href="#gitlab-ci-cd的两大要素" class="headerlink" title="gitlab ci/cd的两大要素"></a>gitlab ci/cd的两大要素</h3><ul>
-<li><p>gitlab runner  执行环境</p>
-</li>
-<li><p>.gitlab-ci.yml  执行内容</p>
-</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/07/12/gitlab-ci-yml%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99/" data-id="clr7ijgsp002m39s6fk083fjl" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-nuxt使用Ts小结" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" class="article-date">
-  <time class="post-time" datetime="2021-06-29T03:03:27.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">29</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/">nuxt使用Ts小结</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>这一段时间在公司主导新搭建了一个 nuxt 项目。为了紧跟时代潮流，所以想使用 vue3 的 component-api 那一套。<br>结果调研发现很尴尬，目前的 nuxt.js 还没有升级到 vue3，但是若要使用可以引入 component-api 的 npm 仓库，强行使用。这真是鸡肋到极，所以放弃使用 component-api。</p>
-<p>但是为了创新整理活出来，决定使用 Ts 进行开发。<br>毕竟是第一次使用 nuxt.js，所以启动起来还是比较举步维艰的。脚手架一把锁很简单，但是想优化好，减少项目体积(上优化) 就会麻烦一些。</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/06/29/nuxt%E4%BD%BF%E7%94%A8Ts%E5%B0%8F%E7%BB%93/" data-id="clr7ijgsq002x39s67mjb6rxd" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
 
     </footer>
   </div>
@@ -816,9 +824,9 @@ chmod 777 /var/jenkins_mount
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>59</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>27</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
 
 

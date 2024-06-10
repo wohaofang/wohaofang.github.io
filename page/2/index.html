@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>59</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>27</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,146 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-2022年个税计算器" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" class="article-date">
+  <time class="post-time" datetime="2022-12-21T09:43:18.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/">2022年个税计算器</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/react/">react</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这不年底了，因为扣税的原因，工资一次比一次少。在网上一直找不到顺手个税计算器，于是准备动手开发一个，效果如下:<br><a target="_blank" rel="noopener" href="https://wohaofang.github.io/personal-income-tax-calculator/">2022年个税计算器</a></p>
+<p>介绍一下：</p>
+<ul>
+<li>React + Material UI</li>
+<li>PWA</li>
+<li>响应式布局，桌面和移动端同时支持</li>
+<li>数据精准😏</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" data-id="clx8evw7e0007r0ck2a407m4f" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-项目优化复盘Mongoose" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" class="article-date">
+  <time class="post-time" datetime="2022-12-20T08:44:34.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/">项目优化复盘Mongoose</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/mongoose/">mongoose</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>这不年底了，得更细一下技术博客了，年终总结什么的目前暂无打算，记录一下、前一段优化mongoose问题，顺带记录一下自己的了解，继续提升自己技能宽度…</p>
+<blockquote>
+<p>问题 目前的node项目接口访问数据库10s后会自动超时</p>
+</blockquote>
+<p>我想延长数据库访问链接时间，差了网上很多关于Mongoose的文档，结果介绍的都很入门，不能满足我目前的需求。</p>
+<p>所以我决定苦读 <a target="_blank" rel="noopener" href="https://mongoosejs.com/docs/connections.html">官方文档</a> </p>
+<p>其实解决这个问题只需要添加几个选项设置就好，对于了解的人当然不在话下，但是对于开拓者来说还是比较困难的，需要一遍遍的设置、重启、调试、修改</p>
+<p>接下来我细细复盘我的优化之路</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" data-id="clx8evw87007wr0ck0uly43rp" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongoose/" rel="tag">mongoose</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-2022日常锻炼记录" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -137,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/10/28/2022%E6%97%A5%E5%B8%B8%E9%94%BB%E7%82%BC%E8%AE%B0%E5%BD%95/" data-id="clr7ijgse000339s66dqyhj3z" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/10/28/2022%E6%97%A5%E5%B8%B8%E9%94%BB%E7%82%BC%E8%AE%B0%E5%BD%95/" data-id="clx8evw790001r0ckhxws26yu" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -204,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/07/26/AliNode%E9%97%AE%E9%A2%98%E5%BD%92%E6%80%BB/" data-id="clr7ijgsj000k39s6ft7sbo42" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/07/26/AliNode%E9%97%AE%E9%A2%98%E5%BD%92%E6%80%BB/" data-id="clx8evw7i000or0ck7ll45o1y" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -270,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/07/26/%E8%8B%8F%E5%B7%9E%E5%87%BA%E5%B7%AE%E4%B9%8B%E6%97%85/" data-id="clr7ijgt1007939s6b0x23r6o" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/07/26/%E8%8B%8F%E5%B7%9E%E5%87%BA%E5%B7%AE%E4%B9%8B%E6%97%85/" data-id="clx8evw86007gr0ck3wkd2knx" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -337,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" data-id="clr7ijgsz006n39s63yoy83bn" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/07/07/%E4%BD%BF%E7%94%A8PM2%E7%9A%84GracefulReload%E6%97%A0%E5%81%9C%E6%9C%BA%E6%9B%B4%E6%96%B0/" data-id="clx8evw7u003zr0ckegt9br5l" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pm2/" rel="tag">pm2</a></li></ul>
@@ -403,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-id="clr7ijgsn001p39s6e6qbdziv" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/06/13/NodeAPM%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" data-id="clx8evw7n001xr0ck424nakzu" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -474,7 +614,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/" data-id="clr7ijgso002739s6fgcg8m9z" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/06/13/Node.jsApm%E7%9B%91%E6%8E%A7%E4%BB%8B%E7%BB%8D/" data-id="clx8evw7n001sr0ckepf0gbn8" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -539,7 +679,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/06/13/APM%E4%BB%8B%E7%BB%8D/" data-id="clr7ijgsi000f39s6boe30nk4" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/06/13/APM%E4%BB%8B%E7%BB%8D/" data-id="clx8evw7h000gr0ck2l3g3at6" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li></ul>
@@ -606,150 +746,10 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/01/17/%E4%B8%89%E4%BA%9A%E4%B9%8B%E6%97%85/" data-id="clr7ijgss003g39s6c81i3qzo" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2022/01/17/%E4%B8%89%E4%BA%9A%E4%B9%8B%E6%97%85/" data-id="clx8evw7u003wr0ck8vhjaj9s" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-Koa2-Log4js-Pm2持久化日志" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" class="article-date">
-  <time class="post-time" datetime="2021-12-03T08:26:41.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">03</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/">Koa2+Log4js+PM2持久化日志及使用问题</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/%E6%97%A5%E5%BF%97/">日志</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近一直在开发node相关的项目，做了一段时间了，项目已经让大家正常使用上了，但是日志系统一直没有接入，所以经过查阅与平衡复杂度，决定使用koa-log4进行日志的管理。关于 log4js 的介绍在这里就不多叙述了，想了解请点击  <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/log4js">log4js详细介绍</a></p>
-<p>说到数据持久化，最普遍的无非就两种方式:</p>
-<ul>
-<li>文件存储(导出.log文件)</li>
-<li>数据库存储(基础的增加功能)</li>
-</ul>
-<p>本文将以log4js为主线，以文件存储形式 并且与运维配合 通过logstash上传ELK到Kibana查询的方式实现的。</p>
-<h2 id="持久化至文件"><a href="#持久化至文件" class="headerlink" title="持久化至文件"></a>持久化至文件</h2><p>log4js 输入日志到文件有两种形式:</p>
-<ul>
-<li>file 输出到文件, 指定单一文件名称, 例如: default.log</li>
-<li>dateFile 输出到文件，文件可以按日期模式滚动，例如: 2021-12-03.log</li>
-</ul>
-<p>直接上代码:</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/12/03/Koa2-Log4js-Pm2%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%A5%E5%BF%97/" data-id="clr7ijgsm001f39s6f8la2cec" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-UNPKG和Oss边缘脚本的简述" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" class="article-date">
-  <time class="post-time" datetime="2021-10-22T07:03:42.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br/>
-    <span class="post-day">22</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/">UNPKG和Oss边缘脚本的简述</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/oss/">oss</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>UNPKG和边缘脚本这两个技术都是利用cdn对文件进行转发，他们也有着不同，这也只是我浅显的理解，这这段时间的开发中进行了取舍，最终使用边缘脚本EdgeScript 进行了项目的开发，<br>下面分享下我的开发经历:</p>
-<h2 id="使用背景"><a href="#使用背景" class="headerlink" title="使用背景"></a>使用背景</h2><p>在我入职公司之前就一直存在着这样的问题：<br>    <strong>使用npm发布的组件库升级后，如何让产线自动引用最新的库？</strong><br>这里采用的方式是组件库大发版，产线的项目也需要重新打包部署一遍，这样才能使用最新的功能。<br>在项目比较少的时候是可行的，但是随着项目的增多，就会带来特别多毫无意义的部署。所以通过调研，先后找到了unpkg 和 oss边缘脚本 这两个解决方案。</p>
-<h2 id="unpkg"><a href="#unpkg" class="headerlink" title="unpkg"></a>unpkg</h2><h3 id="unpkg-是什么"><a href="#unpkg-是什么" class="headerlink" title="unpkg 是什么"></a>unpkg 是什么</h3>
-        
-          <p class="article-more-link">
-            <a href="/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/10/22/UNPKG%E5%92%8COss%E8%BE%B9%E7%BC%98%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E8%BF%B0/" data-id="clr7ijgsp002e39s68hge5i80" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unpkg/" rel="tag">unpkg</a></li></ul>
 
     </footer>
   </div>
@@ -812,9 +812,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>59</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>27</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
 
 

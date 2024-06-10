@@ -47,9 +47,9 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>59</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>27</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -82,6 +82,146 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Node自动接收新邮件进行处理" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/06/10/Node%E8%87%AA%E5%8A%A8%E6%8E%A5%E6%94%B6%E6%96%B0%E9%82%AE%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86/" class="article-date">
+  <time class="post-time" datetime="2024-06-10T02:47:01.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/06/10/Node%E8%87%AA%E5%8A%A8%E6%8E%A5%E6%94%B6%E6%96%B0%E9%82%AE%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86/">Node自动接收新邮件进行处理</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/imap/">imap</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>    简介： 通过imap 来接收邮箱新邮件，类似客户端系列，不过比较简单的，目前只有新邮件，后续也可以通过这个来做一个自己的邮件客户端。
+</code></pre>
+<h2 id="1-介绍-邮件协议"><a href="#1-介绍-邮件协议" class="headerlink" title="1.介绍 邮件协议"></a>1.介绍 邮件协议</h2><ol>
+<li>POP3：Post Office Protocol 3，即邮局协议的第三个版本，是应用最广泛的邮件接收协议。POP3 是一种单向的邮件传输协议，它只能将服务器上的邮件传输到本地计算机上，而不能将本地计算机上的邮件传输到服务器上。POP3 协议的默认端口号是 110。</li>
+<li>IMAP：Internet Mail Access Protocol，即互联网邮件访问协议，是一种高级的邮件协议。IMAP 与 POP3 不同，它是一种双向的邮件传输协议，它不仅可以将服务器上的邮件传输到本地计算机上，还可以将本地计算机上的邮件传输到服务器上。IMAP 协议的默认端口号是 143。</li>
+<li>SMTP：Simple Mail Transfer Protocol，即简单邮件传输协议，是一种用于发送邮件的协议。SMTP 协议的默认端口号是 25。</li>
+</ol>
+<h2 id="2-需求"><a href="#2-需求" class="headerlink" title="2.需求"></a>2.需求</h2><p>在指定邮箱接收到新邮件后，进行邮件处理，比如 获取邮件内容，并跳转指定链接 进行 Selenium 自动化操作。</p>
+<h2 id="3-处理思路"><a href="#3-处理思路" class="headerlink" title="3.处理思路"></a>3.处理思路</h2><p>通过 imap 来登录邮箱，然后读取邮箱中未读的邮件，并将邮件内容进行解析获得，然后跳转指定页面。</p>
+<h2 id="4-使用模块"><a href="#4-使用模块" class="headerlink" title="4.使用模块"></a>4.使用模块</h2><ul>
+<li>imap</li>
+<li>mailparser<br>主要就是这两个。</li>
+</ul>
+<h2 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5.代码实现"></a>5.代码实现</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line">var MailParser = require(&#x27;mailparser&#x27;).MailParser</span><br><span class="line">var Imap = require(&#x27;imap&#x27;)</span><br><span class="line">var Path = require(&#x27;path&#x27;)</span><br><span class="line">var fs = require(&#x27;fs&#x27;)</span><br><span class="line">var dayjs = require(&#x27;dayjs&#x27;)</span><br><span class="line"></span><br><span class="line">function QQ() &#123;</span><br><span class="line">  const imap = new Imap(&#123;</span><br><span class="line">    /** QQ 邮箱 */</span><br><span class="line">    user: &#x27;XXXXXXX@qq.com&#x27;,</span><br><span class="line">    /** 这里填写的不是 QQ邮箱的密码，这里是 pop3 的密钥 */</span><br><span class="line">    password: &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    host: &#x27;pop.qq.com&#x27;,</span><br><span class="line"></span><br><span class="line">    tls: false,</span><br><span class="line">    authTimeout: 1000,</span><br><span class="line">    tlsOptions: &#123; rejectUnauthorized: false &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">  const search = () =&gt;</span><br><span class="line">    imap.search(</span><br><span class="line">      [</span><br><span class="line">        [</span><br><span class="line">          &#x27;UNSEEN&#x27;,</span><br><span class="line">          [&#x27;SINCE&#x27;, new Date(+new Date() - 5 * 60 * 1000).toISOString()],</span><br><span class="line">        ],</span><br><span class="line">      ],</span><br><span class="line">      (err, results) =&gt; &#123;</span><br><span class="line">        if (!err) &#123;</span><br><span class="line">          try &#123;</span><br><span class="line">            const f = imap.fetch(results, &#123;</span><br><span class="line">              markSeen: false,</span><br><span class="line">              bodies: &#x27;&#x27;,</span><br><span class="line">              struct: true,</span><br><span class="line">            &#125;)</span><br><span class="line">            f.on(&#x27;message&#x27;, (msg) =&gt; &#123;</span><br><span class="line">              const mailparser = new MailParser()</span><br><span class="line">              const info = &#123;</span><br><span class="line">                theme: &#x27;&#x27;,</span><br><span class="line">                form: &#x27;&#x27;,</span><br><span class="line">                mailName: &#x27;&#x27;,</span><br><span class="line">                to: &#x27;&#x27;,</span><br><span class="line">                datatime: &#x27;&#x27;,</span><br><span class="line">                html: null,</span><br><span class="line">                text: null,</span><br><span class="line">                uid: null,</span><br><span class="line">                buffer: null,</span><br><span class="line">              &#125;</span><br><span class="line">              let status = 0</span><br><span class="line">              const next = (data) =&gt; &#123;</span><br><span class="line">                imap.setFlags([data.uid], &#x27;SEEN&#x27;, () =&gt; &#123;&#125;)</span><br><span class="line">                /** 这里拿到的 data 可以直接进行数据库存储 */</span><br><span class="line">                console.log(1111, data)</span><br><span class="line">              &#125;</span><br><span class="line">              msg.on(&#x27;body&#x27;, (stream) =&gt; &#123;</span><br><span class="line">                stream.pipe(mailparser)</span><br><span class="line">                mailparser.on(&#x27;headers&#x27;, (headers) =&gt; &#123;</span><br><span class="line">                  info.theme = headers.get(&#x27;subject&#x27;)</span><br><span class="line">                  info.form = headers.get(&#x27;from&#x27;).value[0].address</span><br><span class="line">                  info.mailName = headers.get(&#x27;from&#x27;).value[0].name</span><br><span class="line">                  info.to = headers.get(&#x27;to&#x27;).value[0].address</span><br><span class="line">                  info.datatime = dayjs(headers.get(&#x27;date&#x27;)).format(</span><br><span class="line">                    &#x27;YYYY-MM-DD HH:mm:ss&#x27;</span><br><span class="line">                  )</span><br><span class="line">                  status++</span><br><span class="line">                  if (status === 3) &#123;</span><br><span class="line">                    next(info)</span><br><span class="line">                  &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                mailparser.on(&#x27;data&#x27;, (data) =&gt; &#123;</span><br><span class="line">                  if (data.type === &#x27;text&#x27;) &#123;</span><br><span class="line">                    status++</span><br><span class="line">                    info.html = data.html</span><br><span class="line">                    info.text = data.text</span><br><span class="line">                    if (status === 3) &#123;</span><br><span class="line">                      next(info)</span><br><span class="line">                    &#125;</span><br><span class="line">                  &#125;</span><br><span class="line">                  if (data.type === &#x27;attachment&#x27;) &#123;</span><br><span class="line">                    const path = Path.join(</span><br><span class="line">                      __dirname,</span><br><span class="line">                      &#x27;..&#x27;,</span><br><span class="line">                      &#x27;..&#x27;,</span><br><span class="line">                      &#x27;..&#x27;,</span><br><span class="line">                      &#x27;..&#x27;,</span><br><span class="line">                      &#x27;public&#x27;,</span><br><span class="line">                      &#x27;mailer&#x27;,</span><br><span class="line">                      `$&#123;new Date().valueOf()&#125;.$&#123;</span><br><span class="line">                        data.filename.split(&#x27;.&#x27;)[</span><br><span class="line">                          data.filename.split(&#x27;.&#x27;).length - 1</span><br><span class="line">                        ]</span><br><span class="line">                      &#125;`</span><br><span class="line">                    )</span><br><span class="line">                    const ws = fs.createWriteStream(path)</span><br><span class="line">                    ws.on(&#x27;close&#x27;, () =&gt; &#123;</span><br><span class="line">                      status++</span><br><span class="line">                      info.buffer = fs.readFileSync(path)</span><br><span class="line">                      fs.unlinkSync(path)</span><br><span class="line">                      if (status === 3) &#123;</span><br><span class="line">                        next(info)</span><br><span class="line">                      &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                    data.content.pipe(ws)</span><br><span class="line">                    data.release()</span><br><span class="line">                  &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">              &#125;)</span><br><span class="line">              msg.on(&#x27;attributes&#x27;, (data) =&gt; &#123;</span><br><span class="line">                info.uid = data.uid</span><br><span class="line">                status++</span><br><span class="line">                if (status === 3) &#123;</span><br><span class="line">                  next(info)</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125; catch (err) &#123;&#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          throw err</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  let init = true</span><br><span class="line">  imap.once(&#x27;ready&#x27;, () =&gt; &#123;</span><br><span class="line">    imap.openBox(&#x27;INBOX&#x27;, true, (err) =&gt; &#123;</span><br><span class="line">      if (!err) &#123;</span><br><span class="line">        init = false</span><br><span class="line">        search()</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        throw err</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">  imap.on(&#x27;mail&#x27;, () =&gt; &#123;</span><br><span class="line">    if (!init) &#123;</span><br><span class="line">      search()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  imap.connect()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">QQ()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6.注意事项"></a>6.注意事项</h2><h3 id="1-password-是密钥，不是密码"><a href="#1-password-是密钥，不是密码" class="headerlink" title="1.password 是密钥，不是密码"></a>1.password 是密钥，不是密码</h3><h3 id="2-一定不是使用网易邮箱，网易邮箱的-pop3-服务是收费的，而且不是很稳定，建议使用-QQ-邮箱"><a href="#2-一定不是使用网易邮箱，网易邮箱的-pop3-服务是收费的，而且不是很稳定，建议使用-QQ-邮箱" class="headerlink" title="2. 一定不是使用网易邮箱，网易邮箱的 pop3 服务是收费的，而且不是很稳定，建议使用 QQ 邮箱"></a>2. 一定不是使用网易邮箱，网易邮箱的 pop3 服务是收费的，而且不是很稳定，建议使用 QQ 邮箱</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2024/06/10/Node%E8%87%AA%E5%8A%A8%E6%8E%A5%E6%94%B6%E6%96%B0%E9%82%AE%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86/" data-id="clx8evw7n0020r0ckgirb3voh" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imap/" rel="tag">imap</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-自动化脚本之selenium" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/06/10/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC%E4%B9%8Bselenium/" class="article-date">
+  <time class="post-time" datetime="2024-06-10T02:16:49.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/06/10/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC%E4%B9%8Bselenium/">自动化脚本之Selenium</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/selenium/">selenium</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近失业在家，经表哥介绍，日本一些刷单的活动，可以赚点零花钱，所以开始研究一下前端自动化的一些脚本。一下是我的一些总结</p>
+<h2 id="1-什么是-Selenium-Webdriver"><a href="#1-什么是-Selenium-Webdriver" class="headerlink" title="1.什么是 Selenium Webdriver"></a>1.什么是 Selenium Webdriver</h2><p>Selenium WebDriver 是一组开源 API，用于自动测试 Web 应用程序。虽然 Selenium 本身在其工具套件中有许多迭代，但 WebDriver 是 Web 自动化框架，它允许用户针对各种不同的浏览器执行测试，而不仅仅是在 Firefox 或 Chrome 上进行测试。</p>
+<p>相对与 Puppeteer，Selenium 是一个更加通用的工具，可以用于多种浏览器，而 Puppeteer 只能用于 Chrome 浏览器。</p>
+<p>WebDriver 以本地化方式驱动浏览器，就像用户在本地或使用 Selenium 服务器的远程机器上所做的那样，这标志着浏览器自动化的飞跃。</p>
+<p>Selenium WebDriver 指的是语言绑定和各个浏览器控制代码的实现。 这通常被称为 WebDriver。</p>
+        
+          <p class="article-more-link">
+            <a href="/2024/06/10/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC%E4%B9%8Bselenium/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2024/06/10/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC%E4%B9%8Bselenium/" data-id="clx8evw85007dr0ck8i3k3h7n" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-2023年年终总结" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -141,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2024/01/10/2023%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" data-id="clr7ijgsg000739s61wnv1rri" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2024/01/10/2023%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" data-id="clx8evw7f0009r0ck88dp6awv" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -214,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/11/25/%E5%88%9D%E5%A7%8B%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" data-id="clr7ijgsz006m39s6ck6zdwfb" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/11/25/%E5%88%9D%E5%A7%8B%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" data-id="clx8evw7v0047r0ck6m664mrl" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" rel="tag">负载均衡</a></li></ul>
@@ -280,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/10/11/VSCode%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clr7ijgsp002g39s68aiph5t5" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/10/11/VSCode%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clx8evw7p002kr0ck1sce61nn" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vsCode/" rel="tag">vsCode</a></li></ul>
@@ -354,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/04/07/GithubCopilot%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" data-id="clr7ijgsl001039s60sl78nd4" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/04/07/GithubCopilot%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" data-id="clx8evw7l001ar0ck9lwu94bj" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chatgpt/" rel="tag">chatgpt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vsCode/" rel="tag">vsCode</a></li></ul>
@@ -428,7 +568,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" data-id="clr7ijgt0006t39s6bs5l4zvx" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/03/01/%E6%99%BA%E8%83%BD%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" data-id="clx8evw840073r0ck3l7r175v" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
@@ -495,7 +635,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/02/22/GMTC2023/" data-id="clr7ijgsk000y39s6f4078kzr" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/02/22/GMTC2023/" data-id="clx8evw7k0012r0ck9rhxfsdt" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
@@ -562,7 +702,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/02/09/AccessClient%E5%A0%A1%E5%9E%92%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88/" data-id="clr7ijgsh000a39s6fm7cf3gs" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/02/09/AccessClient%E5%A0%A1%E5%9E%92%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88/" data-id="clx8evw7i000lr0ck3l7afur8" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E4%BA%AB/" rel="tag">分享</a></li></ul>
@@ -627,150 +767,10 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2023/01/30/2023%E5%B9%B4%E8%A7%84%E5%88%92/" data-id="clr7ijgsm001b39s6g97m3ryn" class="article-share-link">分享</a> -->
+      <!-- <a data-url="http://example.com/2023/01/30/2023%E5%B9%B4%E8%A7%84%E5%88%92/" data-id="clx8evw7f000ar0ck4wzl2efq" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-2022年个税计算器" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" class="article-date">
-  <time class="post-time" datetime="2022-12-21T09:43:18.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">21</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/">2022年个税计算器</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/react/">react</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这不年底了，因为扣税的原因，工资一次比一次少。在网上一直找不到顺手个税计算器，于是准备动手开发一个，效果如下:<br><a target="_blank" rel="noopener" href="https://wohaofang.github.io/personal-income-tax-calculator/">2022年个税计算器</a></p>
-<p>介绍一下：</p>
-<ul>
-<li>React + Material UI</li>
-<li>PWA</li>
-<li>响应式布局，桌面和移动端同时支持</li>
-<li>数据精准😏</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/12/21/2022%E5%B9%B4%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/" data-id="clr7ijgsd000139s65ju10nti" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-项目优化复盘Mongoose" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" class="article-date">
-  <time class="post-time" datetime="2022-12-20T08:44:34.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/">项目优化复盘Mongoose</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node/">node</a>,<a class="article-category-link" href="/categories/node/mongoose/">mongoose</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>这不年底了，得更细一下技术博客了，年终总结什么的目前暂无打算，记录一下、前一段优化mongoose问题，顺带记录一下自己的了解，继续提升自己技能宽度…</p>
-<blockquote>
-<p>问题 目前的node项目接口访问数据库10s后会自动超时</p>
-</blockquote>
-<p>我想延长数据库访问链接时间，差了网上很多关于Mongoose的文档，结果介绍的都很入门，不能满足我目前的需求。</p>
-<p>所以我决定苦读 <a target="_blank" rel="noopener" href="https://mongoosejs.com/docs/connections.html">官方文档</a> </p>
-<p>其实解决这个问题只需要添加几个选项设置就好，对于了解的人当然不在话下，但是对于开拓者来说还是比较困难的，需要一遍遍的设置、重启、调试、修改</p>
-<p>接下来我细细复盘我的优化之路</p>
-        
-          <p class="article-more-link">
-            <a href="/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2022/12/20/%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%A4%8D%E7%9B%98Mongoose/" data-id="clr7ijgt3007u39s6b8bt6vca" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongoose/" rel="tag">mongoose</a></li></ul>
 
     </footer>
   </div>
@@ -833,9 +833,9 @@
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>57</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>25</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>31</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>59</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>27</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
 
 
