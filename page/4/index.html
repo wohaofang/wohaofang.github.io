@@ -47,7 +47,7 @@
     <h2 class="author">DingMing</h2>
     <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>60</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>61</strong><br>文章</div></a>
       <a href="/categories"><div><strong>27</strong><br>分类</div></a>
       <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
@@ -82,6 +82,81 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Docker安装Jenkins" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" class="article-date">
+  <time class="post-time" datetime="2021-07-23T02:56:04.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/">Docker安装Jenkins</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jenkins/">Jenkins</a>
+  </div>
+
+          
+              <!-- <script>
+  const pathname = window.location.pathname;
+  console.log('🚀 ', pathname)
+</script> -->
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Centos7阿里云服务器上使用docker搭建Jenkins服务。</p>
+<p>需要提前准备的条件</p>
+<ul>
+<li>docker环境</li>
+<li>JDK环境(Centos7自带JDK环境)</li>
+</ul>
+<h3 id="一、docker拉取镜像"><a href="#一、docker拉取镜像" class="headerlink" title="一、docker拉取镜像"></a>一、docker拉取镜像</h3><p>Jenkins有官方镜像，也有私人镜像，这里我们选择拉取中文版的Jenkins镜像。</p>
+<pre><code>docker pull jenkinszh/jenkins-zh
+</code></pre>
+<h3 id="二、创建Jenkins挂载目录并授权权限"><a href="#二、创建Jenkins挂载目录并授权权限" class="headerlink" title="二、创建Jenkins挂载目录并授权权限"></a>二、创建Jenkins挂载目录并授权权限</h3><p>如果你对Docker比较熟悉，应该知道它的实现实际上是创造了一个独立的容器环境，Jenkins在这个容器内运行，那么如果我们想要对Jenkins进行配置，就需要进入到容器里选择文件进行配置。虽然我们可以使用<strong>docker exec -it 【容器id】 bash <strong>命令进入容器目录进行配置，但是连简单的 vi命令都不能使用。<br>如果我们在启动镜像的时候指定挂载目录，那么在服务器本机与容器之间就可以创建一个映射。<br>所以我们在服务器上先创建一个jenkins工作目录，</strong> /var/jenkins_mount</strong>，赋予相应权限，稍后我们将jenkins容器目录挂载到这个目录上，这样我们就可以很方便地对容器内的配置文件进行修改。</p>
+<pre><code>mkdir -p /var/jenkins_mount
+chmod 777 /var/jenkins_mount
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="http://example.com/2021/07/23/Docker%E5%AE%89%E8%A3%85Jenkins/" data-id="cm604sv0u0011jrckh512b788" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-静态文件上传oss思路" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -671,74 +746,10 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
 
 
   
-    <article id="post-NUXT-JS原理简述" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" class="article-date">
-  <time class="post-time" datetime="2021-04-20T08:14:18.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/">NUXT.JS原理简述</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vue/">vue</a>,<a class="article-category-link" href="/categories/vue/nuxt/">nuxt</a>
-  </div>
-
-          
-              <!-- <script>
-  const pathname = window.location.pathname;
-  console.log('🚀 ', pathname)
-</script> -->
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-那服务器端渲染到底有什么好处呢？"><a href="#1-那服务器端渲染到底有什么好处呢？" class="headerlink" title="1.那服务器端渲染到底有什么好处呢？"></a>1.那服务器端渲染到底有什么好处呢？</h4><p>主要的原因时SPA（单页应用）不利于搜索引擎的SEO操作，Nuxt.js适合作新闻、博客、电影、咨询这样的需要搜索引擎提供流量的项目。如果你要作移动端的项目，就没必要使用这个框架了。</p>
-<h4 id="2-什么是SSR？"><a href="#2-什么是SSR？" class="headerlink" title="2.什么是SSR？"></a>2.什么是SSR？</h4><p>SPA虽然给服务器减轻了压力，但是也是有缺点的：</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <!-- <a data-url="http://example.com/2021/04/20/NUXT-JS%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" data-id="cm604sv0x001pjrckapos1grb" class="article-share-link">分享</a> -->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%88%86%E4%BA%AB/" rel="tag">问题分享</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/3/">⇠ pre</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">next ⇢</a>
+    <a class="extend prev" rel="prev" href="/page/3/">⇠ pre</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">next ⇢</a>
   </nav>
 </section>
         
@@ -787,7 +798,7 @@ YApi在Github上已累计获得了18K+Star，具有优秀的交互体验，YApi�
     <h2 class="author">DingMing</h2>
     <!-- <h3 class="description">丁大铭的个人空间，用来分享一些前端小技巧，默默成长吧，哈哈</h3> -->
     <div class="count-box">
-      <a href="/archives"><div><strong>60</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>61</strong><br>文章</div></a>
       <a href="/categories"><div><strong>27</strong><br>分类</div></a>
       <a href="/tags"><div><strong>33</strong><br>标签</div></a>
     </div>
