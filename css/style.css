@@ -2261,7 +2261,7 @@ pre .javascript .function {
   display: inline-block;
 }
 .view-box span {
-  font-size: 0.6em;
+  font-size: 1em;
   text-shadow: 0 1px #fff;
 }
 @media screen and (min-width: 980px) {
